@@ -1,14 +1,12 @@
-import { installations } from '@simulation/components/section/installation/index'
-
 import { InputCard } from '@simulation/components/InputCard'
+import { installations } from '@simulation/components/section/installation/index'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
 type Props = {
     onValid: () => void;
-    onSubmit: () => void;
 }
 
-export const InstallationTypeSection = ({ onValid, onSubmit }: Props) => {
+export const InstallationTypeSection = ({ onValid }: Props) => {
 
 
     return(
@@ -30,7 +28,7 @@ export const InstallationTypeSection = ({ onValid, onSubmit }: Props) => {
                 ))}
             </div>
 
-            <StepNavigation showSkip={false} showBack={false} showSubmit={true} onSubmit={onSubmit}/>
+            <StepNavigation showSkip={false} showBack={false} showSubmit={false}/>
         </div>
     )
 }

@@ -1,7 +1,6 @@
 import { HttpService } from '@simulation/services'
+import { SimulationType } from '@simulation/types/simulation'
 
-export const updateSimulation = async (data: string) => {
-    await HttpService.put<{
-        data: string
-    }>('/', data);
+export const updateSimulation = async (data: SimulationType) => {
+    await HttpService.put('/' + data.simulation_id, data);
 };

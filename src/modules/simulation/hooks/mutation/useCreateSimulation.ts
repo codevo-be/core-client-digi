@@ -1,16 +1,16 @@
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { updateSimulation } from '@simulation/services'
+import { createSimulation } from '@simulation/services/create-simulation'
 
-export function useUpdateSimulation() {
+export function useCreateSimulation() {
     return useMutation({
-        mutationFn: updateSimulation,
+        mutationFn: createSimulation,
         onError: (error) => {
             toast.error(error.message);
         },
         onSuccess: () => {
-            toast.success('Simulation mise à jour');
+            toast.success('Simulation créée');
         }
     });
 }
