@@ -1,12 +1,15 @@
 import { InputCard } from '@simulation/components/InputCard'
 import { installations } from '@simulation/components/section/installation/index'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { SimulationType } from '@simulation/types/update-simulation-type'
 
 type Props = {
+    parentData: any;
+    handleValue: (data: SimulationType) => void;
     onValid: () => void;
 }
 
-export const InstallationTypeSection = ({ onValid }: Props) => {
+export const InstallationTypeSection = ({ parentData, handleValue, onValid }: Props) => {
 
 
     return(
@@ -21,7 +24,12 @@ export const InstallationTypeSection = ({ onValid }: Props) => {
                         value={installation.value}
                         name="installationType"
                         onClick={() => {
-                            localStorage.setItem("installationType", installation.value)
+                            const data = {
+                                    ...parentData,
+                                    'label': "installationType",
+                                    'response': installation.value
+                                };
+                            handleValue(data);
                             onValid();
                         }}
                     />
