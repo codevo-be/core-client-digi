@@ -8,7 +8,7 @@ export const SheetInputVat = () => {
             className="!h-full !w-[10rem] flex-shrink-0"
             options={taxes.map((tax) => {
                 return {
-                    label: String(tax),
+                    label: String(tax) + '%',
                     value: tax
                 }
             })}

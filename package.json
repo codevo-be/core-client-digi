@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "@digico/ui": "github:Digico-be/ui#v0.0.2",
-        "@digico/utils": "github:Digico-be/utils-client",
+        "@digico/utils": "github:Digico-be/utils-client#v0.0.2",
         "@dnd-kit/modifiers": "^9.0.0",
         "@dnd-kit/sortable": "^10.0.0",
         "@tailwindcss/postcss": "^4.0.6",

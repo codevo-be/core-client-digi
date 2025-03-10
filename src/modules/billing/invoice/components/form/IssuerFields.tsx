@@ -1,32 +1,16 @@
 'use client'
 
-import { useFormContext } from 'react-hook-form'
 import { Form } from '@digico/ui'
 import { countries } from 'data/countries'
 
 export const IssuerFields = () => {
-    const { watch } = useFormContext()
-
     return (
         <>
             <Form.Group>
                 <Form.Field required={true} name={`issuer.name`} id="issuer.name" label="Nom" placeholder="Nom complet" />
                 <Form.Row>
-                    <Form.Field
-                        prefix={watch('issuer.country') ? watch('issuer.country').toUpperCase() : 'BE'}
-                        name={`issuer.vat_number`}
-                        id="issuer.vat_number"
-                        label="Numéro de tva"
-                        placeholder="2532.245.135"
-                    />
-                    <Form.Field
-                        required={true}
-                        prefix={watch('issuer.country') ? watch('issuer.country').toUpperCase() : 'BE'}
-                        name={`issuer.iban`}
-                        id="issuer.iban"
-                        label="IBAN"
-                        placeholder="4562.2452.2456"
-                    />
+                    <Form.Field name={`issuer.vat_number`} id="issuer.vat_number" label="Numéro de tva" placeholder="2532.245.135" />
+                    <Form.Field required={true} name={`issuer.iban`} id="issuer.iban" label="IBAN" placeholder="4562.2452.2456" />
                     <Form.Field type="email" name={`issuer.email`} id="issuer.email" label="Adresse email" placeholder="info@diji.be" />
                     <Form.Field name={`issuer.phone`} id="issuer.phone" label="Numéro de téléphone" placeholder="0593/02.52.13" />
                 </Form.Row>

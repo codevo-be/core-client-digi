@@ -8,7 +8,7 @@ import { useReadContacts } from '@contact/hooks/queries'
 import { ContactType } from '@contact/types/contact'
 
 export const RecipientFields = () => {
-    const { watch, setValue } = useFormContext()
+    const { setValue } = useFormContext()
 
     const { data } = useReadContacts()
 
@@ -38,13 +38,7 @@ export const RecipientFields = () => {
                 />
                 <Form.Row>
                     <Form.Field required={true} name={`recipient.name`} id="recipient.name" label="Nom" placeholder="Nom complet" />
-                    <Form.Field
-                        prefix={watch('recipient.country') ? watch('recipient.country').toUpperCase() : 'BE'}
-                        name={`recipient.vat_number`}
-                        id="recipient.vat_number"
-                        label="Numéro de tva"
-                        placeholder="2532.245.135"
-                    />
+                    <Form.Field name={`recipient.vat_number`} id="recipient.vat_number" label="Numéro de tva" placeholder="2532.245.135" />
                 </Form.Row>
             </Form.Group>
 
