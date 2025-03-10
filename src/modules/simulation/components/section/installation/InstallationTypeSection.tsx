@@ -5,9 +5,10 @@ import { StepNavigation } from '@simulation/components/StepNavigation'
 
 type Props = {
     onValid: () => void;
+    onSubmit: () => void;
 }
 
-export const InstallationTypeSection = ({ onValid }: Props) => {
+export const InstallationTypeSection = ({ onValid, onSubmit }: Props) => {
 
 
     return(
@@ -29,7 +30,7 @@ export const InstallationTypeSection = ({ onValid }: Props) => {
                 ))}
             </div>
 
-            <StepNavigation showSkip={false} showBack={false} showSubmit={false}/>
+            <StepNavigation showSkip={false} showBack={false} showSubmit={true} onSubmit={onSubmit}/>
         </div>
     )
 }

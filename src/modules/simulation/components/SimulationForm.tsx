@@ -4,7 +4,7 @@ import { Form } from "@digico/ui";
 import { NodeNavigator } from '@simulation/DAGmap/NodeNavigator'
 import { simulationMap } from '@simulation/DAGmap/SimulationMap'
 
-import { createSimulation } from "@simulation/services";
+import { useUpdateSimulation } from '@simulation/hooks/mutation/useUpdateSimulation'
 import { SimulationType } from "@simulation/types/simulation";
 
 export default function SimulationForm() {
@@ -26,21 +26,25 @@ export default function SimulationForm() {
 
     const handleBack = () => {
         setHistory(prev =>  prev.slice(0, -1));
-        const nodeId = history[history.length - 2]; // -2 car la suppression n'est pas encore acquise
+        const nodeId = history[history.length - 2]; // -2 car la suppression n'est pas encore acquise (doit attendre le re-render)
         setCurrentNodeId(nodeId);
         const node = navigator.getNode(nodeId);
         setCurrentNode(node);
     };
 
-    const handleSubmit = (data: SimulationType) => {
-        console.log(data);
-        createSimulation(data).then(() => console.log("sent"));
+    const createSimulation = useUpdateSimulation();
+
+    const handleSubmit = () => {
+        createSimulation.mutate('test',  {
+            onSuccess: () => {
+                console.log("yipee");
+            }
+        });
     };
 
     return (
         <Form useForm={form} onSubmit={handleSubmit}>
-            { React.createElement(currentNode.component, { onValid: handleNext, onBack: handleBack, onSkip: handleNext }) }
-            { /*TODO Faire le render dans le Map car sinon peut y avoir soucis si ça demande des attributs différents */}
+            { React.createElement(currentNode.component, { onValid: handleNext, onBack: handleBack, onSkip: handleNext, onSubmit: handleSubmit }) }
         </Form>
     )
 }

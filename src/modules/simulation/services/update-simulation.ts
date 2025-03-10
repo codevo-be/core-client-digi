@@ -1,7 +1,7 @@
 import { HttpService } from '@simulation/services'
 
-export async function createSimulation(data: string) {
-    await HttpService.post<{
+export const updateSimulation = async (data: string) => {
+    await HttpService.put<{
         data: string
     }>('/', data);
-}
+};
