@@ -6,7 +6,7 @@ import { simulationMap } from '@simulation/DAGmap/SimulationMap'
 
 import { useCreateSimulation } from '@simulation/hooks/mutation/useCreateSimulation'
 import { useUpdateSimulation } from '@simulation/hooks/mutation/useUpdateSimulation'
-import { SimulationType } from "@simulation/types/simulation";
+import { SimulationType } from "@simulation/types/update-simulation-type";
 import { CreateSimulationType } from '@simulation/types/create-simulation-type'
 
 export default function SimulationForm() {
