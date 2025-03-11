@@ -9,8 +9,6 @@ type Props = {
 
 export const InstallationTypeSection = ({ handleValue, onValid }: Props) => {
 
-
-
     return(
         <div>
             <h2> {"Type d'installation "} </h2>
@@ -26,6 +24,7 @@ export const InstallationTypeSection = ({ handleValue, onValid }: Props) => {
                             handleValue('installationType', installation.value);
                             onValid();
                         }}
+                        logoPath={installation.logoPath}
                     />
                 ))}
             </div>
