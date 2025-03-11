@@ -8,6 +8,7 @@ import { useCreateSimulation } from '@simulation/hooks/mutation/useCreateSimulat
 import { useUpdateSimulation } from '@simulation/hooks/mutation/useUpdateSimulation'
 import { CreateSimulationType } from '@simulation/types/create-simulation-type'
 import { SimulationType } from '@simulation/types/update-simulation-type'
+import useGenerateSimulation from '@simulation/hooks/mutation/useGenerateSimulation'
 
 export default function SimulationForm() {
     const form = useForm<SimulationType>()
@@ -23,6 +24,7 @@ export default function SimulationForm() {
 
     const createSimulation = useCreateSimulation()
     const updateSimulation = useUpdateSimulation()
+    const generateSimulation = useGenerateSimulation();
 
     const test = {
         current_step: currentNodeId,
@@ -54,8 +56,6 @@ export default function SimulationForm() {
             'response': response
         }
 
-        console.log(data);
-
         updateSimulation.mutate(data, {
             onSuccess: () => {
                 console.log('Simulation mise à jour (form)');
@@ -81,6 +81,11 @@ export default function SimulationForm() {
 
     const handleSubmit = () => {
         console.log('Submit called');
+        generateSimulation.mutate(simulationId!, {
+            onSuccess: () => {
+                console.log("Génération réussie.");
+            }
+        })
     };
 
     return (

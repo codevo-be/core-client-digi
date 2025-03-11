@@ -5,16 +5,16 @@ export default function ContactInformationSection(propsSection: PropsSectionType
     return (
         <div>
 
-            <input placeholder={"Name"} />
+            <input placeholder={"name"} />
             <input placeholder={"Téléphone"}/>
             <input placeholder={"Code postal"}/>
-            <input placeholder={"Pays"}/>
+            <input placeholder={"pays"}/>
 
             <StepNavigation
                 showSkip={false}
                 showBack={true} onBack={propsSection.onBack}
                 showSubmit={true} onSubmit={() => {
-                    console.log("Submit called")
+                    propsSection.onSubmit();
                 }}
             />
         </div>
