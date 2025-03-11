@@ -17,7 +17,7 @@ export default function HouseAgeSection(propsSection: PropsSectionType) {
                     value={type.value}
                     name={questionName}
                     onClick={() => {
-                        propsSection.handleValue(type.label, type.value);
+                        propsSection.handleValue(questionName, type.value);
                         propsSection.onValid();
                     }}
                 />
