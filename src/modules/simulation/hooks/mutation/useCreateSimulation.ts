@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 
 import { createSimulation } from '@simulation/services/create-simulation'
 
-export function useCreateSimulation() {
+export default function useCreateSimulation() {
     return useMutation({
         mutationFn: createSimulation,
         onError: (error) => {

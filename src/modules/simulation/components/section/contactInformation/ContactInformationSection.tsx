@@ -14,7 +14,7 @@ export default function ContactInformationSection(propsSection: PropsSectionType
                 showSkip={false}
                 showBack={true} onBack={propsSection.onBack}
                 showSubmit={true} onSubmit={() => {
-                    propsSection.onSubmit();
+                    propsSection.onSubmit("test", "test", "test");
                 }}
             />
         </div>

@@ -4,11 +4,12 @@ import { Form } from '@digico/ui'
 import { NodeNavigator } from '@simulation/DAGmap/NodeNavigator'
 import { simulationMap } from '@simulation/DAGmap/SimulationMap'
 
-import { useCreateSimulation } from '@simulation/hooks/mutation/useCreateSimulation'
-import { useUpdateSimulation } from '@simulation/hooks/mutation/useUpdateSimulation'
+import useCreateSimulation from '@simulation/hooks/mutation/useCreateSimulation'
+import useGenerateSimulation from '@simulation/hooks/mutation/useGenerateSimulation'
+import useUpdateSimulation from '@simulation/hooks/mutation/useUpdateSimulation'
 import { CreateSimulationType } from '@simulation/types/create-simulation-type'
 import { SimulationType } from '@simulation/types/update-simulation-type'
-import useGenerateSimulation from '@simulation/hooks/mutation/useGenerateSimulation'
+import { GenerateSimulationType } from '@simulation/types/generate-simulation-type'
 
 export default function SimulationForm() {
     const form = useForm<SimulationType>()
@@ -79,9 +80,14 @@ export default function SimulationForm() {
         setCurrentNode(node);
     };
 
-    const handleSubmit = () => {
-        console.log('Submit called');
-        generateSimulation.mutate(simulationId!, {
+    const handleSubmit = (email: string, phone: string, zip_code: string) => {
+        const data: GenerateSimulationType = {
+            'email': email,
+            'zip_code': zip_code,
+            'phone': phone,
+            'simulation_id': simulationId!
+        }
+        generateSimulation.mutate(data, {
             onSuccess: () => {
                 console.log("Génération réussie.");
             }
@@ -89,7 +95,7 @@ export default function SimulationForm() {
     };
 
     return (
-        <Form useForm={form} onSubmit={handleSubmit}>
+        <Form useForm={form}>
             {React.createElement(currentNode.component, {
                 parentData: test,
                 handleValue: updateSimulationFn,
