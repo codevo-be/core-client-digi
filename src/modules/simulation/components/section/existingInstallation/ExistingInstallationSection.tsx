@@ -3,11 +3,12 @@ import { existingInstallations } from '@simulation/components/section/existingIn
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
 type Props = {
+    handleValue: (label: string, response: string) => void;
     onValid: () => void;
     onBack: () => void;
 }
 
-export default function ExistingInstallationSection({ onValid, onBack }: Props) {
+export default function ExistingInstallationSection({ handleValue, onValid, onBack }: Props) {
     return(
         <div>
             <h2>Avez-vous déjà une installation photovoltaïque existante ?</h2>
@@ -19,7 +20,10 @@ export default function ExistingInstallationSection({ onValid, onBack }: Props) 
                    label={type.label}
                    value={type.value}
                    name={'existingInstallation'}
-                   onClick={onValid}
+                   onClick={() => {
+                       handleValue('existingInstallation', type.value);
+                       onValid();
+                   }}
                />
             ))}
 

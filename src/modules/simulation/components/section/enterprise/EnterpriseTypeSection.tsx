@@ -1,15 +1,16 @@
 import { Grid } from '@digico/ui'
-import { enterprises } from '@simulation/components/section/enterprise/index'
 
 import { InputCard } from '@simulation/components/InputCard'
+import { enterprises } from '@simulation/components/section/enterprise/index'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
 type Props = {
+    handleValue: (label: string, response: string) => void;
     onBack: () => void;
     onValid: () => void;
 }
 
-export const EnterpriseTypeSection = ({ onBack, onValid }: Props) => {
+export const EnterpriseTypeSection = ({ handleValue, onBack, onValid }: Props) => {
     
     return(
         <div>
@@ -24,7 +25,7 @@ export const EnterpriseTypeSection = ({ onBack, onValid }: Props) => {
                             value={enterprise.value}
                             name={'enterpriseType'}
                             onClick={() => {
-                                localStorage.setItem("enterpriseType", enterprise.value);
+                                handleValue('enterpriseType', enterprise.value);
                                 onValid();
                             }}
                         />

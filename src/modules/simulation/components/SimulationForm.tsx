@@ -29,7 +29,7 @@ export default function SimulationForm() {
         simulation_id: simulationId
     }
 
-    const shouldCreate = () => {
+    const shouldCreateSimulation = () => {
         if (!firstNext.current && !simulationId) {
             const data: CreateSimulationType = {
                 current_step: firstNodeId
@@ -44,9 +44,18 @@ export default function SimulationForm() {
         }
     }
 
-    const updateSimulationFn = (data: SimulationType) => {
-        shouldCreate();
-        data.current_step = navigator.getNextNodeId(currentNodeId.current);
+    const updateSimulationFn = (label: string, response: string) => {
+        shouldCreateSimulation();
+
+        const data: SimulationType = {
+            "simulation_id": sessionStorage.getItem('simulationId')!,
+            'current_step': navigator.getNextNodeId(currentNodeId.current),
+            'label': label,
+            'response': response
+        }
+
+        console.log(data);
+
         updateSimulation.mutate(data, {
             onSuccess: () => {
                 console.log('Simulation mise à jour (form)');

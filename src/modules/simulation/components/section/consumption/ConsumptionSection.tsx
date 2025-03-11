@@ -1,15 +1,16 @@
-import { radio_types } from '@simulation/components/section/consumption/index'
-
-import { InputCard } from '@simulation/components/InputCard'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 import { Box } from '@digico/ui'
 
+import { InputCard } from '@simulation/components/InputCard'
+import { radio_types } from '@simulation/components/section/consumption/index'
+import { StepNavigation } from '@simulation/components/StepNavigation'
+
 type Props = {
+    handleValue: (label: string, response: string) => void;
     onBack: ()=> void;
     onSkip: () => void;
 }
 
-export const ConsumptionSection = ({ onBack, onSkip }: Props) => {
+export const ConsumptionSection = ({ handleValue, onBack, onSkip }: Props) => {
     return(
         <div>
             <h2>Consommation de votre maison</h2>
@@ -22,7 +23,8 @@ export const ConsumptionSection = ({ onBack, onSkip }: Props) => {
                     value={type.value}
                     name={'consumptionType'}
                     onClick={() => {
-                        console.log("Gérer les boutons radios type"); //TODO
+                        handleValue('consumptionType', type.value);
+                        onSkip();
                     }}
                 />
             ))
