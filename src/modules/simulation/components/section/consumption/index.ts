@@ -16,7 +16,7 @@ export const radio_types: RadioType[] = [
     {
         id: 'full',
         label: '4 personnes + pompe à chaleur',
-        subLabel: '+/- 850 kWh',
+        subLabel: '+/- 8500 kWh',
         value: 'full'
     }
 ];

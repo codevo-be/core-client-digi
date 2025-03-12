@@ -2,34 +2,37 @@ import { Box } from '@digico/ui'
 
 import { InputCard } from '@simulation/components/InputCard'
 import { radio_types } from '@simulation/components/section/consumption/index'
+import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-type Props = {
-    handleValue: (label: string, response: string) => void;
-    onBack: ()=> void;
-    onSkip: () => void;
-}
+export const ConsumptionSection = ({ handleValue, onBack, onValid }: PropsSectionType) => {
 
-export const ConsumptionSection = ({ handleValue, onBack, onSkip }: Props) => {
+    const questionName = "consumptionType";
+
     return(
-        <div>
+        <div className={"flex flex-col items-center gap-[5rem]"}>
             <h2>Consommation de votre maison</h2>
 
-            {radio_types.map((type) => (
-                <InputCard
-                    key={type.id}
-                    id={type.id}
-                    label={type.label}
-                    subLabel={type.subLabel}
-                    value={type.value}
-                    name={'consumptionType'}
-                    onClick={() => {
-                        handleValue('consumptionType', type.value);
-                        onSkip();
-                    }}
-                />
-            ))
-            }
+            <div className={"flex items-center justify-evenly gap-12"}>
+                {radio_types.map((type) => (
+                    <InputCard
+                        key={type.id}
+                        id={type.id}
+                        label={type.label}
+                        subLabel={type.subLabel}
+                        value={type.value}
+                        name={questionName}
+                        onClick={() => {
+                            handleValue(questionName, type.value);
+                            onValid();
+                        }}
+                        boxStyle={"w-[46.6rem] h-[14.7rem]"}
+                        logoPath={""}
+                    />
+                ))
+                }
+            </div>
+
 
             <Box>
                 <p>Je paye</p>
@@ -41,7 +44,7 @@ export const ConsumptionSection = ({ handleValue, onBack, onSkip }: Props) => {
                 <input/>
             </Box>
 
-            <StepNavigation showSkip={true} onSkip={ onSkip } showBack={true} onBack={ onBack } showSubmit={false}/>
+            <StepNavigation showSkip={true} onSkip={ onValid } showBack={true} onBack={ onBack } showSubmit={false}/>
         </div>
     );
 }
