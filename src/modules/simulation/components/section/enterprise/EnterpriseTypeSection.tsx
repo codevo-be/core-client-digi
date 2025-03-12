@@ -5,7 +5,7 @@ import { enterprises } from '@simulation/components/section/enterprise/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-export const EnterpriseTypeSection = ({ handleValue, onBack, onValid }: PropsSectionType) => {
+export default function EnterpriseTypeSection({ handleValue, onBack, onValid }: PropsSectionType) {
 
     const questionName = "enterpriseType";
     

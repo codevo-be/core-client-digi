@@ -24,7 +24,7 @@ export const InputCard = ({ id, label, subLabel, value, name, onClick, type = 'r
             <div className={"px-8 flex items-center justify-between border-[0.2rem] rounded-xl bg-white shadow-md" +
                     `peer-checked:border-8 transition-all border-[#8EACC5] hover:border-8 ${boxStyle}`}>
                 {logoPath !== undefined &&
-                    <ImageBuilder src={logoPath} alt={""} className={"min-w-[16rem] w-[16rem] min-h-[16rem] h-[16rem] overflow-hidden"}/>
+                    <ImageBuilder src={logoPath} alt={""} className={"w-[16rem] h-[16rem] overflow-hidden"}/>
                 }
                 <div className={"flex flex-col"}>
                     <p>{label}</p>

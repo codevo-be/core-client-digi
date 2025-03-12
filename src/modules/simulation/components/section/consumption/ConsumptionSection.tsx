@@ -5,7 +5,7 @@ import { radio_types } from '@simulation/components/section/consumption/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-export const ConsumptionSection = ({ handleValue, onBack, onValid }: PropsSectionType) => {
+export default function ConsumptionSection({ handleValue, onBack, onValid }: PropsSectionType) {
 
     const questionName = "consumptionType";
 

@@ -3,7 +3,7 @@ import { installations } from '@simulation/components/section/installation/index
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-export const InstallationTypeSection = ({ handleValue, onValid }: PropsSectionType) => {
+export default function InstallationTypeSection({ handleValue, onValid }: PropsSectionType) {
 
     const questionName = "installationType;"
 

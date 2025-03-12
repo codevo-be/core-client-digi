@@ -14,7 +14,7 @@ import { SimulationType } from '@simulation/types/update-simulation-type'
 export default function SimulationForm() {
     const form = useForm<SimulationType>()
 
-    const firstNodeId = 'installation'
+    const firstNodeId = 'networkType'
     const navigator = new NodeNavigator(simulationMap)
     const [currentNode, setCurrentNode] = useState(navigator.getNode(firstNodeId))
     const history = useRef([firstNodeId])

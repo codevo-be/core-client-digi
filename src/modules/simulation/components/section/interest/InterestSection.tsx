@@ -5,7 +5,7 @@ import { interests } from '@simulation/components/section/interest/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-export const InterestSection = ({ handleValue, onBack, onValid }: PropsSectionType) => {
+export default function InterestSection({ handleValue, onBack, onValid }: PropsSectionType) {
 
     const questionName = "interests"
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
