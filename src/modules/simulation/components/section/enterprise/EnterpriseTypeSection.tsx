@@ -24,8 +24,8 @@ export const EnterpriseTypeSection = ({ handleValue, onBack, onValid }: PropsSec
                                 handleValue('enterpriseType', enterprise.value);
                                 onValid();
                             }}
-                            /*logoPath={enterprise.svgPath}*/
-                            logoStyle={""}
+                            logoPath={enterprise.svgPath}
+                            logoStyle={"w-[16rem]"}
                             boxStyle={"w-[35.1rem] h-[13.4rem] border-[#8EACC5] hover:border-8"}
                             textStyle={""}
                         />

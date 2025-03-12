@@ -5,49 +5,49 @@ export const enterprises: Enterprise[] = [
         id: "shop",
         label: "Magasin",
         value: "shop",
-        svgPath: "/icons/sources/noveway/shop.svg",
+        svgPath: "/images/noveway/shop.png",
         svgSize: "16rem"
     },
     {
         id: "garage",
         label: "Garage",
         value: "garage",
-        svgPath: "/icons/sources/noveway/garage.svg",
+        svgPath: "/images/noveway/garage.png",
         svgSize: "16rem"
     },
     {
         id: "healthcare",
         label: "Soin de santé",
         value: "healthcare",
-        svgPath: "/icons/sources/noveway/healthcare.svg",
+        svgPath: "/images/noveway/healthcare.png",
         svgSize: "16rem"
     },
     {
         id: "horeca",
         label: "Horeca",
         value: "horeca",
-        svgPath: "/icons/sources/noveway/horeca.svg",
+        svgPath: "/images/noveway/horeca.png",
         svgSize: "16rem"
     },
     {
         id: "production",
         label: "Production",
         value: "production",
-        svgPath: "/icons/sources/noveway/production.svg",
+        svgPath: "/images/noveway/production.png",
         svgSize: "16rem"
     },
     {
         id: "workshop",
         label: "Atelier",
         value: "workshop",
-        svgPath: "/icons/sources/noveway/workshop.svg",
+        svgPath: "/images/noveway/workshop.png",
         svgSize: "16rem"
     },
     {
         id: "other",
         label: "Autre",
         value: "other",
-        svgPath: "/icons/sources/noveway/shop.svg",
+        svgPath: "/images/noveway/others.png",
         svgSize: "16rem"
     },
 ];
