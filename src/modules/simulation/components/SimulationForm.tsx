@@ -14,7 +14,7 @@ import { SimulationType } from '@simulation/types/update-simulation-type'
 export default function SimulationForm() {
     const form = useForm<SimulationType>()
 
-    const firstNodeId = 'networkType'
+    const firstNodeId = 'houseAge'
     const navigator = new NodeNavigator(simulationMap)
     const [currentNode, setCurrentNode] = useState(navigator.getNode(firstNodeId))
     const history = useRef([firstNodeId])
@@ -98,7 +98,7 @@ export default function SimulationForm() {
     };
 
     return (
-        <Form useForm={form} className={"text-[#006EC2] text-[2.8rem]"}>
+        <Form useForm={form} className={"text-[#006EC2] text-[2.8rem] bg-[#E4F1F9]"}>
             {React.createElement(currentNode.component, {
                 parentData: test,
                 handleValue: updateSimulationFn,
