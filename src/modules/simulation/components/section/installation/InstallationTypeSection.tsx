@@ -1,13 +1,9 @@
 import { InputCard } from '@simulation/components/InputCard'
 import { installations } from '@simulation/components/section/installation/index'
+import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-type Props = {
-    handleValue: (label: string, response: string) => void;
-    onValid: () => void;
-}
-
-export const InstallationTypeSection = ({ handleValue, onValid }: Props) => {
+export const InstallationTypeSection = ({ handleValue, onValid }: PropsSectionType) => {
 
     const questionName = "installationType;"
 

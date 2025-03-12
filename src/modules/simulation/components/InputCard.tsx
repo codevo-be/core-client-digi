@@ -23,7 +23,7 @@ export const InputCard = ({ id, label, value, name, onClick, type = 'radio', log
     return (
         <label htmlFor={id} className="cursor-pointer">
             <input type={type} id={id} name={name} value={value} className="peer hidden" onClick={ onClick }/>
-            <div className={"flex items-center justify-center border-2 rounded-xl bg-white shadow-md" +
+            <div className={"flex items-center justify-center border-[0.2rem] rounded-xl bg-white shadow-md" +
                     `peer-checked:border-8 transition-all ${boxStyle}`}>
                 {logoPath !== undefined &&
                     <img src={logoPath} alt={""} className={logoStyle}/>

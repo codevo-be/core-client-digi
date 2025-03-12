@@ -8,8 +8,8 @@ import useCreateSimulation from '@simulation/hooks/mutation/useCreateSimulation'
 import useGenerateSimulation from '@simulation/hooks/mutation/useGenerateSimulation'
 import useUpdateSimulation from '@simulation/hooks/mutation/useUpdateSimulation'
 import { CreateSimulationType } from '@simulation/types/create-simulation-type'
-import { SimulationType } from '@simulation/types/update-simulation-type'
 import { GenerateSimulationType } from '@simulation/types/generate-simulation-type'
+import { SimulationType } from '@simulation/types/update-simulation-type'
 
 export default function SimulationForm() {
     const form = useForm<SimulationType>()
