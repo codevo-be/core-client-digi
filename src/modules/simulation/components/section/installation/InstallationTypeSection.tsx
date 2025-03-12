@@ -11,8 +11,8 @@ export const InstallationTypeSection = ({ handleValue, onValid }: Props) => {
 
     return(
         <div>
-            <h2> {"Type d'installation "} </h2>
-            <div className={"flex"}>
+            <h2 className={"text-[#006EC2]"}>{"Type d'installations"}</h2>
+            <div className={"flex gap-8"}>
                 {installations.map((installation) => (
                     <InputCard
                         key={installation.id}
