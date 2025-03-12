@@ -1,31 +1,34 @@
 import { InputCard } from '@simulation/components/InputCard'
 import { existingInstallations } from '@simulation/components/section/existingInstallation/index'
+import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-type Props = {
-    handleValue: (label: string, response: string) => void;
-    onValid: () => void;
-    onBack: () => void;
-}
+export default function ExistingInstallationSection({ handleValue, onValid, onBack }: PropsSectionType) {
 
-export default function ExistingInstallationSection({ handleValue, onValid, onBack }: Props) {
+    const questionName = "existingInstallation";
+
     return(
-        <div>
+        <div className={"flex flex-col items-center gap-[9rem]"}>
             <h2>Avez-vous déjà une installation photovoltaïque existante ?</h2>
 
-            {existingInstallations.map((type) => (
-               <InputCard
-                   key={type.id}
-                   id={type.id}
-                   label={type.label}
-                   value={type.value}
-                   name={'existingInstallation'}
-                   onClick={() => {
-                       handleValue('existingInstallation', type.value);
-                       onValid();
-                   }}
-               />
-            ))}
+            <div className={"flex gap-10"}>
+                {existingInstallations.map((type) => (
+                   <InputCard
+                       key={type.id}
+                       id={type.id}
+                       label={type.label}
+                       subLabel={type.subLabel}
+                       value={type.value}
+                       name={questionName}
+                       onClick={() => {
+                           handleValue(questionName, type.value);
+                           onValid();
+                       }}
+                       boxStyle={"w-[46.6rem] h-[12.8rem]"}
+                       logoPath={type.logoPath}
+                   />
+                ))}
+            </div>
 
             <StepNavigation showSkip={false} showBack={true} onBack={onBack} showSubmit={false}/>
         </div>
