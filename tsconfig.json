@@ -22,7 +22,7 @@
         "paths": {
             "@contact/*": ["./modules/contact/*"],
             "@billing/*": ["./modules/billing/*"],
-            "@components/*": ["./components/*"]
+            "@components/*": ["./components/*"],
             "@simulation/*": ["./modules/simulation/*"]
         }
     },

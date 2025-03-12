@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import React from 'react'
+import { ImageBuilder } from '@digico/ui'
 
 type OptionType = 'radio' | 'checkbox';
 
@@ -11,20 +12,23 @@ type Props = {
     name: string;
     onClick: () => void,
     type?: OptionType,
-    logoPath?: string
+    logoPath?: string,
+    logoStyle?: string,
+    boxStyle?: string,
+    textStyle?: string
 };
 
-export const InputCard = ({ id, label, value, name, onClick, type = 'radio', logoPath }: Props) => {
-
+export const InputCard = ({ id, label, value, name, onClick, type = 'radio', logoPath, logoStyle, boxStyle, textStyle }: Props) => {
+    console.log(logoPath);
     return (
         <label htmlFor={id} className="cursor-pointer">
             <input type={type} id={id} name={name} value={value} className="peer hidden" onClick={ onClick }/>
-            <div className="w-80 h-36 flex items-center justify-center border-2 border-[#8EACC5] rounded-xl bg-white shadow-md
-                    peer-checked:border-8 transition-all">
+            <div className={"flex items-center justify-center border-2 rounded-xl bg-white shadow-md" +
+                    `peer-checked:border-8 transition-all ${boxStyle}`}>
                 {logoPath !== undefined &&
-                    <Image src={logoPath} alt={""} width={50} height={100}/>
+                    <img src={logoPath} alt={""} className={logoStyle}/>
                 }
-                <span className="text-lg font-medium text-[#006EC2]">{label}</span>
+                <span className={textStyle}>{label}</span>
             </div>
         </label>
     );

@@ -47,3 +47,13 @@
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'Gilfroy';
+    src:
+            url('/fonts/noveway/Gilfroy-Semibold.woff2') format('woff2'),
+            url('/fonts/noveway/Gilfroy-Semibold.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
