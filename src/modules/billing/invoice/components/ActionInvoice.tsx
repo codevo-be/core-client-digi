@@ -1,17 +1,33 @@
-import { Box, Grid } from '@digico/ui'
+import { useParams } from 'next/navigation'
 
-import { ButtonDownload } from './ButtonDownload'
+import { Grid } from '@digico/ui'
+
+import { useReadInvoice } from '../hooks/queries'
+
+import { INVOICE_STATUS_DRAFT } from '../data/invoice-statuses'
+
+import { DraftBox } from './DraftBox'
+import { PendingBox } from './PendingBox'
 
 export const ActionInvoice = () => {
+    const { id } = useParams()
+    const { data } = useReadInvoice(Number(id))
+
+    if (!data) {
+        return null
+    }
+
+    if (data.status === INVOICE_STATUS_DRAFT) {
+        return (
+            <Grid.Col>
+                <DraftBox />
+            </Grid.Col>
+        )
+    }
+
     return (
-        <Box>
-            <Grid>
-                <Grid.Col>
-                    <div className="mt-4 flex gap-2">
-                        <ButtonDownload className="flex-1" />
-                    </div>
-                </Grid.Col>
-            </Grid>
-        </Box>
+        <Grid.Col>
+            <PendingBox />
+        </Grid.Col>
     )
 }

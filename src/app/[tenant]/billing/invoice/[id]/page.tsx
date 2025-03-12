@@ -3,44 +3,32 @@
 import { useParams } from 'next/navigation'
 
 import { BillingDocument } from '@billing/document'
+import { INVOICE_STATUS_DRAFT } from '@billing/invoice/data/invoice-statuses'
 import { Grid, PageHeader } from '@digico/ui'
 import { getTenantUrl } from '@digico/utils'
 
 import { useReadInvoice } from '@billing/invoice/hooks/queries'
 
-import { ActionInvoice } from '@billing/invoice/components/ActionInvoice'
+import { InvoiceContent } from '@billing/invoice/components/document/InvoiceContent'
 import { InvoiceContentEditable } from '@billing/invoice/components/document/InvoiceContentEditable'
-import { SelectUpdateStatus } from '@billing/invoice/components/form/SelectUpdateStatus'
-import { UpdateFormInvoice } from '@billing/invoice/components/form/UpdateFormInvoice'
+import { SummaryInvoice } from '@billing/invoice/components/Summary'
 
 export default function Page() {
     const { id } = useParams()
-    const queryInvoice = useReadInvoice(Number(id))
+    const { data } = useReadInvoice(Number(id))
 
     return (
         <Grid>
             <Grid.Col>
                 <PageHeader label="Retour aux factures" href={getTenantUrl('/billing/invoice')}>
-                    Facture {queryInvoice.data?.data.identifier}
+                    Facture {data?.identifier}
                 </PageHeader>
             </Grid.Col>
             <Grid.Col column={7}>
-                <BillingDocument data={queryInvoice.data?.data}>
-                    <InvoiceContentEditable />
-                </BillingDocument>
+                <BillingDocument data={data}>{data?.status === INVOICE_STATUS_DRAFT ? <InvoiceContentEditable /> : <InvoiceContent />}</BillingDocument>
             </Grid.Col>
             <Grid.Col column={5}>
-                <Grid>
-                    <Grid.Col>
-                        <SelectUpdateStatus />
-                    </Grid.Col>
-                    <Grid.Col>
-                        <ActionInvoice />
-                    </Grid.Col>
-                    <Grid.Col>
-                        <UpdateFormInvoice />
-                    </Grid.Col>
-                </Grid>
+                <SummaryInvoice />
             </Grid.Col>
         </Grid>
     )
