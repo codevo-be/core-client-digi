@@ -1,9 +1,10 @@
+import { CreditNoteType } from '@billing/credit-note/types/credit-note'
 import { InvoiceType } from '@billing/invoice/types/invoice'
 
 import { DocumentInfo } from './DocumentInfo'
 
 type Props = {
-    data: InvoiceType
+    data: InvoiceType | CreditNoteType
 }
 
 export const Header = ({ data }: Props) => {
@@ -13,7 +14,7 @@ export const Header = ({ data }: Props) => {
                 {/* @ts-ignore */}
                 <DocumentInfo {...data?.issuer} />
                 {/* @ts-ignore */}
-                <DocumentInfo {...data} name={data?.contact_name} />
+                <DocumentInfo {...data?.recipient} />
             </div>
         </>
     )

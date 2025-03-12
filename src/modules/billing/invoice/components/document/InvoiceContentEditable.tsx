@@ -18,8 +18,8 @@ export const InvoiceContentEditable = () => {
             <Header />
             <InvoiceItemListEditable />
             <ItemManager />
-            <Summary data={data?.data} />
-            <InvoiceFooter data={data?.data} />
+            <Summary data={data} />
+            <InvoiceFooter data={data} />
         </>
     )
 }

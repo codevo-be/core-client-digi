@@ -1,8 +1,9 @@
 @import 'tailwindcss';
-@source "../../node_modules/@digico/ui/dist";
+@import './font-face.css';
+@source '../../node_modules/@digico/ui/dist';
 
 @theme {
-    --font-inter: 'Inter', 'sans-serif';
+    --font-inter: 'Inter', 'serif';
 
     /* Colors */
     --color-*: initial;
@@ -48,6 +49,9 @@
     --breakpoint-wide: 1380px;
     --breakpoint-hd: 1920px;
     --breakpoint-full: 2450px;
+
+    /* Shadow */
+    --shadow: 0 0 7px 0 rgba(17, 25, 40, 0.1);
 }
 
 @layer base {
@@ -67,6 +71,6 @@
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
 
-        @apply text-main text-base;
+        @apply font-inter text-main text-base;
     }
 }

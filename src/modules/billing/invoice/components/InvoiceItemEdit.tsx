@@ -9,7 +9,6 @@ import { useDestroyInvoiceItem, useUpdateInvoiceItem } from '../hooks/mutations'
 import { BillingItemType } from '@billing/billing-item/types/BillingItem'
 
 import { Icon } from 'components/Icon'
-import { SelectCustom } from 'components/SelectCustom'
 
 import { Modal } from './Modal'
 
@@ -73,7 +72,7 @@ export const InvoiceItemEdit = ({ item }: Props) => {
                         <Form useForm={form} onSubmit={(data) => handleSubmit(data, handleClose)}>
                             <Form.Field label="Titre" name="name" placeholder="Nom" id="name" />
                             <Form.Field label="Quantité" name="quantity" placeholder="1" id="quantity" />
-                            <SelectCustom
+                            <Form.Select
                                 name="vat"
                                 label="Taux tva"
                                 options={taxes.map((tax) => {
