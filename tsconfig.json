@@ -23,6 +23,7 @@
             "@contact/*": ["./modules/contact/*"],
             "@billing/*": ["./modules/billing/*"],
             "@components/*": ["./components/*"]
+            "@simulation/*": ["./modules/simulation/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
