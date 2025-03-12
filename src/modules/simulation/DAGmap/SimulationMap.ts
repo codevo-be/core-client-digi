@@ -39,11 +39,11 @@ export const simulationMap: NodeMap = {
         installation: [
             {
                 next: "enterpriseType",
-                condition: () => localStorage.getItem("installationType") === "enterprise"
+                condition: (formData: any) => formData.installationType === "enterprise"
             },
             {
                 next: "interest",
-                condition: () => localStorage.getItem("installationType") === "private"
+                condition: (formData: any) => formData.installationType === "private"
             }
         ],
         enterpriseType: [

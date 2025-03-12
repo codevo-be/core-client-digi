@@ -36,15 +36,16 @@ export class NodeNavigator {
         );
     }
 
-    getNextNodeId(nodeId: string): string {
+    getNextNodeId(nodeId: string, formData: any): string {
         const children = this.map.paths[nodeId];
         const conditionPaths = children.filter(item => item.condition);
         const noConditionsPaths = children.filter(item => !item.condition);
 
         for (const conditionedChild of conditionPaths) {
             const condition = conditionedChild.condition;
-
-            if (condition!()) {
+            console.log(condition);
+            console.log(formData);
+            if (condition!(formData)) {
                 return conditionedChild.next;
             }
         }

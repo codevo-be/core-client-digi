@@ -22,6 +22,7 @@ export default function SimulationForm() {
     const firstNext = useRef(false)
 
     const simulationId = sessionStorage.getItem('simulationId')
+    const formData = useRef({}); //A renommer
 
     const createSimulation = useCreateSimulation()
     const updateSimulation = useUpdateSimulation()
@@ -50,9 +51,11 @@ export default function SimulationForm() {
     const updateSimulationFn = (label: string, response: string) => {
         shouldCreateSimulation();
 
+        formData.current = {...formData.current, [label]: response};
+
         const data: SimulationType = {
             "simulation_id": sessionStorage.getItem('simulationId')!,
-            'current_step': navigator.getNextNodeId(currentNodeId.current),
+            'current_step': navigator.getNextNodeId(currentNodeId.current, formData.current),
             'label': label,
             'response': response
         }
@@ -64,7 +67,7 @@ export default function SimulationForm() {
         });
     }
     const handleNext = () => {
-        const nodeId = navigator.getNextNodeId(currentNodeId.current);
+        const nodeId = navigator.getNextNodeId(currentNodeId.current, formData.current);
         currentNodeId.current = nodeId;
         const node = navigator.getNode(nodeId);
         setCurrentNode(node);
