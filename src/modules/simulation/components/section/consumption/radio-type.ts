@@ -1,6 +1,6 @@
 export default interface RadioType {
     id: string,
     label: string;
-    sub: string;
+    subLabel: string;
     value: string;
 }

@@ -9,7 +9,7 @@ export const InstallationTypeSection = ({ handleValue, onValid }: PropsSectionTy
 
     return(
         <div className={"flex flex-col items-center gap-[4rem] font-"}>
-            <h2 className={"text-[#006EC2] text-[2.8rem]"}>{"Type d'installation"}</h2>
+            <h2>{"Type d'installation"}</h2>
 
             <div className={"flex gap-[1.2rem]"}>
                 {installations.map((installation) => {
@@ -29,9 +29,8 @@ export const InstallationTypeSection = ({ handleValue, onValid }: PropsSectionTy
                                 onValid();
                             }}
                             logoPath={installation.logoPath}
-                            logoStyle={"w-[16rem] h-[16rem]"}
-                            boxStyle={"w-[46.3rem] h-[16.7rem] border-[#8EACC5] hover:border-8"}
-                            textStyle={"text-[#006EC2] text-[2.8rem]"}
+                            logoStyle={""}
+                            boxStyle={"w-[46.3rem] h-[16.7rem]"}
                         />
                     )
                 })}

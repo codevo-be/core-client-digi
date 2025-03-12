@@ -4,19 +4,19 @@ export const radio_types: RadioType[] = [
     {
         id: 'duo',
         label: '2 personnes',
-        sub: '+/- 2800 kWh',
+        subLabel: '+/- 2800 kWh',
         value: 'duo'
     },
     {
         id: 'family',
         label: '4 personnes',
-        sub: '+/- 4500 kWh',
+        subLabel: '+/- 4500 kWh',
         value: 'family'
     },
     {
         id: 'full',
         label: '4 personnes + pompe à chaleur',
-        sub: '+/- 850 kWh',
+        subLabel: '+/- 850 kWh',
         value: 'full'
     }
 ];

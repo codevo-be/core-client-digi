@@ -98,7 +98,7 @@ export default function SimulationForm() {
     };
 
     return (
-        <Form useForm={form}>
+        <Form useForm={form} className={"text-[#006EC2] text-[2.8rem]"}>
             {React.createElement(currentNode.component, {
                 parentData: test,
                 handleValue: updateSimulationFn,

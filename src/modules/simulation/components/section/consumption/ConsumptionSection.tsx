@@ -20,6 +20,7 @@ export const ConsumptionSection = ({ handleValue, onBack, onSkip }: Props) => {
                     key={type.id}
                     id={type.id}
                     label={type.label}
+                    subLabel={type.subLabel}
                     value={type.value}
                     name={'consumptionType'}
                     onClick={() => {
