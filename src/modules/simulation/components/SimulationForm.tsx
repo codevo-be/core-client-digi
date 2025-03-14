@@ -14,7 +14,7 @@ import { SimulationType } from '@simulation/types/update-simulation-type'
 export default function SimulationForm() {
     const form = useForm<SimulationType>()
 
-    const firstNodeId = 'possession'
+    const firstNodeId = 'contactInformation'
     const navigator = new NodeNavigator(simulationMap)
     const [currentNode, setCurrentNode] = useState(navigator.getNode(firstNodeId))
     const history = useRef([firstNodeId])
@@ -27,11 +27,6 @@ export default function SimulationForm() {
     const createSimulation = useCreateSimulation()
     const updateSimulation = useUpdateSimulation()
     const generateSimulation = useGenerateSimulation();
-
-    const test = {
-        current_step: currentNodeId,
-        simulation_id: simulationId
-    }
 
     const shouldCreateSimulation = () => {
         if (!firstNext.current && !simulationId) {
@@ -100,7 +95,6 @@ export default function SimulationForm() {
     return (
         <Form useForm={form} className={"text-[#006EC2] text-[2.8rem] bg-[#E4F1F9]"}>
             {React.createElement(currentNode.component, {
-                parentData: test,
                 handleValue: updateSimulationFn,
                 onValid: handleNext,
                 onBack: handleBack,
