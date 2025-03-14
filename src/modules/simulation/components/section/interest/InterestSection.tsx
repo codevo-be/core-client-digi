@@ -39,7 +39,7 @@ export default function InterestSection({ handleValue, onBack, onValid }: PropsS
                                 );
                             }}
                             type={'checkbox'}
-                            logoPath={""}
+                            logoPath={undefined}
                             logoStyle={""}
                             boxStyle={`h-[9rem] w-[62.3rem] border-[#8EACC5] ${checked ? "border-8" : ""}`}
                             textStyle={"text-[2.8rem] text-[#006EC2]"}
