@@ -14,7 +14,7 @@ import { SimulationType } from '@simulation/types/update-simulation-type'
 export default function SimulationForm() {
     const form = useForm<SimulationType>()
 
-    const firstNodeId = 'contactInformation'
+    const firstNodeId = 'installation'
     const navigator = new NodeNavigator(simulationMap)
     const [currentNode, setCurrentNode] = useState(navigator.getNode(firstNodeId))
     const history = useRef([firstNodeId])
@@ -28,32 +28,47 @@ export default function SimulationForm() {
     const updateSimulation = useUpdateSimulation()
     const generateSimulation = useGenerateSimulation();
 
-    const shouldCreateSimulation = () => {
+    const shouldCreateSimulation = async (): Promise<string> => {
         if (!firstNext.current && !simulationId) {
-            const data: CreateSimulationType = {
-                current_step: firstNodeId
-            }
-            firstNext.current = true;
+            return new Promise((resolve, reject) => {
+                const data: CreateSimulationType = {
+                    current_step: firstNodeId
+                };
+                firstNext.current = true;
 
-            createSimulation.mutate(data, {
-                onSuccess: (id) => {
-                    sessionStorage.setItem('simulationId', id);
-                }
+                createSimulation.mutate(data, {
+                    onSuccess: (id) => {
+                        sessionStorage.setItem('simulationId', id);
+                        resolve(id);
+                    },
+                    onError: (error) => {
+                        reject(error);
+                    }
+                });
             });
         }
-    }
 
-    const updateSimulationFn = (label: string, response: string) => {
-        shouldCreateSimulation();
+        return simulationId ?? sessionStorage.getItem('simulationId')!;
+    };
 
-        formData.current = {...formData.current, [label]: response};
+    const updateSimulationFn = async (label: string, response: string) => {
+        const id = await shouldCreateSimulation();
+
+        const newFormData = { ...formData.current, [label]: response };
+        formData.current = newFormData
+        const nextNodeId = navigator.getNextNodeId(currentNodeId.current, newFormData)
+
+        console.log(`New Form Data created: ${newFormData.installationType}`)
+        console.log(`NextNodeId created: ${nextNodeId}`)
 
         const data: SimulationType = {
-            "simulation_id": sessionStorage.getItem('simulationId')!,
-            'current_step': navigator.getNextNodeId(currentNodeId.current, formData.current),
+            "simulation_id": id,
+            'current_step': nextNodeId,
             'label': label,
             'response': response
         }
+
+        console.log(`Data passed : ${data}`);
 
         updateSimulation.mutate(data, {
             onSuccess: () => {

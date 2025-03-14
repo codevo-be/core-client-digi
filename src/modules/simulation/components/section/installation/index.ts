@@ -5,14 +5,12 @@ export const installations: Installation[] = [
         id: "private",
         label: "Un particulier",
         value: "private",
-        logoPath: "/images/noveway/private.png",
-        logoSize: "11rem"
+        logoPath: "/images/noveway/private.png"
     },
     {
         id: "enterprise",
         label: "Une entreprise",
         value: "enterprise",
-        logoPath: "/images/noveway/enterprise.png",
-        logoSize: "16rem"
+        logoPath: "/images/noveway/enterprise.png"
     },
 ];

@@ -14,9 +14,6 @@ export default function InstallationTypeSection({ handleValue, onValid }: PropsS
             <div className={"flex gap-[1.2rem]"}>
                 {installations.map((installation) => {
 
-                    const logoSize = installation.logoSize;
-                    console.log(logoSize);
-
                     return (
                         <InputCard
                             key={installation.id}

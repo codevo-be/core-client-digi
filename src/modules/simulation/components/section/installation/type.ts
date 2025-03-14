@@ -3,5 +3,4 @@ export interface Installation {
     label: string;
     value: string;
     logoPath?: string;
-    logoSize?: string;
 }
