@@ -51,31 +51,33 @@ export default function SimulationForm() {
         return simulationId ?? sessionStorage.getItem('simulationId')!;
     };
 
-    const updateSimulationFn = async (label: string, response: string) => {
-        const id = await shouldCreateSimulation();
+    const updateSimulationFn = async (label: string, response: string, proceed: boolean) => {
+        try {
+            const id = await shouldCreateSimulation(); // On attend d'avoir l'ID avant d'aller plus loin
 
-        const newFormData = { ...formData.current, [label]: response };
-        formData.current = newFormData
-        const nextNodeId = navigator.getNextNodeId(currentNodeId.current, newFormData)
+            // Maintenant qu'on a l'ID, on met à jour formData
+            formData.current = { ...formData.current, [label]: response };
 
-        console.log(`New Form Data created: ${newFormData.installationType}`)
-        console.log(`NextNodeId created: ${nextNodeId}`)
+            const data: SimulationType = {
+                simulation_id: id,
+                current_step: navigator.getNextNodeId(currentNodeId.current, formData.current),
+                label: label,
+                response: response
+            };
 
-        const data: SimulationType = {
-            "simulation_id": id,
-            'current_step': nextNodeId,
-            'label': label,
-            'response': response
+            updateSimulation.mutate(data, {
+                onSuccess: () => {
+                    console.log('Simulation mise à jour (form)');
+                }
+            });
+
+            if (proceed) handleNext();
+
+        } catch (error) {
+            console.error("Erreur lors de la création de la simulation:", error);
         }
+    };
 
-        console.log(`Data passed : ${data}`);
-
-        updateSimulation.mutate(data, {
-            onSuccess: () => {
-                console.log('Simulation mise à jour (form)');
-            }
-        });
-    }
     const handleNext = () => {
         const nodeId = navigator.getNextNodeId(currentNodeId.current, formData.current);
         currentNodeId.current = nodeId;
@@ -93,8 +95,8 @@ export default function SimulationForm() {
         setCurrentNode(node);
     };
 
-    const handleSubmit = (email: string, phone: string, zip_code: string) => {
-        const data: GenerateSimulationType = {
+    const handleSubmit = () => {
+        /*const data: GenerateSimulationType = {
             'email': email,
             'zip_code': zip_code,
             'phone': phone,
@@ -104,7 +106,10 @@ export default function SimulationForm() {
             onSuccess: () => {
                 console.log("Génération réussie.");
             }
-        })
+        })*/
+
+        console.log("passage");
+        sessionStorage.setItem('finalData', JSON.stringify(formData.current));
     };
 
     return (

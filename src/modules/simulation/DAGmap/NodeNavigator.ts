@@ -40,6 +40,8 @@ export class NodeNavigator {
         console.log(`Form received : ${formData.installationType}`);
 
         const children = this.map.paths[nodeId];
+        if (children === undefined) null;
+
         const conditionPaths = children.filter(item => item.condition);
         const noConditionsPaths = children.filter(item => !item.condition);
 

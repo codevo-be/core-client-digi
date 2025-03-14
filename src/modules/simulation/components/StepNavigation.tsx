@@ -24,8 +24,9 @@ export const StepNavigation = ({ showSkip, onSkip, showBack, onBack, showSubmit,
             )}
 
             { showSubmit && (
-                <Button type="submit">Submit</Button>
-            )}
+                <Button type="submit" onClick={onSubmit}>Envoyer</Button>
+            )
+            }
         </div>
     );
 }
