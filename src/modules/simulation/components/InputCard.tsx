@@ -17,19 +17,19 @@ type Props = {
     textStyle?: string
 };
 
-export const InputCard = ({ id, label, subLabel, value, name, onClick, type = 'radio', logoPath, logoStyle, boxStyle, textStyle }: Props) => {
+export const InputCard = (props: Props) => {
     return (
-        <label htmlFor={id} className="cursor-pointer">
-            <input type={type} id={id} name={name} value={value} className="peer hidden" onClick={ onClick }/>
+        <label htmlFor={props.id} className="cursor-pointer">
+            <input type={props.type} id={props.id} name={props.name} onChange={ () => console.log("on Changed called") } value={props.value} className="peer hidden" onClick={ props.onClick }/>
             <div className={"px-8 flex items-center justify-between border-[0.2rem] rounded-xl bg-white shadow-[0px_4px_19.6px_0px_rgba(19,53,74,0.15)]" +
-                    `peer-checked:border-8 transition-all border-[#8EACC5] hover:border-8 ${boxStyle}`}>
-                {logoPath !== undefined &&
-                    <ImageBuilder src={logoPath} alt={""} className={`overflow-hidden ${logoStyle}`}/>
+                    `peer-checked:border-8 transition-all border-[#8EACC5] hover:border-8 ${props.boxStyle}`}>
+                {props.logoPath !== undefined &&
+                    <ImageBuilder src={props.logoPath} alt={""} className={`overflow-hidden ${props.logoStyle}`}/>
                 }
                 <div className={"flex flex-col"}>
-                    <p>{label}</p>
-                    {subLabel &&
-                        <span className={`text-[#90B1C9] text-[2rem]`}>{subLabel}</span>
+                    <p>{props.label}</p>
+                    {props.subLabel &&
+                        <span className={`text-[#90B1C9] text-[2rem]`}>{props.subLabel}</span>
                     }
                 </div>
             </div>
