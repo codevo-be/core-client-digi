@@ -5,9 +5,10 @@ import { interests } from '@simulation/components/section/interest/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-export default function InterestSection({ handleValue, onBack, onValid }: PropsSectionType) {
+export default function InterestSection({ handleValue, onBack }: PropsSectionType) {
 
     const questionName = "interests"
+
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
     return (
@@ -50,9 +51,10 @@ export default function InterestSection({ handleValue, onBack, onValid }: PropsS
             </div>
 
             <StepNavigation showSkip={true} onSkip={ () => {
-                handleValue("interests", selectedInterests.toString());
-                onValid();
-            } } showBack={true} onBack={ onBack } showSubmit={false} />
+                handleValue("interests", selectedInterests.toString(), true);
+            } }
+                            showBack={true} onBack={ onBack }
+                            showSubmit={false} />
         </div>
     )
 };

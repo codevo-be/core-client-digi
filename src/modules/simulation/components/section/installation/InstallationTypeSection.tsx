@@ -1,7 +1,6 @@
 import { InputCard } from '@simulation/components/InputCard'
 import { installations } from '@simulation/components/section/installation/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 
 export default function InstallationTypeSection({ handleValue }: PropsSectionType) {
 
@@ -31,8 +30,6 @@ export default function InstallationTypeSection({ handleValue }: PropsSectionTyp
                     )
                 })}
             </div>
-
-            <StepNavigation showSkip={false} showBack={false} showSubmit={false}/>
         </div>
     )
 }

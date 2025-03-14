@@ -12,14 +12,15 @@ import { GenerateSimulationType } from '@simulation/types/generate-simulation-ty
 import { SimulationType } from '@simulation/types/update-simulation-type'
 
 export default function SimulationForm() {
-    const form = useForm<SimulationType>()
+    const form = useForm()
 
     const firstNodeId = 'installation'
     const navigator = new NodeNavigator(simulationMap)
     const [currentNode, setCurrentNode] = useState(navigator.getNode(firstNodeId))
     const history = useRef([firstNodeId])
     const currentNodeId = useRef(firstNodeId)
-    const firstNext = useRef(false)
+
+    const firstNext = useRef(false) //TODO
 
     const simulationId = sessionStorage.getItem('simulationId')
     const formData = useRef({}); //A renommer
@@ -95,8 +96,8 @@ export default function SimulationForm() {
         setCurrentNode(node);
     };
 
-    const handleSubmit = () => {
-        /*const data: GenerateSimulationType = {
+    const handleSubmit = (email: string, zip_code: string, phone: string, country: string) => {
+        const data: GenerateSimulationType = {
             'email': email,
             'zip_code': zip_code,
             'phone': phone,
@@ -106,10 +107,7 @@ export default function SimulationForm() {
             onSuccess: () => {
                 console.log("Génération réussie.");
             }
-        })*/
-
-        console.log("passage");
-        sessionStorage.setItem('finalData', JSON.stringify(formData.current));
+        })
     };
 
     return (
@@ -119,7 +117,8 @@ export default function SimulationForm() {
                 onValid: handleNext,
                 onBack: handleBack,
                 onSkip: handleNext,
-                onSubmit: handleSubmit
+                onSubmit: handleSubmit,
+                currentValues: formData.current
             })}
         </Form>
     )
