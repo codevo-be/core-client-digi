@@ -1,4 +1,4 @@
-import { Box } from '@digico/ui'
+import { Box, Form } from '@digico/ui'
 
 import { InputCard } from '@simulation/components/InputCard'
 import { radio_types } from '@simulation/components/section/consumption/index'
@@ -27,21 +27,18 @@ export default function ConsumptionSection({ handleValue, onBack, onValid }: Pro
                             onValid();
                         }}
                         boxStyle={"w-[46.6rem] h-[14.7rem]"}
-                        logoPath={""}
+                        logoPath={undefined}
                     />
                 ))
                 }
             </div>
 
-
             <Box>
-                <p>Je paye</p>
-                <input/>
+                <Form.Field label={"Je paie"} />
             </Box>
 
             <Box>
-                <p>Je connais ma consommation</p>
-                <input/>
+                <Form.Field label={"Je connais ma consommation"} />
             </Box>
 
             <StepNavigation showSkip={true} onSkip={ onValid } showBack={true} onBack={ onBack } showSubmit={false}/>
