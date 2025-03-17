@@ -1,16 +1,12 @@
 import { InputCard } from '@simulation/components/InputCard'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 import { orientationTypes } from '@simulation/components/section/houseOrientation/index'
+import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-type Props = {
-    handleValue: (label: string, response: string) => void;
-    onBack: () => void;
-    onValid: () => void;
-}
+export default function HouseOrientationSection(props: PropsSectionType) {
 
-export default function HouseOrientationSection({ handleValue, onBack, onValid }: Props) {
-
-    const questionName = "houseOrientation";
+    const inputName = "houseOrientation";
 
     return(
         <div>
@@ -20,14 +16,18 @@ export default function HouseOrientationSection({ handleValue, onBack, onValid }
                     id={type.id}
                     label={type.label}
                     value={type.value}
-                    name={questionName}
+                    name={inputName}
                     onClick={() => {
-                        handleValue(questionName, type.value);
-                        onValid();
+                        const data: InputResponseType = {
+                            label: inputName,
+                            response: type.value
+                        }
+
+                        props.handleValue([data], true);
                     }}/>
             ))}
 
-            <StepNavigation showSkip={true} onSkip={onValid} showBack={true} onBack={onBack} showSubmit={false}/>
+            <StepNavigation showSkip={true} onSkip={props.onValid} showBack={true} onBack={props.onBack} showSubmit={false}/>
         </div>
     );
 }

@@ -5,13 +5,20 @@ import countries from '@simulation/countries.json';
 
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function ContactInformationSection(propsSection: PropsSectionType) {
+
+    const inputEmailName = 'contactEmail'
+    const inputPhoneName = 'contactPhone'
+    const inputZipcodeName = 'contactZipcode'
+    const inputCountry = 'contactCountry'
 
     const { setValue, getValues } = useFormContext();
 
     useEffect(() => {
-        setValue("country", "BE")
+        console.log("Allo ?");
+        setValue(inputCountry, "BE")
     }, [setValue])
 
     return (
@@ -23,12 +30,12 @@ export default function ContactInformationSection(propsSection: PropsSectionType
 
                 <div className={"flex flex-col gap-[6rem]"}>
                     <Form.Row>
-                        <Form.Field name={`email`} id="email" label="Email" placeholder="..." />
-                        <Form.Field name={`phone`} id="phone" label="Téléphone" placeholder="..." />
+                        <Form.Field name={inputEmailName} id={inputEmailName} label="Email" placeholder="..." />
+                        <Form.Field name={inputPhoneName} id={inputPhoneName} label="Téléphone" placeholder="..." />
                     </Form.Row>
                     <Form.Row>
-                        <Form.Field name={`zipcode`} id="zipcode" label="Code postal" placeholder="..." />
-                        <Form.Select name={"country"} label={"Pays"} options={countries}/>
+                        <Form.Field name={inputZipcodeName} id={inputZipcodeName} label="Code postal" placeholder="..." />
+                        <Form.Select name={inputCountry} label={"Pays"} options={countries}/>
                     </Form.Row>
                 </div>
 
@@ -47,7 +54,29 @@ export default function ContactInformationSection(propsSection: PropsSectionType
                 showSkip={false}
                 showBack={true} onBack={propsSection.onBack}
                 showSubmit={true} onSubmit={() => {
-                    propsSection.onSubmit(getValues("email"), getValues("phone"), getValues("zipcode"), getValues("country"))
+
+                    const email: InputResponseType = {
+                        label: inputEmailName,
+                        response: getValues(inputEmailName)
+                    }
+
+                    const phone: InputResponseType = {
+                        label: inputPhoneName,
+                        response: getValues(inputPhoneName)
+                    }
+
+                    const zipcode: InputResponseType = {
+                        label: inputZipcodeName,
+                        response: getValues(inputZipcodeName)
+                    }
+
+                    const country: InputResponseType = {
+                        label: inputCountry,
+                        response: getValues(inputCountry)
+                    }
+
+                    propsSection.handleValue([email, phone, zipcode, country], false);
+                    propsSection.onSubmit(getValues(inputEmailName), getValues(inputPhoneName), getValues(inputZipcodeName), getValues(inputCountry))
                 }}
             />
         </div>

@@ -2,7 +2,7 @@ import { NodeMap } from '@simulation/DAGmap/NodeMap'
 
 import ContactInformationSection from '@simulation/components/section/contactInformation/ContactInformationSection'
 import CarMileageSection from '@simulation/components/section/electricCarMileage/carMileageSection'
-import EnterpriseTypeSection from '@simulation/components/section/enterprise/EnterpriseTypeSection'
+import EnterpriseTypeSection from '@simulation/components/section/enterpriseType/EnterpriseTypeSection'
 import ExistingInstallationSection from '@simulation/components/section/existingInstallation/ExistingInstallationSection'
 import HourPerDaySection from '@simulation/components/section/hourPerDay/HourPerDaySection'
 import HouseAgeSection from '@simulation/components/section/houseAge/HouseAgeSection'
@@ -39,7 +39,7 @@ export const simulationMap: NodeMap = {
         installation: [
             {
                 next: "enterpriseType",
-                condition: (formData: any) => formData.installationType === "enterprise"
+                condition: (formData: any) => formData.installationType === "enterpriseType"
             },
             {
                 next: "interest",

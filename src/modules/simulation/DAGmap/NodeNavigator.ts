@@ -37,7 +37,6 @@ export class NodeNavigator {
     }
 
     getNextNodeId(nodeId: string, formData: any): string {
-        console.log("Caller : " + nodeId);
 
         const children = this.map.paths[nodeId];
         if (children === undefined) return "";

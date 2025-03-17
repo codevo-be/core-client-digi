@@ -1,4 +1,4 @@
-import { Enterprise } from '@simulation/components/section/enterprise/type'
+import { Enterprise } from '@simulation/components/section/enterpriseType/type'
 
 export const enterprises: Enterprise[] = [
     {

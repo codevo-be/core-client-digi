@@ -2,10 +2,11 @@ import { InputCard } from '@simulation/components/InputCard'
 import { existingInstallations } from '@simulation/components/section/existingInstallation/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function ExistingInstallationSection(props: PropsSectionType) {
 
-    const questionName = "existingInstallation";
+    const inputName = "existingInstallation";
 
     return(
         <div className={"flex flex-col items-center gap-[9rem]"}>
@@ -19,9 +20,14 @@ export default function ExistingInstallationSection(props: PropsSectionType) {
                        label={type.label}
                        subLabel={type.subLabel}
                        value={type.value}
-                       name={questionName}
+                       name={inputName}
                        onClick={() => {
-                           props.handleValue(questionName, type.value, true);
+                           const data: InputResponseType = {
+                               label: inputName,
+                               response: type.value
+                           }
+
+                           props.handleValue([data], true);
                        }}
                        boxStyle={"w-[46.6rem] h-[12.8rem]"}
                        logoPath={type.logoPath}

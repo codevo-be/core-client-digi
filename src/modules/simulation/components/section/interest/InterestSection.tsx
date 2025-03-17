@@ -4,10 +4,11 @@ import { InputCard } from '@simulation/components/InputCard'
 import { interests } from '@simulation/components/section/interest/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function InterestSection({ handleValue, onBack }: PropsSectionType) {
 
-    const questionName = "interests"
+    const inputName = "interests"
 
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
@@ -27,7 +28,7 @@ export default function InterestSection({ handleValue, onBack }: PropsSectionTyp
                             id={interest.id}
                             label={interest.label}
                             value={interest.value}
-                            name={questionName}
+                            name={inputName}
                             onClick={() => {
                                 setSelectedInterests((prev) => {
                                         return prev.includes(interest.id) ? prev.filter((id) => id !== interest.id) : [...prev, interest.id]
@@ -51,7 +52,12 @@ export default function InterestSection({ handleValue, onBack }: PropsSectionTyp
             </div>
 
             <StepNavigation showSkip={true} onSkip={ () => {
-                handleValue("interests", selectedInterests.toString(), true);
+                const data: InputResponseType = {
+                    label: inputName,
+                    response: selectedInterests.toString()
+                }
+
+                handleValue([data], true);
             } }
                             showBack={true} onBack={ onBack }
                             showSubmit={false} />

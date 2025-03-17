@@ -2,10 +2,11 @@ import { InputCard } from '@simulation/components/InputCard'
 import { ageTypes } from '@simulation/components/section/houseAge/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function HouseAgeSection(propsSection: PropsSectionType) {
 
-    const questionName = "houseAge";
+    const inputName = "houseAge";
 
     return(
         <div className={"flex flex-col items-center gap-[6.9rem]"}>
@@ -19,10 +20,14 @@ export default function HouseAgeSection(propsSection: PropsSectionType) {
                         id={type.id}
                         label={type.label}
                         value={type.value}
-                        name={questionName}
+                        name={inputName}
                         onClick={() => {
-                            propsSection.handleValue(questionName, type.value);
-                            propsSection.onValid();
+                            const data: InputResponseType = {
+                                label: inputName,
+                                response: type.value
+                            }
+
+                            propsSection.handleValue([data], true);
                         }}
                         boxStyle={"w-[35.1rem] h-[13.4rem]"}
                     />

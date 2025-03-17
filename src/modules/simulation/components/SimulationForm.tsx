@@ -11,6 +11,8 @@ import { CreateSimulationType } from '@simulation/types/create-simulation-type'
 import { GenerateSimulationType } from '@simulation/types/generate-simulation-type'
 import { SimulationType } from '@simulation/types/update-simulation-type'
 
+import { InputResponseType } from '@simulation/components/InputResponseType'
+
 export default function SimulationForm() {
     const form = useForm()
 
@@ -52,17 +54,20 @@ export default function SimulationForm() {
         return simulationId ?? sessionStorage.getItem('simulationId')!;
     };
 
-    const updateSimulationFn = async (label: string, response: string, proceed: boolean) => {
+    const updateSimulationFn = async (values: InputResponseType[], proceed: boolean) => {
         try {
             const id = await shouldCreateSimulation();
 
-            formData.current = { ...formData.current, [label]: response };
+            for (const value of values) {
+                const label = value['label']
+                const response = value['response']
+                formData.current = { ...formData.current, [label]: response }
+            }
 
             const data: SimulationType = {
-                simulation_id: id,
-                current_step: currentNodeId.current,
-                label: label,
-                response: response
+                'simulation_id': id,
+                'current_step': currentNodeId.current,
+                'values': values
             };
 
             updateSimulation.mutate(data, {

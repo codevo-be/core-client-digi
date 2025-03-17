@@ -3,8 +3,11 @@ import { Button } from '@digico/ui'
 
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function HourPerDaySection(props: PropsSectionType) {
+
+    const inputName = 'hourAtHouse'
 
     const [rangeValue, setRangeValue] = useState(5);
 
@@ -41,7 +44,12 @@ export default function HourPerDaySection(props: PropsSectionType) {
             </div>
 
             <StepNavigation showSkip={true} onSkip={() => {
-                props.handleValue('hourAtHouse', String(rangeValue), false);
+                const data: InputResponseType = {
+                    label: inputName,
+                    response: String(rangeValue)
+                }
+
+                props.handleValue([data], false);
                 props.onValid();
             }} showBack={true} onBack={props.onBack} showSubmit={false} />
         </div>

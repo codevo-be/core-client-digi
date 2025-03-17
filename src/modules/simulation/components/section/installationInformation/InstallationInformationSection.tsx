@@ -1,14 +1,16 @@
+import { useFormContext } from 'react-hook-form'
 import { Form } from '@digico/ui'
 
+import { InputResponseType } from '@simulation/components/InputResponseType'
+import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-type Props = {
-    handleValue: (label: string, response: string) => void;
-    onBack: () => void;
-    onSkip: () => void;
-}
+export default function InstallationInformationSection(props: PropsSectionType) {
 
-export default function InstallationInformationSection({ handleValue, onBack, onSkip }: Props) {
+    const inputInstallationDataName = "installationDate"
+    const inputNbrPanelsName = "nbrPanels"
+
+    const { getValues } = useFormContext()
 
     return(
         <div className={"flex flex-col items-center gap-[6.7rem]"}>
@@ -17,15 +19,23 @@ export default function InstallationInformationSection({ handleValue, onBack, on
             <Form.Group className={"bg-white w-[46.6rem] h-[41.5rem] px-[8.1rem] flex justify-center border-1 border-[#8EACC5] rounded-2xl"}>
                 <p>Année d'installation et nombre de panneaux</p>
 
-                <Form.Field name={"installationDate"} prefix={"année"} placeholder={"..."}/>
-                <Form.Field name={"nbrPannels"} suffix={"panneaux"} placeholder={"..."}/>
+                <Form.Field name={inputInstallationDataName} prefix={"année"} placeholder={"..."}/>
+                <Form.Field name={inputNbrPanelsName} suffix={"panneaux"} placeholder={"..."}/>
             </Form.Group>
 
             <StepNavigation showSkip={true} onSkip={ () => {
-                handleValue('installationDate', 'something');
-                handleValue('nbrPannels', 'something');
-                onSkip();
-            }} showBack={ true } onBack={ onBack } showSubmit={false}/>
+                const nbrPanelData: InputResponseType = {
+                    label: inputInstallationDataName,
+                    response: getValues(inputInstallationDataName)
+                }
+
+                const installationDateData: InputResponseType = {
+                    label: inputInstallationDataName,
+                    response: getValues(inputInstallationDataName)
+                }
+
+                props.handleValue([nbrPanelData, installationDateData], true)
+            }} showBack={ true } onBack={ props.onBack } showSubmit={false}/>
         </div>
     );
 }

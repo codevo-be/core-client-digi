@@ -1,13 +1,14 @@
 import { useState } from 'react'
 
 import { InputCard } from '@simulation/components/InputCard'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 import { possessions } from '@simulation/components/section/possession/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
 export default function PossessionSection(propsSection: PropsSectionType) {
 
-    const questionName = "possessions";
+    const inputName = "possessions";
     const [selectedPossessions, setSelectedPossessions] = useState<string[]>([]);
 
     return (
@@ -22,7 +23,7 @@ export default function PossessionSection(propsSection: PropsSectionType) {
                        id={possession.id}
                        label={possession.label}
                        value={possession.value}
-                       name={questionName}
+                       name={inputName}
                        onClick={() => {
                            setSelectedPossessions((prev) => {
                                return prev.includes(possession.id)
@@ -40,8 +41,13 @@ export default function PossessionSection(propsSection: PropsSectionType) {
             <StepNavigation
                 showSkip={true}
                 onSkip={() => {
-                    propsSection.handleValue(questionName, selectedPossessions.toString());
-                    propsSection.onValid();
+
+                    const data: InputResponseType = {
+                        label: inputName,
+                        response: selectedPossessions.toString()
+                    }
+
+                    propsSection.handleValue([data], true);
                 }}
                 showBack={true} onBack={propsSection.onBack}
                 showSubmit={false}

@@ -4,10 +4,11 @@ import { InputCard } from '@simulation/components/InputCard'
 import { radio_types } from '@simulation/components/section/houseConsumption/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function ConsumptionSection({ handleValue, onBack, onValid }: PropsSectionType) {
 
-    const questionName = "houseConsumption";
+    const inputName = "houseConsumption";
 
     return(
         <div className={"flex flex-col items-center gap-[5rem]"}>
@@ -21,9 +22,13 @@ export default function ConsumptionSection({ handleValue, onBack, onValid }: Pro
                         label={type.label}
                         subLabel={type.subLabel}
                         value={type.value}
-                        name={questionName}
+                        name={inputName}
                         onClick={() => {
-                            handleValue(questionName, type.value, true);
+                            const data: InputResponseType = {
+                                label: inputName,
+                                response: type.value
+                            }
+                            handleValue([data], true);
                         }}
                         boxStyle={"w-[46.6rem] h-[14.7rem]"}
                         logoPath={undefined}

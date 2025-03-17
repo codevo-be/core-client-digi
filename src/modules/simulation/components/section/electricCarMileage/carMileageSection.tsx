@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { Button } from '@digico/ui'
 
+import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
-import { Button } from '@digico/ui'
 
 export default function CarMileageSection(propsSection: PropsSectionType) {
 
@@ -45,7 +46,13 @@ export default function CarMileageSection(propsSection: PropsSectionType) {
             <StepNavigation
                 showSkip={true}
                 onSkip={() => {
-                    propsSection.handleValue(questionName, String(rangeValue), false);
+
+                    const data: InputResponseType = {
+                        label: questionName,
+                        response: String(rangeValue)
+                    }
+
+                    propsSection.handleValue([data], false);
                     propsSection.onValid()
                 }}
                 showBack={true} onBack={propsSection.onBack}

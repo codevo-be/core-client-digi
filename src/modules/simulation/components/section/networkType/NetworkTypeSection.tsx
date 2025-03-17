@@ -2,10 +2,11 @@ import { InputCard } from '@simulation/components/InputCard'
 import { networkTypes } from '@simulation/components/section/networkType/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 
-export default function NetworkTypeSection({ handleValue, onBack, onValid }: PropsSectionType) {
+export default function NetworkTypeSection(props: PropsSectionType) {
 
-    const questionName = "networkType"
+    const inputName = "networkType"
 
     return(
         <div className={"flex flex-col items-center gap-[6.9rem]"}>
@@ -19,10 +20,14 @@ export default function NetworkTypeSection({ handleValue, onBack, onValid }: Pro
                         id={type.id}
                         label={type.label}
                         value={type.value}
-                        name={questionName}
+                        name={inputName}
                         onClick={() => {
-                            handleValue(questionName, type.value);
-                            onValid();
+                            const data: InputResponseType = {
+                                label: inputName,
+                                response: type.value
+                            }
+
+                            props.handleValue([data], true);
                         }}
                         boxStyle={"w-[35.1rem] h-[13.4rem]"}
                         logoPath={type.logoPath}
@@ -30,7 +35,7 @@ export default function NetworkTypeSection({ handleValue, onBack, onValid }: Pro
                 ))}
             </div>
 
-            <StepNavigation showSkip={false} showBack={true} onBack={onBack} showSubmit={false}/>
+            <StepNavigation showSkip={false} showBack={true} onBack={props.onBack} showSubmit={false}/>
         </div>
     )
 }

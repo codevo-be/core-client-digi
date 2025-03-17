@@ -1,13 +1,14 @@
 import { Grid } from '@digico/ui'
 
 import { InputCard } from '@simulation/components/InputCard'
-import { enterprises } from '@simulation/components/section/enterprise/index'
+import { enterprises } from '@simulation/components/section/enterpriseType/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function EnterpriseTypeSection(props: PropsSectionType) {
 
-    const questionName = "enterpriseType";
+    const inputName = "enterpriseType";
     
     return(
         <div className={"flex flex-col items-center gap-[3.6rem]"}>
@@ -19,9 +20,13 @@ export default function EnterpriseTypeSection(props: PropsSectionType) {
                             id={enterprise.id}
                             label={enterprise.label}
                             value={enterprise.value}
-                            name={questionName}
+                            name={inputName}
                             onClick={() => {
-                                props.handleValue('enterpriseType', enterprise.value, true);
+                                const data: InputResponseType = {
+                                    label: inputName,
+                                    response: enterprise.value
+                                }
+                                props.handleValue([data], true);
                             }}
                             logoPath={enterprise.svgPath}
                             logoStyle={""}

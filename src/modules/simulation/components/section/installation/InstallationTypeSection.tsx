@@ -1,10 +1,11 @@
 import { InputCard } from '@simulation/components/InputCard'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 import { installations } from '@simulation/components/section/installation/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 
 export default function InstallationTypeSection({ handleValue }: PropsSectionType) {
 
-    const questionName = "installationType;"
+    const inputName = "installationType"
 
     return(
         <div className={"flex flex-col items-center gap-[4rem] font-"}>
@@ -19,9 +20,14 @@ export default function InstallationTypeSection({ handleValue }: PropsSectionTyp
                             id={installation.id}
                             label={installation.label}
                             value={installation.value}
-                            name={questionName}
+                            name={inputName}
                             onClick={() => {
-                                handleValue('installationType', installation.value, true);
+                                const data: InputResponseType = {
+                                    label: inputName,
+                                    response: installation.value
+                                }
+
+                                handleValue([data], true);
                             }}
                             logoPath={installation.logoPath}
                             logoStyle={""}

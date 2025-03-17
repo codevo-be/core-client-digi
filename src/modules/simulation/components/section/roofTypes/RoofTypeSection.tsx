@@ -1,11 +1,13 @@
+import { Grid } from '@digico/ui'
+
 import { InputCard } from '@simulation/components/InputCard'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { roofTypes } from '@simulation/components/section/roofTypes/index'
 import { StepNavigation } from '@simulation/components/StepNavigation'
-import { Grid } from '@digico/ui'
 
 export default function RoofTypeSection(propsSection: PropsSectionType) {
-    const questionName = "roofType";
+    const inputName = "roofType";
 
     return (
         <div className={"flex flex-col items-center gap-[3.6rem]"}>
@@ -20,14 +22,18 @@ export default function RoofTypeSection(propsSection: PropsSectionType) {
                             id={type.id}
                             label={type.label}
                             value={type.value}
-                            name={questionName}
+                            name={inputName}
                             onClick={() => {
-                                propsSection.handleValue(questionName, type.value);
-                                propsSection.onValid();
+                                const data: InputResponseType = {
+                                    label: inputName,
+                                    response: type.value
+                                }
+
+                                propsSection.handleValue([data], true);
                             }}
                             boxStyle={"w-[46.6rem] h-[14.7rem]"}
                             logoPath={type.imagePath}
-                            logoStyle={"w-[21.4rem] h-[11.4rem]"} //TODO si je fais un border j'ai une grosse border bleue
+                            logoStyle={"w-[21.4rem] h-[11.4rem]"}
                         />
                     </Grid.Col>
                 ))}
