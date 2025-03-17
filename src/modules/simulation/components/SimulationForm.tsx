@@ -1,6 +1,9 @@
+'use client'
+
 import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Form } from '@digico/ui'
+import { useRouterWithTenant } from '@digico/utils'
 import { NodeNavigator } from '@simulation/DAGmap/NodeNavigator'
 import { simulationMap } from '@simulation/DAGmap/SimulationMap'
 
@@ -15,8 +18,9 @@ import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function SimulationForm() {
     const form = useForm()
+    const routerWithTenant = useRouterWithTenant()
 
-    const firstNodeId = 'installation'
+    const firstNodeId = 'contactInformation'
     const navigator = new NodeNavigator(simulationMap)
     const [currentNode, setCurrentNode] = useState(navigator.getNode(firstNodeId))
     const history = useRef([firstNodeId])
@@ -115,6 +119,7 @@ export default function SimulationForm() {
         generateSimulation.mutate(data, {
             onSuccess: () => {
                 console.log("Génération réussie.");
+                routerWithTenant.push(`/simulation/SimulationResult/${simulationId}`);
             }
         })
     };
