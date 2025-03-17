@@ -4,11 +4,11 @@ export const ageTypes: AgeType[] = [
     {
         id: 'bigger10',
         label: 'Elle a + de 10 ans',
-        value: 'bigger10'
+        value: 'Oui'
     },
     {
         id: 'lower10',
         label: 'Elle a - de 10 ans',
-        value: 'lower10'
+        value: 'Non'
     }
 ];

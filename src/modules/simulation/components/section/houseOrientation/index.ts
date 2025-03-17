@@ -4,26 +4,26 @@ export const orientationTypes: OrientationType[] = [
     {
         id: 'west',
         label: 'Ouest',
-        value: 'west'
+        value: 'Ouest'
     },
     {
         id: 'south-west',
         label: 'Sud-ouest',
-        value: 'south-west'
+        value: 'Sud-ouest'
     },
     {
         id: 'south',
-        label: 'sud',
-        value: 'south'
+        label: 'Sud',
+        value: 'Sud'
     },
     {
         id: 'south-east',
         label: 'Sud-est',
-        value: 'south-east'
+        value: 'Sud-est'
     },
     {
         id: 'east',
         label: 'Est',
-        value: 'east'
+        value: 'Est'
     },
 ];

@@ -9,6 +9,9 @@ type Props = {
 }
 
 export default function HouseOrientationSection({ handleValue, onBack, onValid }: Props) {
+
+    const questionName = "houseOrientation";
+
     return(
         <div>
             {orientationTypes.map((type) => (
@@ -17,9 +20,9 @@ export default function HouseOrientationSection({ handleValue, onBack, onValid }
                     id={type.id}
                     label={type.label}
                     value={type.value}
-                    name={'orientationType'}
+                    name={questionName}
                     onClick={() => {
-                        handleValue('orientationType', type.value);
+                        handleValue(questionName, type.value);
                         onValid();
                     }}/>
             ))}

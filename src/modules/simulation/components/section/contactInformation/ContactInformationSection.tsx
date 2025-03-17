@@ -8,7 +8,7 @@ import { StepNavigation } from '@simulation/components/StepNavigation'
 
 export default function ContactInformationSection(propsSection: PropsSectionType) {
 
-    const { setValue } = useFormContext();
+    const { setValue, getValues } = useFormContext();
 
     useEffect(() => {
         setValue("country", "BE")
@@ -23,11 +23,11 @@ export default function ContactInformationSection(propsSection: PropsSectionType
 
                 <div className={"flex flex-col gap-[6rem]"}>
                     <Form.Row>
-                        <Form.Field name={`company_name`} id="company_name" label="Email" placeholder="..." />
-                        <Form.Field name={`vat_number`} id="vat_number" label="Téléphone" placeholder="..." />
+                        <Form.Field name={`email`} id="email" label="Email" placeholder="..." />
+                        <Form.Field name={`phone`} id="phone" label="Téléphone" placeholder="..." />
                     </Form.Row>
                     <Form.Row>
-                        <Form.Field name={`firstname`} id="firstname" label="Code postal" placeholder="..." />
+                        <Form.Field name={`zipcode`} id="zipcode" label="Code postal" placeholder="..." />
                         <Form.Select name={"country"} label={"Pays"} options={countries}/>
                     </Form.Row>
                 </div>
@@ -46,7 +46,9 @@ export default function ContactInformationSection(propsSection: PropsSectionType
             <StepNavigation
                 showSkip={false}
                 showBack={true} onBack={propsSection.onBack}
-                showSubmit={true} onSubmit={propsSection.onSubmit}
+                showSubmit={true} onSubmit={() => {
+                    propsSection.onSubmit(getValues("email"), getValues("phone"), getValues("zipcode"), getValues("country"))
+                }}
             />
         </div>
     );

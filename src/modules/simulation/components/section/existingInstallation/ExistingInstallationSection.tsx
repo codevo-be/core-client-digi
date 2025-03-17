@@ -3,7 +3,7 @@ import { existingInstallations } from '@simulation/components/section/existingIn
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-export default function ExistingInstallationSection({ handleValue, onValid, onBack }: PropsSectionType) {
+export default function ExistingInstallationSection(props: PropsSectionType) {
 
     const questionName = "existingInstallation";
 
@@ -21,8 +21,7 @@ export default function ExistingInstallationSection({ handleValue, onValid, onBa
                        value={type.value}
                        name={questionName}
                        onClick={() => {
-                           handleValue(questionName, type.value);
-                           onValid();
+                           props.handleValue(questionName, type.value, true);
                        }}
                        boxStyle={"w-[46.6rem] h-[12.8rem]"}
                        logoPath={type.logoPath}
@@ -30,7 +29,7 @@ export default function ExistingInstallationSection({ handleValue, onValid, onBa
                 ))}
             </div>
 
-            <StepNavigation showSkip={false} showBack={true} onBack={onBack} showSubmit={false}/>
+            <StepNavigation showSkip={false} showBack={true} onBack={props.onBack} showSubmit={false}/>
         </div>
     );
 }

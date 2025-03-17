@@ -4,37 +4,37 @@ export const roofTypes: RoofType[] = [
     {
         id: 'slate',
         label: 'Ardoise',
-        value: 'slate',
+        value: 'Ardoise',
         imagePath: '/images/noveway/slate.png',
     },
     {
         id: 'tile',
         label: 'Tuile',
-        value: 'tile',
+        value: 'Tuile',
         imagePath: '/images/noveway/tile.png',
     },
     {
         id: 'flat',
         label: 'Plat',
-        value: 'flat',
+        value: 'Plat',
         imagePath: '/images/noveway/flat.png',
     },
     {
         id: 'integrated',
         label: 'Intégré en toiture',
-        value: 'integrated',
+        value: 'Intégrée en toiture',
         imagePath: '/images/noveway/integrated.png',
     },
     {
         id: 'ground_structure',
         label: 'Structure au sol',
-        value: 'ground_structure',
+        value: 'Structure au sol',
         imagePath: '/images/noveway/ground_structure.png',
     },
     {
         id: 'sheet_metal',
         label: 'Tôle',
-        value: 'sheet_metal',
+        value: 'Tôle',
         imagePath: '/images/noveway/sheet_metal.png',
     }
 ];

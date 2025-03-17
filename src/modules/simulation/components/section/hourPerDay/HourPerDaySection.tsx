@@ -41,7 +41,7 @@ export default function HourPerDaySection(props: PropsSectionType) {
             </div>
 
             <StepNavigation showSkip={true} onSkip={() => {
-                props.handleValue('perHourValue', String(rangeValue));
+                props.handleValue('hourAtHouse', String(rangeValue), false);
                 props.onValid();
             }} showBack={true} onBack={props.onBack} showSubmit={false} />
         </div>

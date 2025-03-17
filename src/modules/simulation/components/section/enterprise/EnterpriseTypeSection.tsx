@@ -5,7 +5,7 @@ import { enterprises } from '@simulation/components/section/enterprise/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
-export default function EnterpriseTypeSection({ handleValue, onBack, onValid }: PropsSectionType) {
+export default function EnterpriseTypeSection(props: PropsSectionType) {
 
     const questionName = "enterpriseType";
     
@@ -21,8 +21,7 @@ export default function EnterpriseTypeSection({ handleValue, onBack, onValid }: 
                             value={enterprise.value}
                             name={questionName}
                             onClick={() => {
-                                handleValue('enterpriseType', enterprise.value);
-                                onValid();
+                                props.handleValue('enterpriseType', enterprise.value, true);
                             }}
                             logoPath={enterprise.svgPath}
                             logoStyle={""}
@@ -32,7 +31,7 @@ export default function EnterpriseTypeSection({ handleValue, onBack, onValid }: 
                 ))}
             </Grid>
 
-            <StepNavigation showSkip={false} showBack={true} onBack={onBack} showSubmit={false}/>
+            <StepNavigation showSkip={false} showBack={true} onBack={ props.onBack } showSubmit={false}/>
         </div>
     )
 }

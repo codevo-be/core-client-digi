@@ -1,13 +1,13 @@
-import { Box, Form } from '@digico/ui'
+import { Form } from '@digico/ui'
 
 import { InputCard } from '@simulation/components/InputCard'
-import { radio_types } from '@simulation/components/section/consumption/index'
+import { radio_types } from '@simulation/components/section/houseConsumption/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 
 export default function ConsumptionSection({ handleValue, onBack, onValid }: PropsSectionType) {
 
-    const questionName = "consumptionType";
+    const questionName = "houseConsumption";
 
     return(
         <div className={"flex flex-col items-center gap-[5rem]"}>
@@ -23,8 +23,7 @@ export default function ConsumptionSection({ handleValue, onBack, onValid }: Pro
                         value={type.value}
                         name={questionName}
                         onClick={() => {
-                            handleValue(questionName, type.value);
-                            onValid();
+                            handleValue(questionName, type.value, true);
                         }}
                         boxStyle={"w-[46.6rem] h-[14.7rem]"}
                         logoPath={undefined}
@@ -33,13 +32,19 @@ export default function ConsumptionSection({ handleValue, onBack, onValid }: Pro
                 }
             </div>
 
-            <Box>
-                <Form.Field label={"Je paie"} />
-            </Box>
+            <p>Ou</p>
 
-            <Box>
-                <Form.Field label={"Je connais ma consommation"} />
-            </Box>
+            <div className={"flex gap-[1.6rem]"}>
+                <div className={"border-2 border-[#8EACC5] bg-white p-10 rounded-2xl flex flex-col items-center gap-[1.9rem]"}>
+                    <p className={"font-[2.8rem]"}>Je paie</p>
+                    <Form.Field placeholder={"..."} suffix={"€/mois"}/>
+                </div>
+
+                <div className={"border-2 border-[#8EACC5] bg-white p-10 rounded-2xl flex flex-col items-center gap-[1.9rem]"}>
+                    <p>Je connais ma consommation</p>
+                    <Form.Field placeholder={"..."} suffix={"kWh/an"} />
+                </div>
+            </div>
 
             <StepNavigation showSkip={true} onSkip={ onValid } showBack={true} onBack={ onBack } showSubmit={false}/>
         </div>

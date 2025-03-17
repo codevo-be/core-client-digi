@@ -1,12 +1,12 @@
 import { NodeMap } from '@simulation/DAGmap/NodeMap'
 
-import ConsumptionSection from '@simulation/components/section/consumption/ConsumptionSection'
 import ContactInformationSection from '@simulation/components/section/contactInformation/ContactInformationSection'
-import ElectricCarMileageSection from '@simulation/components/section/electricCarMileage/ElectricCarMileageSection'
+import CarMileageSection from '@simulation/components/section/electricCarMileage/carMileageSection'
 import EnterpriseTypeSection from '@simulation/components/section/enterprise/EnterpriseTypeSection'
 import ExistingInstallationSection from '@simulation/components/section/existingInstallation/ExistingInstallationSection'
 import HourPerDaySection from '@simulation/components/section/hourPerDay/HourPerDaySection'
 import HouseAgeSection from '@simulation/components/section/houseAge/HouseAgeSection'
+import ConsumptionSection from '@simulation/components/section/houseConsumption/ConsumptionSection'
 import HouseOrientationSection from '@simulation/components/section/houseOrientation/HouseOrientationSection'
 import HouseSizeSection from '@simulation/components/section/houseSize/HouseSizeSection'
 import InstallationTypeSection from '@simulation/components/section/installation/InstallationTypeSection'
@@ -22,7 +22,7 @@ export const simulationMap: NodeMap = {
         installation: { component: InstallationTypeSection },
         enterpriseType: { component: EnterpriseTypeSection },
         interest: { component: InterestSection },
-        consumption: { component: ConsumptionSection },
+        houseConsumption: { component: ConsumptionSection },
         existingInstallation: { component: ExistingInstallationSection },
         installationInformation: { component: InstallationInformationSection },
         hourPerDay: { component: HourPerDaySection },
@@ -32,7 +32,7 @@ export const simulationMap: NodeMap = {
         houseAge : { component: HouseAgeSection },
         roofType : { component: RoofTypeSection },
         possession : { component: PossessionSection },
-        electricCarMileage : { component: ElectricCarMileageSection },
+        carMileage : { component: CarMileageSection },
         contactInformation : { component: ContactInformationSection }
     },
     paths: {
@@ -53,10 +53,10 @@ export const simulationMap: NodeMap = {
         ],
         interest: [
             {
-                next: 'consumption'
+                next: 'houseConsumption'
             },
         ],
-        consumption: [
+        houseConsumption: [
             {
                 next: 'existingInstallation'
             },
@@ -103,10 +103,10 @@ export const simulationMap: NodeMap = {
         ],
         possession: [
             {
-                next: 'electricCarMileage'
+                next: 'carMileage'
             }
         ],
-        electricCarMileage: [
+        carMileage: [
             {
                 next: 'contactInformation'
             }

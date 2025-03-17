@@ -54,14 +54,13 @@ export default function SimulationForm() {
 
     const updateSimulationFn = async (label: string, response: string, proceed: boolean) => {
         try {
-            const id = await shouldCreateSimulation(); // On attend d'avoir l'ID avant d'aller plus loin
+            const id = await shouldCreateSimulation();
 
-            // Maintenant qu'on a l'ID, on met à jour formData
             formData.current = { ...formData.current, [label]: response };
 
             const data: SimulationType = {
                 simulation_id: id,
-                current_step: navigator.getNextNodeId(currentNodeId.current, formData.current),
+                current_step: currentNodeId.current,
                 label: label,
                 response: response
             };
@@ -98,11 +97,16 @@ export default function SimulationForm() {
 
     const handleSubmit = (email: string, zip_code: string, phone: string, country: string) => {
         const data: GenerateSimulationType = {
+            'simulation_id': simulationId, //TODO gérer l'exception  ?
             'email': email,
-            'zip_code': zip_code,
             'phone': phone,
-            'simulation_id': simulationId!
+            'zip_code': zip_code,
+            'country': country
         }
+
+        console.log("passed");
+        console.log(data);
+
         generateSimulation.mutate(data, {
             onSuccess: () => {
                 console.log("Génération réussie.");

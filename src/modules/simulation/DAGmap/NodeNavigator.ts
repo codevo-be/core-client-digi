@@ -37,10 +37,10 @@ export class NodeNavigator {
     }
 
     getNextNodeId(nodeId: string, formData: any): string {
-        console.log(`Form received : ${formData.installationType}`);
+        console.log("Caller : " + nodeId);
 
         const children = this.map.paths[nodeId];
-        if (children === undefined) null;
+        if (children === undefined) return "";
 
         const conditionPaths = children.filter(item => item.condition);
         const noConditionsPaths = children.filter(item => !item.condition);

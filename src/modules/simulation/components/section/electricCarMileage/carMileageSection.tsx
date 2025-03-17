@@ -4,9 +4,9 @@ import { PropsSectionType } from '@simulation/components/section/PropsSectionTyp
 import { StepNavigation } from '@simulation/components/StepNavigation'
 import { Button } from '@digico/ui'
 
-export default function ElectricCarMileageSection(propsSection: PropsSectionType) {
+export default function CarMileageSection(propsSection: PropsSectionType) {
 
-    const questionName = "electricCarMileage";
+    const questionName = "carMileage";
     const [rangeValue, setRangeValue] = useState(12000);
 
     const min = 1000;
@@ -45,7 +45,7 @@ export default function ElectricCarMileageSection(propsSection: PropsSectionType
             <StepNavigation
                 showSkip={true}
                 onSkip={() => {
-                    propsSection.handleValue(questionName, String(rangeValue));
+                    propsSection.handleValue(questionName, String(rangeValue), false);
                     propsSection.onValid()
                 }}
                 showBack={true} onBack={propsSection.onBack}

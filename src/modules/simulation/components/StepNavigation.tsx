@@ -21,7 +21,7 @@ export const StepNavigation = (props: StepNavigationProps) => {
 
             { props.showSkip && <Button type="button" onClick={props.onSkip}>Skip</Button> }
 
-            { props.showSubmit && <Button type="submit" onClick={props.onSubmit}>Envoyer</Button> /*TODO type submit ou button ?*/ }
+            { props.showSubmit && <Button type="button" onClick={props.onSubmit}>Envoyer</Button> }
         </div>
     );
 }
