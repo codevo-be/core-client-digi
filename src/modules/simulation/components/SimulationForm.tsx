@@ -101,6 +101,9 @@ export default function SimulationForm() {
     };
 
     const handleSubmit = (email: string, zip_code: string, phone: string, country: string) => {
+
+        if (simulationId ===  null) throw new Error("Something went wrong, the simulation id is null")
+
         const data: GenerateSimulationType = {
             'simulation_id': simulationId, //TODO gérer l'exception  ?
             'email': email,
@@ -108,9 +111,6 @@ export default function SimulationForm() {
             'zip_code': zip_code,
             'country': country
         }
-
-        console.log("passed");
-        console.log(data);
 
         generateSimulation.mutate(data, {
             onSuccess: () => {

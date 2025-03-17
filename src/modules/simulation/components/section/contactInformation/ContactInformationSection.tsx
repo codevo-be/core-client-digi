@@ -75,7 +75,6 @@ export default function ContactInformationSection(propsSection: PropsSectionType
                         response: getValues(inputCountry)
                     }
 
-                    propsSection.handleValue([email, phone, zipcode, country], false);
                     propsSection.onSubmit(getValues(inputEmailName), getValues(inputPhoneName), getValues(inputZipcodeName), getValues(inputCountry))
                 }}
             />
