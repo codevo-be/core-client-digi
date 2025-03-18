@@ -22,7 +22,7 @@ export default function SimulationResult() {
 
     return(
         <div className={"flex justify-between bg-[#E4F1F9]"}>
-            <div className={"w-full"}>
+            <div className={"w-full flex flex-col items-center"}>
                 <div className={"flex flex-col items-center"}>
 
                     <h2 className={"text-[2.8rem] py-[5.2rem] text-[#006EC2]"}>Nous avons estimé l&apos;installation idéale pour vous</h2>
@@ -37,11 +37,15 @@ export default function SimulationResult() {
                 <hr className={"m-[5rem] mx-auto w-[107.2rem] border-3 border-[#0000001A] rounded-full"}/>
 
                 <div className={"flex flex-col items-center gap-[3.9rem]"}>
+
+                    <p className={"text-[2.8rem] text-[#006EC2]"}>Détails de votre installation</p>
+
                     {cardData.map((_, index) => (
                         <ResultCardDescription key={index} startColor={_.startColor} endColor={_.endColor}/>
                     ))}
                 </div>
             </div>
+
             <div className={"min-w-[35.1rem]"}></div>
             <ResultAside isEntrepreneur={Boolean(isEntrepreneur)}/>
         </div>

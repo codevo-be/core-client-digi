@@ -47,15 +47,15 @@ export default function ResultAside(props: Props) {
 
 
     return (
-        <div className={"fixed right-0 top-0"}>
-            <div className={"bg-white min-w-[35.1rem] h-screen flex flex-col items-center py-[3.1rem] gap-[7.3rem]"}>
+        <div className={"pointer-events-none fixed right-0 top-0"}>
+            <div className={"bg-white w-[35.1rem] h-screen flex flex-col items-center px-12 py-[3.1rem] gap-[7.3rem]"}>
                 <div className={"flex flex-col gap-[1.8rem]"}>
                     {statBoxData.map((item, index) => (
                         <StatBox key={index} label={item.label} value={item.value} />
                     ))}
                 </div>
 
-                <div className={"flex flex-col gap-[1.7rem]"}>
+                <div className={"flex flex-col items-center gap-[1.7rem] w-full"}>
                     <div className={"flex gap-4"}>
                         <div className={"w-[4.7rem] h-[4.7rem] rounded-full overflow-hidden"}>
                             <ImageBuilder src={"/images/noveway/noveway_ceo.png"} alt={"CEO de noveway"}/>
@@ -66,7 +66,7 @@ export default function ResultAside(props: Props) {
                         </div>
                     </div>
 
-                    <div className={"flex flex-col gap-[0.7rem]"}>
+                    <div className={"flex flex-col gap-[0.7rem] w-full"}>
                         {contactLabelData.map((item, index) => (
                             <ContactLabel key={index} type={item.type} value={item.value}/>
                         ))}
@@ -74,16 +74,20 @@ export default function ResultAside(props: Props) {
 
                     {props.isEntrepreneur ? (
                         <div className={"flex flex-col items-center gap-[2.1rem]"}>
-                            <p className={"text-[2rem] text-[#023A65] self-start"}>Définissez votre marge</p>
 
-                            <div className={"flex flex-col items-center gap-[0.9rem]"}>
+                            <div className={"flex flex-col items-center w-full gap-[1.6rem]"}>
 
-                                <p className={"text-[#2A8831] text-[3.2rem]"}>{rangeValue}% de marge</p>
+                                <p className={"text-[2rem] text-[#023A65] self-start"}>Définissez votre marge</p>
 
-                                <div className={"flex gap-[1.4rem]"}>
-                                    <button onClick={handleMinusClicked} className={"bg-[#8EACC5] rounded-full w-[3.6rem] h-[3.6rem] text-white hover:cursor-pointer"}>-</button>
-                                    <input onChange={handleRangeChange} type={"range"} className={"bg-[#2A8831]"} step={step} defaultValue={rangeValue} min={min} max={max}/>
-                                    <button onClick={handlePlusClicked} className={"bg-[#8EACC5] rounded-full w-[3.6rem] h-[3.6rem] text-white hover:cursor-pointer"}>+</button>
+                                <div className={"flex flex-col items-center gap-[0.9rem] "}>
+
+                                    <p className={"text-[#2A8831] text-[3.2rem]"}>{rangeValue}% de marge</p>
+
+                                    <div className={"flex justify-between gap-[1.4rem] w-full"}>
+                                        <button onClick={handleMinusClicked} className={"pointer-events-auto bg-[#8EACC5] rounded-full w-[3.6rem] h-[3.6rem] text-white hover:cursor-pointer"}>-</button>
+                                        <input onChange={handleRangeChange} type={"range"} className={"pointer-events-auto bg-[#2A8831] w-[18rem]"} step={step} defaultValue={rangeValue} min={min} max={max}/>
+                                        <button onClick={handlePlusClicked} className={"pointer-events-auto bg-[#8EACC5] rounded-full w-[3.6rem] h-[3.6rem] text-white hover:cursor-pointer"}>+</button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -95,7 +99,7 @@ export default function ResultAside(props: Props) {
                             />
                         </div>
                     ) : (
-                        <div className={"flex flex-col items-center gap-4"}>
+                        <div className={"flex flex-col items-center gap-4 w-full"}>
                             <CallToActionCard topTag={"Winter deal + commande instantanée"}
                                               price={"4.335€"}
                                               crossedPrice={"4.635 €"}

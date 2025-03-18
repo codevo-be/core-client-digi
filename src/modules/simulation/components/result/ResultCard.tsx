@@ -23,7 +23,7 @@ export default function ResultCard(props: Props) {
 
             <p className={"py-[0.3rem] px-[1rem] w-fit text-[1.2rem] rounded-full bg-white/20"}>Indépendance énergétique</p>
 
-            <div className={"flex justify-center items-center"}>
+            <div className={"flex justify-center items-center gap-4"}>
                 <div className={"min-w-[7.8rem] min-h-[7.3rem] bg-white/10 rounded-full"}>
 
                 </div>

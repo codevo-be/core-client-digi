@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { Icon } from '@components/Icon'
+import { ImageBuilder } from '@digico/ui'
 
 type Props = {
     startColor: string
@@ -12,6 +14,15 @@ export default function ResultCardDescription(props: Props){
         { label: "Economie annuelle d'électricité", value: "396€" },
         { label: "Production d'électricité annuelle", value: "3274 kWh" },
         { label: "Puissance de l'installation", value: "3,5 kWc" }
+    ];
+
+    const listData = [
+        "Visite technique & étude",
+        "Installation panneaux & onduleur",
+        "Réception électrique (Vinçotte)",
+        "Commande effective sous réserve de votre approbation lors de la visite technique",
+        "Visite technique & étude",
+        "Validation du devis nécessaire par NOVEWAY (&gt;50KM)"
     ];
 
     const [inputValue, setInputValue] = useState(0)
@@ -84,17 +95,18 @@ export default function ResultCardDescription(props: Props){
                     </div>
                 </div>
 
-                <aside className={"bg-white/40 w-[31.8rem] h-[38.6rem] text-[#023A65] px-12 py-14 rounded-3xl"}>
+                <aside className={"flex flex-col gap-[2.6rem] bg-white/40 w-[31.8rem] h-[38.6rem] text-[#023A65] px-12 py-14 rounded-3xl"}>
 
                     <p className={"text-[2.4rem]"}>Inclus dans l&apos;offre</p>
 
-                    <ul className={"text-[1.4rem] flex flex-col gap-[1.4rem]"}>
-                        <li>Visite technique & étude</li>
-                        <li>Installation panneaux & onduleur</li>
-                        <li>Réception électrique (Vinçotte)</li>
-                        <li>Commande effective sous réserve de votre approbation lors de la visite technique</li>
-                        <li>Visite technique & étude</li>
-                        <li>Validation du devis nécessaire par NOVEWAY (&gt;50KM)</li>
+                    <ul className={"text-[1.4rem] flex flex-col gap-4"}>
+                        {listData.map((text, index) => (
+                            <li key={index} className={"flex items-center gap-[1.1rem]"}>
+                                <ImageBuilder src={"/icons/noveway/blackCheck.svg"} alt={"check"} className={"w-[1.9rem] h-[1.4rem]"}/>
+
+                                <p>{text}</p>
+                            </li>
+                        ))}
                     </ul>
 
                 </aside>

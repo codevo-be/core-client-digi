@@ -21,7 +21,7 @@ export default function ContactLabel(props: Props){
     }
 
     return(
-        <button type={"button"} className={"py-[1.1rem] px-[1.4rem] w-[29.2rem] h-[4.3rem] border-1 border-[#023A65] rounded-[0.9rem]" +
+        <button type={"button"} className={"pointer-events-auto py-[1.1rem] px-[1.4rem] h-[4.3rem] border-1 border-[#023A65] rounded-[0.9rem]" +
             " flex items-center gap-[1.3rem] " +
             "hover:cursor-pointer"}>
             <ImageBuilder src={source}/>

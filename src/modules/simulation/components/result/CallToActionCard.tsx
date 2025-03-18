@@ -35,7 +35,7 @@ export default function CallToActionCard(props: Props) {
                 </div>
             </div>
 
-            <button className={"bg-white text-[#2A8831] text-[1.6rem] py-4 rounded-[1.4rem] mx-4 w-full" +
+            <button className={"pointer-events-auto bg-white text-[#2A8831] text-[1.6rem] py-4 rounded-[1.4rem] mx-4 w-full" +
                 " hover:cursor-pointer flex justify-center gap-[1.2rem]"}>
                 <ImageBuilder src={"/icons/noveway/check.svg"} alt={"check"}/>
                 <p>{props.buttonLabel}</p>
