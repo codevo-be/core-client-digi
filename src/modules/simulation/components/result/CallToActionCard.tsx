@@ -42,7 +42,7 @@ export default function CallToActionCard(props: Props) {
             </button>
 
             {props.subLabel !== undefined &&
-                <p className={"text-white/60 text-[1.2rem]"}>{props.subLabel}</p>
+                <p className={"text-white/60 text-[1.2rem] -mt-2 pb-2"}>{props.subLabel}</p>
             }
         </div>
     );

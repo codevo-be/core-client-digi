@@ -43,7 +43,7 @@ export default function ResultCard(props: Props) {
                 ))}
             </div>
 
-            <a className={"underline text-[1.8rem]"}>En savoir plus</a>
+            <a className={"underline text-[1.4rem]"}>En savoir plus</a>
         </div>
     );
 }

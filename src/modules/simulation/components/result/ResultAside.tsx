@@ -56,7 +56,7 @@ export default function ResultAside(props: Props) {
                 </div>
 
                 <div className={"flex flex-col items-center gap-[1.7rem] w-full"}>
-                    <div className={"flex gap-4"}>
+                    <div className={"flex gap-4 w-full"}>
                         <div className={"w-[4.7rem] h-[4.7rem] rounded-full overflow-hidden"}>
                             <ImageBuilder src={"/images/noveway/noveway_ceo.png"} alt={"CEO de noveway"}/>
                         </div>

@@ -1,4 +1,4 @@
-import { Button, ImageBuilder } from '@digico/ui'
+import { ImageBuilder } from '@digico/ui'
 
 type Props = {
     type: string,
