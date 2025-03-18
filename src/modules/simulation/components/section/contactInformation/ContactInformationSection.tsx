@@ -3,9 +3,9 @@ import { useFormContext } from 'react-hook-form'
 import { Form } from '@digico/ui'
 import countries from '@simulation/countries.json';
 
+import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
-import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function ContactInformationSection(propsSection: PropsSectionType) {
 
@@ -44,7 +44,7 @@ export default function ContactInformationSection(propsSection: PropsSectionType
                         qui pourrait découler de ce contact et conformément à nos conditions générales et vie privée.</p>
                     <p className={"text-[1.2rem] text-[#90B1C9]"}>Par la suite, si vous souhaitez modifier ou supprimer
                         vos données, ou simplement savoir quelles données sont stockées dans notre base de données,
-                        vous pouvez envoyer un email à l'adresse suivante :</p>
+                        vous pouvez envoyer un email à l$apos;adresse suivante :</p>
                 </div>
 
             </Form.Group>
@@ -74,8 +74,7 @@ export default function ContactInformationSection(propsSection: PropsSectionType
                         response: getValues(inputCountry)
                     }
 
-                    propsSection.handleValue([email, phone, zipcode, country], false);
-                    propsSection.onSubmit(getValues(inputEmailName), getValues(inputPhoneName), getValues(inputZipcodeName), getValues(inputCountry))
+                    propsSection.onSubmit([email, phone, zipcode, country])
                 }}
             />
         </div>

@@ -2,16 +2,21 @@
 
 import { useParams, useSearchParams } from 'next/navigation'
 
+import { useEffect } from 'react'
+
 import ResultAside from '@simulation/components/result/ResultAside'
 import ResultCard from '@simulation/components/result/ResultCard'
 import ResultCardDescription from '@simulation/components/result/ResultCardDescription'
+import useGenerateSimulation from '@simulation/hooks/mutation/useGenerateSimulation'
 
 export default function SimulationResult() {
 
     const params = useParams()
+    if (typeof params.id !==  'string') throw new Error("The id must be a valid string");
+    const simulationId: string = params.id
 
     const searchParams = useSearchParams()
-    const isEntrepreneur = searchParams.get("entrepeneur")
+    const isEntrepreneur = searchParams.get("entrepreneur")
 
     const cardData = [
         { startColor: "#023B67", endColor: "#0B5995" },
@@ -19,6 +24,20 @@ export default function SimulationResult() {
         { startColor: "#005E67", endColor: "#18A1AE" },
         { startColor: "#048A80", endColor: "#0DB2A6" }
     ]
+
+    const generateSimulation = useGenerateSimulation()
+
+    useEffect(() => {
+        console.log("Start effect");
+        generateSimulation.mutate(
+            { "simulation_id": simulationId },
+            {
+                onSuccess: () => {
+                    console.log('got it the api response')
+                }
+            }
+        )
+    }, [])
 
     return(
         <div className={"flex justify-between bg-[#E4F1F9]"}>

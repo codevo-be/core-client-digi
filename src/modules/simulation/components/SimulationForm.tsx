@@ -8,10 +8,8 @@ import { NodeNavigator } from '@simulation/DAGmap/NodeNavigator'
 import { simulationMap } from '@simulation/DAGmap/SimulationMap'
 
 import useCreateSimulation from '@simulation/hooks/mutation/useCreateSimulation'
-import useGenerateSimulation from '@simulation/hooks/mutation/useGenerateSimulation'
 import useUpdateSimulation from '@simulation/hooks/mutation/useUpdateSimulation'
 import { CreateSimulationType } from '@simulation/types/create-simulation-type'
-import { GenerateSimulationType } from '@simulation/types/generate-simulation-type'
 import { SimulationType } from '@simulation/types/update-simulation-type'
 
 import { InputResponseType } from '@simulation/components/InputResponseType'
@@ -33,7 +31,6 @@ export default function SimulationForm() {
 
     const createSimulation = useCreateSimulation()
     const updateSimulation = useUpdateSimulation()
-    const generateSimulation = useGenerateSimulation();
 
     const shouldCreateSimulation = async (): Promise<string> => {
         if (!firstNext.current && !simulationId) {
@@ -74,11 +71,7 @@ export default function SimulationForm() {
                 'values': values
             };
 
-            updateSimulation.mutate(data, {
-                onSuccess: () => {
-                    console.log('Simulation mise à jour (form)');
-                }
-            });
+            updateSimulation.mutate(data);
 
             if (proceed) handleNext();
 
@@ -98,30 +91,17 @@ export default function SimulationForm() {
     const handleBack = () => {
         const currentHistory = history.current;
         history.current = currentHistory.slice(0, -1);
-        const nodeId = currentHistory[currentHistory.length - 2]; // -2 car la suppression n'est pas encore acquise (doit attendre le re-render)
+        const nodeId = currentHistory[currentHistory.length - 2]; // -2, car la suppression n'est pas encore acquise (doit attendre le re-render)
         currentNodeId.current = nodeId;
         const node = navigator.getNode(nodeId);
         setCurrentNode(node);
     };
 
-    const handleSubmit = (email: string, zip_code: string, phone: string, country: string) => {
+    const handleSubmit = (contactValues: InputResponseType[]) => {
 
         if (simulationId ===  null) throw new Error("Something went wrong, the simulation id is null")
 
-        const data: GenerateSimulationType = {
-            'simulation_id': simulationId, //TODO gérer l'exception  ?
-            'email': email,
-            'phone': phone,
-            'zip_code': zip_code,
-            'country': country
-        }
-
-        generateSimulation.mutate(data, {
-            onSuccess: () => {
-                console.log("Génération réussie.");
-                routerWithTenant.push(`/simulation/SimulationResult/${simulationId}`);
-            }
-        })
+        updateSimulationFn(contactValues, false).then(() => routerWithTenant.push(`/simulation/result/${simulationId}`));
     };
 
     return (
