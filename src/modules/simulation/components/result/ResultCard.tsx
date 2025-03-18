@@ -1,6 +1,11 @@
 'use client'
 
-export default function ResultCard() {
+type Props = {
+    startColor: string
+    endColor: string
+}
+
+export default function ResultCard(props: Props) {
 
     const data = [
         { label: "Amortissement", value: "9,5 ans" },
@@ -9,7 +14,12 @@ export default function ResultCard() {
     ];
 
     return(
-        <div className={"flex flex-col gap-[1.9rem] text-white bg-linear-to-tr from-[#023B67] to-[#0B5995] w-[25.6rem] h-[31.3rem] rounded-md p-[1.2rem]"}>
+        <div
+            className={"flex flex-col gap-[1.9rem] text-white w-[25.6rem] h-[31.3rem] rounded-md p-[1.2rem]"}
+            style={{
+                background: `linear-gradient(to top right, ${props.startColor}, ${props.endColor})`
+            }}
+        >
 
             <p className={"py-[0.3rem] px-[1rem] w-fit text-[1.2rem] rounded-full bg-white/20"}>Indépendance énergétique</p>
 

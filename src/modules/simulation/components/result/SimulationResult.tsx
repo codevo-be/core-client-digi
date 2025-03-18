@@ -13,6 +13,13 @@ export default function SimulationResult() {
     const searchParams = useSearchParams()
     const isEntrepreneur = searchParams.get("entrepeneur")
 
+    const cardData = [
+        { startColor: "#023B67", endColor: "#0B5995" },
+        { startColor: "#005873", endColor: "#3989A1" },
+        { startColor: "#005E67", endColor: "#18A1AE" },
+        { startColor: "#048A80", endColor: "#0DB2A6" }
+    ]
+
     return(
         <div className={"flex justify-between bg-[#E4F1F9]"}>
             <div className={"w-full"}>
@@ -21,8 +28,8 @@ export default function SimulationResult() {
                     <h2 className={"text-[2.8rem] py-[5.2rem] text-[#006EC2]"}>Nous avons estimé l&apos;installation idéale pour vous</h2>
 
                     <div className={"flex gap-6"}>
-                        {Array(4).fill(null).map((_, index) => (
-                            <ResultCard key={index}/>
+                        {cardData.map((_, index) => (
+                            <ResultCard key={index} startColor={_.startColor} endColor={_.endColor}/>
                         ))}
                     </div>
                 </div>
@@ -30,8 +37,8 @@ export default function SimulationResult() {
                 <hr className={"m-[5rem] mx-auto w-[107.2rem] border-3 border-[#0000001A] rounded-full"}/>
 
                 <div className={"flex flex-col items-center gap-[3.9rem]"}>
-                    {Array(4).fill(null).map((_, index) => (
-                        <ResultCardDescription key={index}/>
+                    {cardData.map((_, index) => (
+                        <ResultCardDescription key={index} startColor={_.startColor} endColor={_.endColor}/>
                     ))}
                 </div>
             </div>

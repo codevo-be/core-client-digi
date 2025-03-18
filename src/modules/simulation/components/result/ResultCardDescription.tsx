@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 
-export default function ResultCardDescription(){
+type Props = {
+    startColor: string
+    endColor: string
+}
+
+export default function ResultCardDescription(props: Props){
 
     const data = [
         { label: "Amortissement", value: "9,5 ans" },
@@ -21,7 +26,12 @@ export default function ResultCardDescription(){
     }
 
     return(
-        <div className={"bg-linear-to-tr from-[#023B67] to-[#0B5995] w-[107.1rem] h-[56.3rem] rounded-2xl text-white p-[3.6rem]"}>
+        <div
+            className={"w-[107.1rem] h-[56.3rem] rounded-2xl text-white p-[3.6rem]"}
+            style={{
+                background: `linear-gradient(to top right, ${props.startColor}, ${props.endColor})`
+            }}
+        >
             <div className={"flex gap-[1.7rem] items-center"}>
                 <div className={"min-w-[7.8rem] min-h-[7.3rem] bg-white/10 rounded-full"}>
 
