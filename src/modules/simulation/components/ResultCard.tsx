@@ -1,4 +1,4 @@
-import { ImageBuilder } from '@digico/ui'
+'use client'
 
 export default function ResultCard() {
 

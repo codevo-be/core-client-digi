@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation'
 
 import ResultCard from '@simulation/components/ResultCard'
+import ResultCardDescription from '@simulation/components/ResultCardDescription'
 
 export default function SimulationResult() {
 
@@ -22,13 +23,15 @@ export default function SimulationResult() {
                     </div>
                 </div>
 
-                <hr className={"m-[5rem]"}/>
+                <hr className={"m-[5rem] mx-auto w-[107.2rem] border-3 border-[#0000001A] rounded-full"}/>
 
-                <div>
-
+                <div className={"flex flex-col items-center gap-[3.9rem]"}>
+                    {Array(4).fill(null).map((_, index) => (
+                        <ResultCardDescription key={index}/>
+                    ))}
                 </div>
             </div>
-            <aside className={"bg-error w-[35.1rem] h-[90.2rem]"}>
+            <aside className={"bg-error min-w-[35.1rem] h-[90.2rem]"}>
                 <p>aside</p>
             </aside>
         </div>
