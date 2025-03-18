@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 export default function ResultCardDescription(){
 
     const data = [
@@ -6,6 +8,17 @@ export default function ResultCardDescription(){
         { label: "Production d'électricité annuelle", value: "3274 kWh" },
         { label: "Puissance de l'installation", value: "3,5 kWc" }
     ];
+
+    const [inputValue, setInputValue] = useState(0)
+    const handlePlusButton = () => {
+        setInputValue((prev) => prev + 1)
+    }
+    const handleMinusButton = () => {
+        setInputValue((prev) => {
+            if (prev > 0) return prev - 1
+            return 0
+        })
+    }
 
     return(
         <div className={"bg-linear-to-tr from-[#023B67] to-[#0B5995] w-[107.1rem] h-[56.3rem] rounded-2xl text-white p-[3.6rem]"}>
@@ -25,11 +38,21 @@ export default function ResultCardDescription(){
                         <p className={"text-[2.4rem]"}>Nombre de panneaux</p>
 
                         <div className={"flex gap-[1.9rem] text-[2.8rem]"}>
-                            <button type={"button"} className={"w-[5.2rem] h-[5.2rem] hover:cursor-pointer rounded-full bg-[#8EACC5]"}>-</button>
+                            <button type={"button"} className={"w-[5.2rem] h-[5.2rem] hover:cursor-pointer rounded-full bg-[#8EACC5]"}
+                                    onClick={handleMinusButton}>
+                                -
+                            </button>
+
                             <input type={"number"} className={"py-[1.1rem] px-[1.5rem] text-[#006EC2] w-[11.7rem] h-[5.2rem] bg-white border-2 " +
                                 "border-[#8EACC5] rounded-2xl " +
-                                "appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"}/>
-                            <button type={"button"} className={"w-[5.2rem] h-[5.2rem] hover:cursor-pointer rounded-full bg-[#8EACC5]"}>+</button>
+                                "appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"}
+                                   defaultValue={inputValue}
+                            />
+
+                            <button type={"button"} className={"w-[5.2rem] h-[5.2rem] hover:cursor-pointer rounded-full bg-[#8EACC5]"}
+                                    onClick={handlePlusButton}>
+                                +
+                            </button>
                         </div>
 
                     </div>

@@ -1,4 +1,4 @@
-import SimulationResult from '@simulation/components/SimulationResult'
+import SimulationResult from '@simulation/components/result/SimulationResult'
 
 export default function Page() {
 

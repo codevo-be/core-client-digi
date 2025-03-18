@@ -20,7 +20,7 @@ export default function SimulationForm() {
     const form = useForm()
     const routerWithTenant = useRouterWithTenant()
 
-    const firstNodeId = 'contactInformation'
+    const firstNodeId = 'installation'
     const navigator = new NodeNavigator(simulationMap)
     const [currentNode, setCurrentNode] = useState(navigator.getNode(firstNodeId))
     const history = useRef([firstNodeId])
