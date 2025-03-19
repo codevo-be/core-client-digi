@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button, Form } from '@digico/ui'
+import { Form } from '@digico/ui'
 import { useRouterWithTenant } from '@digico/utils'
 import { NodeNavigator } from '@simulation/DAGmap/NodeNavigator'
 import { simulationMap } from '@simulation/DAGmap/SimulationMap'
@@ -10,6 +10,7 @@ import Cookies from 'js-cookie'
 
 import useCreateSimulation from '@simulation/hooks/mutation/useCreateSimulation'
 import useUpdateSimulation from '@simulation/hooks/mutation/useUpdateSimulation'
+import useGetSimulationDetails from '@simulation/hooks/queries/useGetSimulationDetails'
 import { CreateSimulationType } from '@simulation/types/create-simulation-type'
 import { SimulationType } from '@simulation/types/update-simulation-type'
 
@@ -18,6 +19,9 @@ import { InputResponseType } from '@simulation/components/InputResponseType'
 export default function SimulationForm() {
     const form = useForm()
     const routerWithTenant = useRouterWithTenant()
+
+    const createSimulation = useCreateSimulation()
+    const updateSimulation = useUpdateSimulation()
 
     const firstNodeId = 'installation'
     const navigator = new NodeNavigator(simulationMap)
@@ -29,8 +33,26 @@ export default function SimulationForm() {
     const simulationId = Cookies.get('simulationId')
     const formData = useRef({}); //A renommer
 
-    const createSimulation = useCreateSimulation()
-    const updateSimulation = useUpdateSimulation()
+    useEffect(() => { //TODO dans un effect car sinon se refait à chaque changement de section
+        useGetSimulationDetails(simulationId)
+            .then(r => {
+                const entries = r.entries;
+                formData.current = entries //Error but works
+
+                currentNodeId.current = r.current_step //Error but works
+                history.current = navigator.buildHistory(firstNodeId, formData.current, currentNodeId.current)
+
+                for (const entry in entries) {
+                    form.setValue(entry, entries[entry])
+                }
+
+                setCurrentNode(navigator.getNode(history.current[history.current.length - 1]))
+            })
+            .catch(e => {
+                console.log(e)
+            });
+    }, [])
+
 
     const shouldCreateSimulation = async (): Promise<string> => {
         if (!simulationId) {
@@ -106,24 +128,15 @@ export default function SimulationForm() {
         });
     };
 
-    const handleReset = () => {
-        currentNodeId.current = firstNodeId
-        setCurrentNode(navigator.getNode(currentNodeId.current)) //TODO do a hard reset in db?
-        form.reset()
-    }
-
     return (
         <Form useForm={form} className={"text-[#006EC2] text-[2.8rem] bg-[#E4F1F9]"}>
-
-            <Button type={"button"} onClick={handleReset}>Reset</Button>
 
             {React.createElement(currentNode.component, {
                 handleValue: updateSimulationFn,
                 onValid: handleNext,
                 onBack: handleBack,
                 onSkip: handleNext,
-                onSubmit: handleSubmit,
-                currentValues: formData.current
+                onSubmit: handleSubmit
             })}
         </Form>
     )

@@ -29,7 +29,7 @@ export default function HourPerDaySection(props: PropsSectionType) {
 
     return (
         <div className={"flex flex-col items-center"}>
-            <h2>En moyenne, combien d$apos;heures par jour êtes-vous à la maison ?</h2>
+            <h2>En moyenne, combien d&apos;heures par jour êtes-vous à la maison ?</h2>
 
             <div className={"text-[#2A8831] flex flex-col items-center"}>
                 <p><span className={"text-[6.4rem]"}>{rangeValue}</span> heures</p>

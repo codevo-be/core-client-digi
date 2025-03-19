@@ -55,4 +55,23 @@ export class NodeNavigator {
 
         return noConditionsPaths[0].next;
     }
+
+    buildHistory(nodeStartId: string, formData: any, currentNodeId: string): string[] {
+        const history: string[] = [nodeStartId];
+
+        let currentNode = nodeStartId;
+        while (currentNode !== currentNodeId) {
+            const nextNode = this.getNextNodeId(currentNode, formData);
+
+            if (!nextNode) break;
+
+            history.push(nextNode);
+
+            currentNode = nextNode;
+        }
+
+        history.push(this.getNextNodeId(currentNode, formData));
+
+        return history;
+    }
 }
