@@ -35,6 +35,9 @@ export default function SimulationForm() {
 
     useEffect(() => { //TODO dans un effect car sinon se refait à chaque changement de section
         useGetSimulationDetails(simulationId)
+            .catch(e => {
+                console.log(e)
+            })
             .then(r => {
                 const entries = r.entries;
                 formData.current = entries //Error but works
@@ -48,9 +51,6 @@ export default function SimulationForm() {
 
                 setCurrentNode(navigator.getNode(history.current[history.current.length - 1]))
             })
-            .catch(e => {
-                console.log(e)
-            });
     }, [])
 
 
