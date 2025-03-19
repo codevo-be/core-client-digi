@@ -2,10 +2,11 @@
 
 import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Form } from '@digico/ui'
+import { Button, Form } from '@digico/ui'
 import { useRouterWithTenant } from '@digico/utils'
 import { NodeNavigator } from '@simulation/DAGmap/NodeNavigator'
 import { simulationMap } from '@simulation/DAGmap/SimulationMap'
+import Cookies from 'js-cookie'
 
 import useCreateSimulation from '@simulation/hooks/mutation/useCreateSimulation'
 import useUpdateSimulation from '@simulation/hooks/mutation/useUpdateSimulation'
@@ -20,29 +21,27 @@ export default function SimulationForm() {
 
     const firstNodeId = 'installation'
     const navigator = new NodeNavigator(simulationMap)
+
     const [currentNode, setCurrentNode] = useState(navigator.getNode(firstNodeId))
     const history = useRef([firstNodeId])
     const currentNodeId = useRef(firstNodeId)
 
-    const firstNext = useRef(false) //TODO
-
-    const simulationId = sessionStorage.getItem('simulationId')
+    const simulationId = Cookies.get('simulationId')
     const formData = useRef({}); //A renommer
 
     const createSimulation = useCreateSimulation()
     const updateSimulation = useUpdateSimulation()
 
     const shouldCreateSimulation = async (): Promise<string> => {
-        if (!firstNext.current && !simulationId) {
+        if (!simulationId) {
             return new Promise((resolve, reject) => {
                 const data: CreateSimulationType = {
                     current_step: firstNodeId
                 };
-                firstNext.current = true;
 
                 createSimulation.mutate(data, {
                     onSuccess: (id) => {
-                        sessionStorage.setItem('simulationId', id);
+                        Cookies.set('simulationId', id)
                         resolve(id);
                     },
                     onError: (error) => {
@@ -52,7 +51,7 @@ export default function SimulationForm() {
             });
         }
 
-        return simulationId ?? sessionStorage.getItem('simulationId')!;
+        return simulationId ?? Cookies.get('simulationId')!;
     };
 
     const updateSimulationFn = async (values: InputResponseType[], proceed: boolean) => {
@@ -101,11 +100,23 @@ export default function SimulationForm() {
 
         if (simulationId ===  null) throw new Error("Something went wrong, the simulation id is null")
 
-        updateSimulationFn(contactValues, false).then(() => routerWithTenant.push(`/simulation/result/${simulationId}`));
+        updateSimulationFn(contactValues, false).then(() => {
+            Cookies.remove('simulationId')
+            routerWithTenant.push(`/simulation/result/${simulationId}`)
+        });
     };
+
+    const handleReset = () => {
+        currentNodeId.current = firstNodeId
+        setCurrentNode(navigator.getNode(currentNodeId.current)) //TODO do a hard reset in db?
+        form.reset()
+    }
 
     return (
         <Form useForm={form} className={"text-[#006EC2] text-[2.8rem] bg-[#E4F1F9]"}>
+
+            <Button type={"button"} onClick={handleReset}>Reset</Button>
+
             {React.createElement(currentNode.component, {
                 handleValue: updateSimulationFn,
                 onValid: handleNext,

@@ -9,23 +9,25 @@ export default function HouseOrientationSection(props: PropsSectionType) {
     const inputName = "houseOrientation";
 
     return(
-        <div>
-            {orientationTypes.map((type) => (
-                <InputCard
-                    key={type.id}
-                    id={type.id}
-                    label={type.label}
-                    value={type.value}
-                    name={inputName}
-                    onClick={() => {
-                        const data: InputResponseType = {
-                            label: inputName,
-                            response: type.value
-                        }
+        <div className={"flex flex-col items-center"}>
+            <div className={"flex flex-col"}>
+                {orientationTypes.map((type) => (
+                    <InputCard
+                        key={type.id}
+                        id={type.id}
+                        label={type.label}
+                        value={type.value}
+                        name={inputName}
+                        onClick={() => {
+                            const data: InputResponseType = {
+                                label: inputName,
+                                response: type.value
+                            }
 
-                        props.handleValue([data], true);
-                    }}/>
-            ))}
+                            props.handleValue([data], true);
+                        }}/>
+                ))}
+            </div>
 
             <StepNavigation showSkip={true} onSkip={props.onValid} showBack={true} onBack={props.onBack} showSubmit={false}/>
         </div>
