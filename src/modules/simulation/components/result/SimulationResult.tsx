@@ -9,6 +9,7 @@ import useGenerateSimulation from '@simulation/hooks/mutation/useGenerateSimulat
 import ResultAside from '@simulation/components/result/ResultAside'
 import ResultCard from '@simulation/components/result/ResultCard'
 import ResultCardDescription from '@simulation/components/result/ResultCardDescription'
+import Loader from '@simulation/components/Loader'
 
 export default function SimulationResult() {
 
@@ -41,6 +42,8 @@ export default function SimulationResult() {
         )
     }, []) //TODO
 
+
+
     return (
         <div className={'flex justify-between bg-[#E4F1F9]'}>
 
@@ -54,8 +57,8 @@ export default function SimulationResult() {
                         ))}
 
                         {loading &&
-                            <div className={"backdrop-blur-[2px] z-10 absolute -inset-2 rounded-2xl"}>
-
+                            <div className={"backdrop-blur-[2px] z-10 absolute -inset-2 rounded-2xl flex items-center justify-center"}>
+                                <Loader/>
                             </div>
                         }
                     </div>
