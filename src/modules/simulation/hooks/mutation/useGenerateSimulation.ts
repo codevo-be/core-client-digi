@@ -8,6 +8,9 @@ export default function useGenerateSimulation() {
         mutationFn: generateSimulation,
         onError: (error) => {
             toast.error(error.message);
+        },
+        onSuccess: (data) => {
+            return data;
         }
     });
 }

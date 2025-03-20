@@ -9,7 +9,6 @@ import useGenerateSimulation from '@simulation/hooks/mutation/useGenerateSimulat
 import ResultAside from '@simulation/components/result/ResultAside'
 import ResultCard from '@simulation/components/result/ResultCard'
 import ResultCardDescription from '@simulation/components/result/ResultCardDescription'
-import Loader from '@simulation/components/Loader'
 
 export default function SimulationResult() {
 
@@ -28,6 +27,7 @@ export default function SimulationResult() {
     ]
 
     const [loading, setLoading] = useState(true)
+    const [data, setCurrentData] = useState({})
 
     const generateSimulation = useGenerateSimulation()
 
@@ -35,7 +35,20 @@ export default function SimulationResult() {
         generateSimulation.mutate(
             { "simulation_id": simulationId },
             {
-                onSuccess: () => {
+                onSuccess: (r: any) => {
+                    console.log(r[0])
+
+                    let newData = {}
+
+                    for (const result of r) {
+                        const label = result[0]
+                        const value = result[1]
+                        newData = { ...newData, [label]: value }
+                        setCurrentData(newData)
+                    }
+
+                    console.log(newData)
+
                     setLoading(false)
                 }
             }
@@ -53,12 +66,12 @@ export default function SimulationResult() {
 
                     <div className={'flex gap-6 relative'}>
                         {cardData.map((_, index) => (
-                            <ResultCard key={index} startColor={_.startColor} endColor={_.endColor} />
+                            <ResultCard key={index} startColor={_.startColor} endColor={_.endColor} data={data} />
                         ))}
 
                         {loading &&
                             <div className={"backdrop-blur-[2px] z-10 absolute -inset-2 rounded-2xl flex items-center justify-center"}>
-                                <Loader/>
+
                             </div>
                         }
                     </div>
@@ -78,7 +91,7 @@ export default function SimulationResult() {
             </div>
 
             <div className={'min-w-[35.1rem]'}></div>
-            <ResultAside isEntrepreneur={Boolean(isEntrepreneur)} />
+            <ResultAside className={"pointer-events-none fixed right-0 top-0"} isEntrepreneur={Boolean(isEntrepreneur)} data={data} />
         </div>
     )
 }

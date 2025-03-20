@@ -3,13 +3,14 @@
 type Props = {
     startColor: string
     endColor: string
+    data: any
 }
 
 export default function ResultCard(props: Props) {
 
     const data = [
         { label: "Amortissement", value: "9,5 ans" },
-        { label: "Economie annuelle d'électricité", value: "396€" },
+        { label: "Economie annuelle d'électricité", value: props.data['Economie annuelle'] },
         { label: "CO2 économisé", value: "1,2T" },
     ];
 

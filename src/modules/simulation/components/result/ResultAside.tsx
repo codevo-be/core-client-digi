@@ -6,14 +6,16 @@ import ContactLabel from '@simulation/components/result/ContactLabel'
 import StatBox from '@simulation/components/result/StatBox'
 
 type Props = {
-    isEntrepreneur: boolean
+    isEntrepreneur: boolean;
+    data: any;
+    className: string;
 }
 
 export default function ResultAside(props: Props) {
 
     const statBoxData = [
         { label: "% d'autonomie", value: "75%" },
-        { label: "Economie annuelle", value: "735€" },
+        { label: "Economie annuelle", value: props.data['Economie annuelle'] },
         { label: "CO2 économisé par année", value: "1,2T" }
     ]
 
@@ -47,7 +49,7 @@ export default function ResultAside(props: Props) {
 
 
     return (
-        <div className={"pointer-events-none fixed right-0 top-0"}>
+        <div className={props.className}>
             <div className={"bg-white w-[35.1rem] h-screen flex flex-col items-center px-12 py-[3.1rem] gap-[7.3rem]"}>
                 <div className={"flex flex-col gap-[1.8rem]"}>
                     {statBoxData.map((item, index) => (
@@ -101,8 +103,8 @@ export default function ResultAside(props: Props) {
                     ) : (
                         <div className={"flex flex-col items-center gap-4 w-full"}>
                             <CallToActionCard topTag={"Winter deal + commande instantanée"}
-                                              price={"4.335€"}
-                                              crossedPrice={"4.635 €"}
+                                              price={props.data["Prix HTVA - Avec réduction"]}
+                                              crossedPrice={props.data["Prix HTVA - Sans réduction"]}
                                               buttonLabel={"Je commande"}
                                               subLabel={"Commande sans engagement"}
                                               startColor={"#005E67"}
@@ -112,8 +114,8 @@ export default function ResultAside(props: Props) {
                             <p className={"text-[1.8rem] text-[#8F8F8F]"}>OU</p>
 
                             <CallToActionCard topTag={"Winter deal + commande instantanée"}
-                                              price={"4.335€"}
-                                              crossedPrice={"4.635 €"}
+                                              price={props.data["Prix HTVA - Avec réduction"]}
+                                              crossedPrice={props.data["Prix HTVA - Sans réduction"]}
                                               buttonLabel={"Prendre rendez-vous"}
                                               startColor={"#048A80"}
                                               endColor={"#0DB2A6"}

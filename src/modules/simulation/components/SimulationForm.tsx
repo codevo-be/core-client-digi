@@ -16,6 +16,7 @@ import { SimulationType } from '@simulation/types/update-simulation-type'
 
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import NavBar from '@simulation/components/NavBar'
+import { SimulationDetailsType } from '@simulation/types/simulation-details-type'
 
 export default function SimulationForm() {
     const form = useForm()
