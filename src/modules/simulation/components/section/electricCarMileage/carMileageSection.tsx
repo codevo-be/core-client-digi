@@ -4,6 +4,7 @@ import { Button } from '@digico/ui'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import RangeWithButtons from '@simulation/components/RangeWIthButtons'
 
 export default function CarMileageSection(propsSection: PropsSectionType) {
 
@@ -14,18 +15,6 @@ export default function CarMileageSection(propsSection: PropsSectionType) {
     const step = 1000;
     const max = 24000;
 
-    const minusClicked = () => {
-        const newValue = rangeValue - step;
-        if (newValue < min) setRangeValue(min)
-        else setRangeValue(newValue)
-    }
-
-    const plusClicked = () => {
-        const newValue = rangeValue + step;
-        if (newValue > max) setRangeValue(max)
-        else setRangeValue(newValue)
-    }
-
     return(
         <div className={"flex flex-col items-center"}>
 
@@ -33,14 +22,9 @@ export default function CarMileageSection(propsSection: PropsSectionType) {
 
             <div className={"text-[#2A8831] flex flex-col items-center"}>
                 <p><span className={"text-[6.4rem]"}>{rangeValue}</span> kms</p>
-                <div>
-                    <Button type={"button"} onClick={minusClicked}>-</Button>
-                    <input className={"w-[51.8rem] bg-[#2A8831]"} value={rangeValue} type={'range'} min={min} max={max} step={step} onChange={(event) => {
-                        // @ts-ignore
-                        setRangeValue(event.target.value);
-                    }}/>
-                    <Button type={"button"} onClick={plusClicked}>+</Button>
-                </div>
+
+
+                <RangeWithButtons step={1000} value={rangeValue} min={1000} max={24000} setRangeValue={setRangeValue}/>
             </div>
 
             <StepNavigation

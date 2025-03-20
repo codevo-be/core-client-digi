@@ -27,8 +27,8 @@ export const InputCard = ({ type = 'radio', ...props }: Props) => {
             />
             <div
                 className={
-                    'px-8 flex items-center justify-between border-[0.2rem] overflow-hidden rounded-xl bg-white shadow-[0px_4px_19.6px_0px_rgba(19,53,74,0.15)]' +
-                    " peer-checked:border-8 transition-all border-[#8EACC5] box-border hover:border-8 "
+                    'px-8 border-[0.2rem] overflow-hidden rounded-xl bg-white shadow-[0px_4px_19.6px_0px_rgba(19,53,74,0.15)]' +
+                    "  peer-checked:scale-105 transition-all border-[#8EACC5]"
                 }>
 
                 {props.children}
