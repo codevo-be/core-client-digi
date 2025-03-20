@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import { ImageBuilder } from '@digico/ui'
 
 import { InputCard } from '@simulation/components/InputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { possessions } from '@simulation/components/section/possession/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
-import { ImageBuilder } from '@digico/ui'
 
 export default function PossessionSection(propsSection: PropsSectionType) {
 
@@ -31,6 +31,7 @@ export default function PossessionSection(propsSection: PropsSectionType) {
                                    : [...prev, possession.id];
                            });
                        }}
+                       type={"checkbox"}
                     >
 
                         <div className={"basis-1/3 w-[35.1rem] h-[13.4rem] flex items-center gap-4"}>
