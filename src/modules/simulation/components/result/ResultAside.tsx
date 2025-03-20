@@ -87,7 +87,7 @@ export default function ResultAside(props: Props) {
 
                                     <div className={"flex justify-between gap-[1.4rem] w-full"}>
                                         <button onClick={handleMinusClicked} className={"pointer-events-auto bg-[#8EACC5] rounded-full w-[3.6rem] h-[3.6rem] text-white hover:cursor-pointer"}>-</button>
-                                        <input onChange={handleRangeChange} type={"range"} className={"pointer-events-auto bg-[#2A8831] w-[18rem]"} step={step} defaultValue={rangeValue} min={min} max={max}/>
+                                        <input onChange={handleRangeChange} type={"range"} className={"pointer-events-auto accent-[#2A8831] w-[18rem]"} step={step} defaultValue={rangeValue} min={min} max={max}/>
                                         <button onClick={handlePlusClicked} className={"pointer-events-auto bg-[#8EACC5] rounded-full w-[3.6rem] h-[3.6rem] text-white hover:cursor-pointer"}>+</button>
                                     </div>
                                 </div>

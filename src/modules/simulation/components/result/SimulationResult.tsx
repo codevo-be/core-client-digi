@@ -9,6 +9,9 @@ import useGenerateSimulation from '@simulation/hooks/mutation/useGenerateSimulat
 import ResultAside from '@simulation/components/result/ResultAside'
 import ResultCard from '@simulation/components/result/ResultCard'
 import ResultCardDescription from '@simulation/components/result/ResultCardDescription'
+import { StepNavigation } from '@simulation/components/StepNavigation'
+import NavButton from '@simulation/components/NavButton'
+import NavBar from '@simulation/components/NavBar'
 
 export default function SimulationResult() {
 
@@ -58,40 +61,42 @@ export default function SimulationResult() {
 
 
     return (
-        <div className={'flex justify-between bg-[#E4F1F9]'}>
+        <div className={"relative"}>
+            <NavBar/>
+            <div className={'flex justify-between bg-[#E4F1F9]'}>
 
-            <div className={'w-full flex flex-col items-center'}>
-                <div className={'flex flex-col items-center'}>
-                    <h2 className={'text-[2.8rem] py-[5.2rem] text-[#006EC2]'}>Nous avons estimé l&apos;installation idéale pour vous</h2>
+                <div className={'w-full flex flex-col items-center'}>
+                    <div className={'flex flex-col items-center'}>
+                        <h2 className={'text-[2.8rem] py-[5.2rem] text-[#006EC2]'}>Nous avons estimé l&apos;installation idéale pour vous</h2>
 
-                    <div className={'flex gap-6 relative'}>
-                        {cardData.map((_, index) => (
-                            <ResultCard key={index} startColor={_.startColor} endColor={_.endColor} data={data} />
-                        ))}
+                        <div className={'flex gap-6 relative'}>
+                            {cardData.map((_, index) => (
+                                <ResultCard key={index} startColor={_.startColor} endColor={_.endColor} data={data} />
+                            ))}
 
-                        {loading &&
-                            <div className={"backdrop-blur-[2px] z-10 absolute -inset-2 rounded-2xl flex items-center justify-center"}>
+                            {loading &&
+                                <div className={"backdrop-blur-[2px] z-10 absolute -inset-2 rounded-2xl flex items-center justify-center"}>
 
-                            </div>
-                        }
+                                </div>
+                            }
+                        </div>
+
                     </div>
 
+                    <hr className={'m-[5rem] mx-auto w-[107.2rem] border-3 border-[#0000001A] rounded-full'} />
 
+                    <div className={'flex flex-col items-center gap-[3.9rem]'}>
+                        <p className={'text-[2.8rem] text-[#006EC2]'}>Détails de votre installation</p>
+
+                        {cardData.map((_, index) => (
+                            <ResultCardDescription key={index} startColor={_.startColor} endColor={_.endColor} />
+                        ))}
+                    </div>
                 </div>
 
-                <hr className={'m-[5rem] mx-auto w-[107.2rem] border-3 border-[#0000001A] rounded-full'} />
-
-                <div className={'flex flex-col items-center gap-[3.9rem]'}>
-                    <p className={'text-[2.8rem] text-[#006EC2]'}>Détails de votre installation</p>
-
-                    {cardData.map((_, index) => (
-                        <ResultCardDescription key={index} startColor={_.startColor} endColor={_.endColor} />
-                    ))}
-                </div>
+                <div className={'min-w-[35.1rem]'}></div>
             </div>
-
-            <div className={'min-w-[35.1rem]'}></div>
-            <ResultAside className={"pointer-events-none fixed right-0 top-0"} isEntrepreneur={Boolean(isEntrepreneur)} data={data} />
+            <ResultAside className={"fixed top-0 right-0"} isEntrepreneur={Boolean(isEntrepreneur)} data={data} />
         </div>
     )
 }
