@@ -1,4 +1,4 @@
-import { Grid } from '@digico/ui'
+import { Grid, ImageBuilder } from '@digico/ui'
 
 import { InputCard } from '@simulation/components/InputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
@@ -20,7 +20,6 @@ export default function RoofTypeSection(propsSection: PropsSectionType) {
                         <InputCard
                             key={type.id}
                             id={type.id}
-                            label={type.label}
                             value={type.value}
                             name={inputName}
                             onClick={() => {
@@ -31,10 +30,17 @@ export default function RoofTypeSection(propsSection: PropsSectionType) {
 
                                 propsSection.handleValue([data], true);
                             }}
-                            boxStyle={"w-[46.6rem] h-[14.7rem]"}
-                            logoPath={type.imagePath}
-                            logoStyle={"w-[21.4rem] h-[11.4rem]"}
-                        />
+                        >
+
+                            <div className={"w-[46.6rem] h-[14.7rem] flex items-center gap-[3.4rem]"}>
+                                <div className={"w-[21.4rem] h-[11.4rem] flex justify-center items-center overflow-hidden rounded-2xl"}>
+                                    <ImageBuilder src={type.imagePath} className={"h-full w-full object-cover"} />
+                                </div>
+
+                                <p>{type.label}</p>
+                            </div>
+
+                        </InputCard>
                     </Grid.Col>
                 ))}
             </Grid>

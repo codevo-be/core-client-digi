@@ -18,7 +18,6 @@ export default function HouseAgeSection(propsSection: PropsSectionType) {
                     <InputCard
                         key={type.id}
                         id={type.id}
-                        label={type.label}
                         value={type.value}
                         name={inputName}
                         onClick={() => {
@@ -29,8 +28,18 @@ export default function HouseAgeSection(propsSection: PropsSectionType) {
 
                             propsSection.handleValue([data], true);
                         }}
-                        boxStyle={"w-[35.1rem] h-[13.4rem]"}
-                    />
+                    >
+
+                        <div className={"w-[35.1rem] h-[13.4rem] flex items-center gap-[1.5rem]"}>
+                            <div className={"flex flex-col items-center justify-center relative"}>
+                                <div className={"w-[8.3rem] h-[8.3rem] bg-[#C9E0EE] rounded-full"}></div>
+                                <p className={"text-[2.4rem] text-nowrap absolute"}>{type.prefix}</p>
+                            </div>
+
+                            <p className={"grow"}>{type.label}</p>
+                        </div>
+
+                    </InputCard>
                 ))
                 }
             </div>

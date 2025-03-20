@@ -9,13 +9,15 @@ export default function HouseOrientationSection(props: PropsSectionType) {
     const inputName = "houseOrientation";
 
     return(
-        <div className={"flex flex-col items-center"}>
+        <div className={"flex flex-col items-center gap-[6.9rem]"}>
+
+            <h2>L&apos;orientation de votre maison</h2>
+
             <div className={"flex flex-col"}>
                 {orientationTypes.map((type) => (
                     <InputCard
                         key={type.id}
                         id={type.id}
-                        label={type.label}
                         value={type.value}
                         name={inputName}
                         onClick={() => {
@@ -25,7 +27,14 @@ export default function HouseOrientationSection(props: PropsSectionType) {
                             }
 
                             props.handleValue([data], true);
-                        }}/>
+                        }}
+                    >
+
+                        <div className={"w-[15.9rem] h-[5.2rem] flex justify-center items-center"}>
+                            <p>{type.label}</p>
+                        </div>
+
+                    </InputCard>
                 ))}
             </div>
 

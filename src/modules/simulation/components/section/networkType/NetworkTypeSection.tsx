@@ -1,8 +1,10 @@
+import { ImageBuilder } from '@digico/ui'
+
 import { InputCard } from '@simulation/components/InputCard'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 import { networkTypes } from '@simulation/components/section/networkType/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
-import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function NetworkTypeSection(props: PropsSectionType) {
 
@@ -18,7 +20,6 @@ export default function NetworkTypeSection(props: PropsSectionType) {
                     <InputCard
                         key={type.id}
                         id={type.id}
-                        label={type.label}
                         value={type.value}
                         name={inputName}
                         onClick={() => {
@@ -29,9 +30,17 @@ export default function NetworkTypeSection(props: PropsSectionType) {
 
                             props.handleValue([data], true);
                         }}
-                        boxStyle={"w-[35.1rem] h-[13.4rem]"}
-                        logoPath={type.logoPath}
-                    />
+                    >
+
+                        <div className={"w-[35.1rem] h-[13.4rem] flex items-center gap-[1.7rem]"}>
+                            <div>
+                                <ImageBuilder src={type.imagePath} />
+                            </div>
+
+                            <p>{type.label}</p>
+                        </div>
+
+                    </InputCard>
                 ))}
             </div>
 

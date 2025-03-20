@@ -1,10 +1,10 @@
-import { Grid } from '@digico/ui'
+import { Grid, ImageBuilder } from '@digico/ui'
 
 import { InputCard } from '@simulation/components/InputCard'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 import { enterprises } from '@simulation/components/section/enterpriseType/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
-import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function EnterpriseTypeSection(props: PropsSectionType) {
 
@@ -16,9 +16,9 @@ export default function EnterpriseTypeSection(props: PropsSectionType) {
             <Grid className={"gap-x-[1.8rem] gap-y-[2.1rem]"}>
                 {enterprises.map((enterprise) => (
                     <Grid.Col column={3} key={enterprise.id}>
+
                         <InputCard
                             id={enterprise.id}
-                            label={enterprise.label}
                             value={enterprise.value}
                             name={inputName}
                             onClick={() => {
@@ -28,10 +28,19 @@ export default function EnterpriseTypeSection(props: PropsSectionType) {
                                 }
                                 props.handleValue([data], true);
                             }}
-                            logoPath={enterprise.svgPath}
-                            logoStyle={""}
-                            boxStyle={"w-[35.1rem] h-[13.4rem]"}
-                        />
+                        >
+
+                            <div className={"w-[35.1rem] h-[13.4rem] flex items-center gap-[1.8rem]"}>
+
+                                <div className={"w-[13.4rem]"}>
+                                    <ImageBuilder src={enterprise.svgPath} />
+                                </div>
+
+                                <p>{enterprise.label}</p>
+                            </div>
+
+                        </InputCard>
+
                     </Grid.Col>
                 ))}
             </Grid>

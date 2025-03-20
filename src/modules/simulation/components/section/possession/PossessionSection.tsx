@@ -5,6 +5,7 @@ import { InputResponseType } from '@simulation/components/InputResponseType'
 import { possessions } from '@simulation/components/section/possession/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { ImageBuilder } from '@digico/ui'
 
 export default function PossessionSection(propsSection: PropsSectionType) {
 
@@ -16,12 +17,11 @@ export default function PossessionSection(propsSection: PropsSectionType) {
 
             <h2>Chez moi, je possède</h2>
 
-            <div className={"flex flex-wrap justify-center gap-x-[1.7rem] gap-y-[3.3rem] max-w-[110rem]"}>
+            <div className={"flex flex-wrap justify-center gap-x-[1.7rem] gap-y-[3.3rem] max-w-[110rem] w-full"}>
                 {possessions.map((possession) => (
                     <InputCard
                        key={possession.id}
                        id={possession.id}
-                       label={possession.label}
                        value={possession.value}
                        name={inputName}
                        onClick={() => {
@@ -31,10 +31,18 @@ export default function PossessionSection(propsSection: PropsSectionType) {
                                    : [...prev, possession.id];
                            });
                        }}
-                       type={"checkbox"}
-                       boxStyle={"basis-1/3 w-[35.1rem] h-[13.4rem]"}
-                       logoPath={possession.imagePath}
-                    />
+                    >
+
+                        <div className={"basis-1/3 w-[35.1rem] h-[13.4rem] flex items-center gap-4"}>
+
+                            <div className={"w-[13rem] h-[13.1rem] flex items-center justify-center"}>
+                                <ImageBuilder src={possession.imagePath} className={"object-cover"} />
+                            </div>
+
+                            <p>{possession.label}</p>
+                        </div>
+
+                    </InputCard>
                 ))}
             </div>
 

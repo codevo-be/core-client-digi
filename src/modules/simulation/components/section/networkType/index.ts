@@ -5,18 +5,18 @@ export const networkTypes: NetworkType[] = [
         id: 'mono',
         label: 'Monophasé 230 V (2 fils)',
         value: 'Monophasé 230 V (2 fils)',
-        logoPath: '/images/noveway/monophase.png'
+        imagePath: '/images/noveway/sections/networkType/monophase.png'
     },
     {
         id: 'duo',
         label: 'Triphasé 230 V (3 fils)',
         value: 'Triphasé 230 V (3 fils)',
-        logoPath: '/images/noveway/triphase.png'
+        imagePath: '/images/noveway/sections/networkType/triphase.png'
     },
     {
         id: 'trio',
         label: 'Triphasé 400 V + N (4 fils)',
         value: 'Triphasé 400 V + N (4 fils)',
-        logoPath: '/images/noveway/triphaseN.png'
+        imagePath: '/images/noveway/sections/networkType/triphaseN.png'
     }
 ]

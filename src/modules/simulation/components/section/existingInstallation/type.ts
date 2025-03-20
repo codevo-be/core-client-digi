@@ -3,5 +3,5 @@ export interface ExistingInstallation {
     label: string;
     subLabel: string;
     value: string;
-    logoPath: string;
+    imagePath: string;
 }

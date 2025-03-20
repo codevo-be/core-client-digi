@@ -54,7 +54,6 @@ export default function SimulationForm() {
             })
     }, [])
 
-
     const shouldCreateSimulation = async (): Promise<string> => {
         if (!simulationId) {
             return new Promise((resolve, reject) => {

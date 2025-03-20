@@ -3,4 +3,5 @@ export default interface RadioType {
     label: string;
     subLabel: string;
     value: string;
+    imagePath: string;
 }

@@ -6,13 +6,13 @@ export const existingInstallations: ExistingInstallation[] = [
         label: "Oui",
         subLabel: "J'ai déjà des panneaux",
         value: "hasInstallation",
-        logoPath: "/images/noveway/hasPannels.png",
+        imagePath: "/images/noveway/sections/existingInstallation/hasPannels.png",
     },
     {
         id: "hasNoInstallation",
         label: "Non",
         subLabel: "Pas encore de panneaux",
         value: "hasNoInstallation",
-        logoPath: "/images/noveway/hasNoPannels.png"
+        imagePath: "/images/noveway/sections/existingInstallation/hasNoPannels.png"
     }
 ];

@@ -5,6 +5,7 @@ import { interests } from '@simulation/components/section/interest/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
 import { InputResponseType } from '@simulation/components/InputResponseType'
+import { ImageBuilder } from '@digico/ui'
 
 export default function InterestSection({ handleValue, onBack }: PropsSectionType) {
 
@@ -26,7 +27,6 @@ export default function InterestSection({ handleValue, onBack }: PropsSectionTyp
                         <InputCard
                             key={interest.id}
                             id={interest.id}
-                            label={interest.label}
                             value={interest.value}
                             name={inputName}
                             onClick={() => {
@@ -41,11 +41,17 @@ export default function InterestSection({ handleValue, onBack }: PropsSectionTyp
                                 );
                             }}
                             type={'checkbox'}
-                            logoPath={undefined}
-                            logoStyle={""}
-                            boxStyle={`h-[9rem] w-[62.3rem] border-[#8EACC5] ${checked ? "border-8" : ""}`}
-                            textStyle={"text-[2.8rem] text-[#006EC2]"}
-                        />
+                        >
+
+                            <div className={"flex items-center gap-[3.6rem]"}>
+                                <div className={"w-[10.4rem] h-[9.5rem] flex justify-center items-center"}>
+                                    <ImageBuilder src={interest.imagePath} />
+                                </div>
+
+                                <p>{interest.label}</p>
+                            </div>
+
+                        </InputCard>
                     )
                 })
                 }
