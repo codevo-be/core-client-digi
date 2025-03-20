@@ -15,6 +15,7 @@ import { CreateSimulationType } from '@simulation/types/create-simulation-type'
 import { SimulationType } from '@simulation/types/update-simulation-type'
 
 import { InputResponseType } from '@simulation/components/InputResponseType'
+import NavBar from '@simulation/components/NavBar'
 
 export default function SimulationForm() {
     const form = useForm()
@@ -129,16 +130,21 @@ export default function SimulationForm() {
     };
 
     return (
-        <Form useForm={form} className={"text-[#006EC2] text-[2.8rem] bg-[#E4F1F9]"}>
+        <div className={"h-full"}>
 
-            {React.createElement(currentNode.component, {
-                handleValue: updateSimulationFn,
-                onValid: handleNext,
-                onBack: handleBack,
-                onSkip: handleNext,
-                onSubmit: handleSubmit
-            })}
-        </Form>
+            <NavBar/>
+
+            <Form useForm={form} className={"text-[#006EC2] text-[2.8rem] bg-[#E4F1F9] h-full pt-26"}>
+
+                {React.createElement(currentNode.component, {
+                    handleValue: updateSimulationFn,
+                    onValid: handleNext,
+                    onBack: handleBack,
+                    onSkip: handleNext,
+                    onSubmit: handleSubmit
+                })}
+            </Form>
+        </div>
     )
 }
 //TODO Sur le back des boutons, écraser les valeurs de la question d'avant ?

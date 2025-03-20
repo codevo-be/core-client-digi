@@ -17,9 +17,9 @@ export const StepNavigation = (props: StepNavigationProps) => {
 
     return (
         <div className={"flex gap-12"}>
-            { props.showBack && <Button type="button" onClick={props.onBack}>Back</Button>}
+            { props.showBack && <Button type="button" onClick={props.onBack}>Retour</Button>}
 
-            { props.showSkip && <Button type="button" onClick={props.onSkip}>Skip</Button> }
+            { props.showSkip && <Button type="button" onClick={props.onSkip}>Continuer</Button> }
 
             { props.showSubmit && <Button type="button" onClick={props.onSubmit}>Envoyer</Button> }
         </div>
