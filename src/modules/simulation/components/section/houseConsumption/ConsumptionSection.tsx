@@ -1,6 +1,6 @@
 import { Form, ImageBuilder } from '@digico/ui'
 
-import { InputCard } from '@simulation/components/InputCard'
+import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { radio_types } from '@simulation/components/section/houseConsumption/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
@@ -18,7 +18,7 @@ export default function ConsumptionSection({ handleValue }: PropsSectionType) {
 
             <div className={"flex items-center justify-evenly gap-12"}>
                 {radio_types.map((type) => (
-                    <InputCard
+                    <OldInputCard
                         key={type.id}
                         id={type.id}
                         value={type.value}
@@ -45,7 +45,7 @@ export default function ConsumptionSection({ handleValue }: PropsSectionType) {
                             </div>
                         </div>
 
-                    </InputCard>
+                    </OldInputCard>
                 ))
                 }
             </div>

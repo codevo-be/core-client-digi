@@ -1,6 +1,6 @@
-import { Interest } from '@simulation/components/section/interest/type'
+import CardInfosType from '@simulation/components/CardInfosType'
 
-export const interests: Interest[] = [
+export const interests: CardInfosType[] = [
     {
         id: "panels",
         label: "Panneaux photovoltaïques",

@@ -1,6 +1,6 @@
 import { ImageBuilder } from '@digico/ui'
 
-import { InputCard } from '@simulation/components/InputCard'
+import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { networkTypes } from '@simulation/components/section/networkType/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
@@ -19,7 +19,7 @@ export default function NetworkTypeSection(props: PropsSectionType) {
 
             <div className={"flex gap-[1.7rem]"}>
                 {networkTypes.map((type) => (
-                    <InputCard
+                    <OldInputCard
                         key={type.id}
                         id={type.id}
                         value={type.value}
@@ -43,7 +43,7 @@ export default function NetworkTypeSection(props: PropsSectionType) {
                             <p>{type.label}</p>
                         </div>
 
-                    </InputCard>
+                    </OldInputCard>
                 ))}
             </div>
 

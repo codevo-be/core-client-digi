@@ -1,7 +1,7 @@
 import { ImageBuilder } from '@digico/ui'
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
-import { InputCard } from '@simulation/components/InputCard'
+import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { existingInstallations } from '@simulation/components/section/existingInstallation/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
@@ -18,7 +18,7 @@ export default function ExistingInstallationSection(props: PropsSectionType) {
 
             <div className={"flex gap-10"}>
                 {existingInstallations.map((type) => (
-                   <InputCard
+                   <OldInputCard
                        key={type.id}
                        id={type.id}
                        value={type.value}
@@ -45,7 +45,7 @@ export default function ExistingInstallationSection(props: PropsSectionType) {
                            </div>
                        </div>
 
-                   </InputCard>
+                   </OldInputCard>
                 ))}
             </div>
 

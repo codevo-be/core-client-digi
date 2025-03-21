@@ -12,7 +12,7 @@ type Props = {
     children: ReactNode
 };
 
-export const InputCard = ({ type = 'radio', ...props }: Props) => {
+export const OldInputCard = ({ type = 'radio', ...props }: Props) => {
     const { register } = useFormContext()
     return (
         <label htmlFor={props.id} className="cursor-pointer">

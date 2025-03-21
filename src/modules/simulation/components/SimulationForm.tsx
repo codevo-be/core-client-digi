@@ -24,7 +24,7 @@ export default function SimulationForm() {
     const createSimulation = useCreateSimulation()
     const updateSimulation = useUpdateSimulation()
 
-    const firstNodeId = 'installation'
+    const firstNodeId = 'interest'
     const simulationId = Cookies.get('simulationId')
 
     /*useEffect(() => { //TODO dans un effect car sinon se refait à chaque changement de section
@@ -101,7 +101,7 @@ export default function SimulationForm() {
     return (
         <div className={'h-full'}>
             <Form useForm={form} className={'text-[#006EC2] text-[2.8rem] bg-[#E4F1F9] h-full'}>
-                <NodeNavigatorProvider conditions={conditions} nodeMap={simulationMap} startNodeId={'installation'}>
+                <NodeNavigatorProvider conditions={conditions} nodeMap={simulationMap} startNodeId={firstNodeId}>
                     <NavBar />
 
                     <SectionContainer handleValue={updateData} data={conditions} />

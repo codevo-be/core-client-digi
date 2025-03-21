@@ -1,5 +1,5 @@
 import { InputResponseType } from '@simulation/components/InputResponseType'
 
-export type PropsSectionType = {
+export default interface PropsSectionType {
     handleValue: (values: InputResponseType[]) => void;
 }

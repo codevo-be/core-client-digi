@@ -1,6 +1,6 @@
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
-import { InputCard } from '@simulation/components/InputCard'
+import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { ageTypes } from '@simulation/components/section/houseAge/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
@@ -18,7 +18,7 @@ export default function HouseAgeSection(propsSection: PropsSectionType) {
 
             <div className={"flex gap-[1.7rem]"}>
                 {ageTypes.map((type) => (
-                    <InputCard
+                    <OldInputCard
                         key={type.id}
                         id={type.id}
                         value={type.value}
@@ -43,7 +43,7 @@ export default function HouseAgeSection(propsSection: PropsSectionType) {
                             <p className={"grow"}>{type.label}</p>
                         </div>
 
-                    </InputCard>
+                    </OldInputCard>
                 ))
                 }
             </div>

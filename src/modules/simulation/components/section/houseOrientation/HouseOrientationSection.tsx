@@ -1,4 +1,4 @@
-import { InputCard } from '@simulation/components/InputCard'
+import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { orientationTypes } from '@simulation/components/section/houseOrientation/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
@@ -17,7 +17,7 @@ export default function HouseOrientationSection(props: PropsSectionType) {
 
             <div className={"flex flex-col"}>
                 {orientationTypes.map((type) => (
-                    <InputCard
+                    <OldInputCard
                         key={type.id}
                         id={type.id}
                         value={type.value}
@@ -37,7 +37,7 @@ export default function HouseOrientationSection(props: PropsSectionType) {
                             <p>{type.label}</p>
                         </div>
 
-                    </InputCard>
+                    </OldInputCard>
                 ))}
             </div>
 

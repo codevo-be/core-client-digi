@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ImageBuilder } from '@digico/ui'
 
-import { InputCard } from '@simulation/components/InputCard'
+import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { possessions } from '@simulation/components/section/possession/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
@@ -21,7 +21,7 @@ export default function PossessionSection(propsSection: PropsSectionType) {
 
             <div className={"flex flex-wrap justify-center gap-x-[1.7rem] gap-y-[3.3rem] max-w-[110rem] w-full"}>
                 {possessions.map((possession) => (
-                    <InputCard
+                    <OldInputCard
                        key={possession.id}
                        id={possession.id}
                        value={possession.value}
@@ -45,7 +45,7 @@ export default function PossessionSection(propsSection: PropsSectionType) {
                             <p>{possession.label}</p>
                         </div>
 
-                    </InputCard>
+                    </OldInputCard>
                 ))}
             </div>
 

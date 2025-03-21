@@ -1,0 +1,57 @@
+import { Grid } from '@digico/ui'
+import { enterprises } from '@simulation/config/enterpriseTypes'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
+
+import FloatingImageCard from '@simulation/components/atoms/Image/FloatingImageCard'
+import CardTitle from '@simulation/components/atoms/Text/CardTitle'
+import SectionTitle from '@simulation/components/atoms/Text/SectionTitle'
+import { InputResponseType } from '@simulation/components/InputResponseType'
+import InputCard from '@simulation/components/molecules/InputCard'
+import PropsSectionType from '@simulation/components/section/PropsSectionType'
+
+type EnterpriseTypeSectionProps = PropsSectionType;
+
+export default function EnterpriseTypeSection(props: EnterpriseTypeSectionProps) {
+    const inputName = "enterpriseType";
+    const nodeNavigator = useNodeNavigator();
+
+    const handleOnClick = (response: string) => {
+        const data: InputResponseType = {
+            label: inputName,
+            response: response
+        }
+        props.handleValue([data]);
+        nodeNavigator.goNext();
+    }
+
+    return (
+        <div className={"flex flex-col items-center gap-16"}>
+            <SectionTitle content={"Quel type d'entreprise êtes-vous ?"} />
+
+            <Grid className={'gap-x-[1.8rem] gap-y-[2.1rem]'}>
+                {enterprises.map((enterprise) => (
+                    <Grid.Col column={3} key={enterprise.id}>
+
+                        <InputCard
+                            id={enterprise.id}
+                            value={enterprise.value}
+                            name={inputName}
+                            onClick={() => {
+                                handleOnClick(enterprise.value)
+                            }}
+                            type={'radio'}
+                        >
+
+                            <div className={'w-[35.1rem] h-[13.4rem] flex items-center gap-[1.8rem] relative'}>
+                                <FloatingImageCard path={enterprise.imagePath!} />
+
+                                <CardTitle>{enterprise.label}</CardTitle>
+                            </div>
+
+                        </InputCard>
+                    </Grid.Col>
+                ))}
+            </Grid>
+        </div>
+    )
+}

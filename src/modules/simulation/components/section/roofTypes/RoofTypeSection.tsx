@@ -1,6 +1,6 @@
 import { Grid, ImageBuilder } from '@digico/ui'
 
-import { InputCard } from '@simulation/components/InputCard'
+import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { roofTypes } from '@simulation/components/section/roofTypes/index'
@@ -19,7 +19,7 @@ export default function RoofTypeSection(propsSection: PropsSectionType) {
             <Grid>
                 {roofTypes.map((type) => (
                     <Grid.Col column={4} key={type.id}>
-                        <InputCard
+                        <OldInputCard
                             key={type.id}
                             id={type.id}
                             value={type.value}
@@ -43,7 +43,7 @@ export default function RoofTypeSection(propsSection: PropsSectionType) {
                                 <p>{type.label}</p>
                             </div>
 
-                        </InputCard>
+                        </OldInputCard>
                     </Grid.Col>
                 ))}
             </Grid>
