@@ -45,7 +45,7 @@ export default function EnterpriseTypeSection(props: PropsSectionType) {
                 ))}
             </Grid>
 
-            <StepNavigation showSkip={false} showBack={true} onBack={ props.onBack } showSubmit={false}/>
+            <StepNavigation showSkip={false} showBack={false} showSubmit={false}/>
         </div>
     )
 }

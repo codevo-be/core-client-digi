@@ -7,7 +7,7 @@ import { StepNavigation } from '@simulation/components/StepNavigation'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { ImageBuilder } from '@digico/ui'
 
-export default function InterestSection({ handleValue, onBack }: PropsSectionType) {
+export default function InterestSection({ handleValue}: PropsSectionType) {
 
     const inputName = "interests"
 
@@ -20,8 +20,6 @@ export default function InterestSection({ handleValue, onBack }: PropsSectionTyp
 
             <div className={"flex flex-col gap-[2.3rem]"}>
                 {interests.map((interest) => {
-
-                    const checked = selectedInterests.includes(interest.id);
 
                     return (
                         <InputCard
@@ -63,9 +61,9 @@ export default function InterestSection({ handleValue, onBack }: PropsSectionTyp
                     response: selectedInterests.toString()
                 }
 
-                handleValue([data], true);
+                handleValue([data]);
             } }
-                            showBack={true} onBack={ onBack }
+                            showBack={false}
                             showSubmit={false} />
         </div>
     )

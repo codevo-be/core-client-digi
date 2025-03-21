@@ -2,10 +2,10 @@
 
 import { createContext, useContext } from 'react'
 
-export interface NodeNavigatorContextType {
+export interface NodeNavigatorContextType { //TODO changer les types
     currentNode: any;
     goBack: () => any;
-    goNext: (conditions: any) => any;
+    goNext: () => any;
 }
 
 export const NodeNavigatorContext = createContext<NodeNavigatorContextType | undefined>(undefined);

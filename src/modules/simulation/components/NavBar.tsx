@@ -1,8 +1,11 @@
 import { ImageBuilder } from '@digico/ui'
 
 import NavButton from '@simulation/components/NavButton'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function NavBar() {
+
+    const nodeNavigator = useNodeNavigator()
 
     const selected = 0
 
@@ -13,9 +16,11 @@ export default function NavBar() {
     ]
 
     return(
-        <div className={"w-full h-[7.4rem] bg-white px-[52.9rem] flex items-center relative"}>
+        <div className={"w-full min-h-[7.4rem] mb-[6.5rem] bg-white px-[52.9rem] flex items-center relative"}>
 
-            <button type={"button"} className={"absolute left-10 flex items-center border border-[#8EACC5] gap-4 rounded-full px-[1.4rem] hover:cursor-pointer"}>
+            <button type={"button"}
+                    onClick={nodeNavigator.goBack}
+                    className={"absolute left-10 flex items-center border border-[#8EACC5] gap-4 rounded-full px-[1.4rem] hover:cursor-pointer"}>
                 <ImageBuilder src={"/icons/noveway/back_arrow.svg"} />
                 <p className={"text-[1.6rem] text-[#8EACC5]"}>Retour</p>
             </button>

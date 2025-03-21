@@ -1,16 +1,19 @@
+import { ImageBuilder } from '@digico/ui'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
+
 import { InputCard } from '@simulation/components/InputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { installations } from '@simulation/components/section/installation/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { ImageBuilder } from '@digico/ui'
 
 export default function InstallationTypeSection({ handleValue }: PropsSectionType) {
 
     const inputName = "installationType"
+    const nodeNavigator = useNodeNavigator()
 
     return(
         <div className={"flex flex-col items-center gap-[4rem] font-"}>
-            <h2>{"Type d'installation"}</h2>
+            <h2>Type d&apos;installation</h2>
 
             <div className={"flex gap-[1.2rem]"}>
                 {installations.map((installation) => {
@@ -27,7 +30,8 @@ export default function InstallationTypeSection({ handleValue }: PropsSectionTyp
                                     response: installation.value
                                 }
 
-                                handleValue([data], true);
+                                handleValue([data]);
+                                nodeNavigator.goNext();
                             }}
                         >
 
