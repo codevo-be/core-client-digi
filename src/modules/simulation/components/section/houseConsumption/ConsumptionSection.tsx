@@ -5,10 +5,12 @@ import { InputResponseType } from '@simulation/components/InputResponseType'
 import { radio_types } from '@simulation/components/section/houseConsumption/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
-export default function ConsumptionSection({ handleValue, onBack, onValid }: PropsSectionType) {
+export default function ConsumptionSection({ handleValue }: PropsSectionType) {
 
     const inputName = "houseConsumption";
+    const nodeNavigator = useNodeNavigator()
 
     return(
         <div className={"flex flex-col items-center gap-[5rem]"}>
@@ -26,7 +28,9 @@ export default function ConsumptionSection({ handleValue, onBack, onValid }: Pro
                                 label: inputName,
                                 response: type.value
                             }
-                            handleValue([data], true);
+
+                            handleValue([data]);
+                            nodeNavigator.goNext()
                         }}
                     >
 
@@ -60,7 +64,7 @@ export default function ConsumptionSection({ handleValue, onBack, onValid }: Pro
                 </div>
             </div>
 
-            <StepNavigation showSkip={true} onSkip={ onValid } showBack={true} onBack={ onBack } showSubmit={false}/>
+            <StepNavigation showSkip={true} onSkip={ nodeNavigator.goNext } showSubmit={false}/>
         </div>
     );
 }

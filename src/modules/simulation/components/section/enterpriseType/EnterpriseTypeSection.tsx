@@ -5,10 +5,12 @@ import { InputResponseType } from '@simulation/components/InputResponseType'
 import { enterprises } from '@simulation/components/section/enterpriseType/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function EnterpriseTypeSection(props: PropsSectionType) {
 
     const inputName = "enterpriseType";
+    const nodeNavigator = useNodeNavigator()
     
     return(
         <div className={"flex flex-col items-center gap-[3.6rem]"}>
@@ -26,7 +28,8 @@ export default function EnterpriseTypeSection(props: PropsSectionType) {
                                     label: inputName,
                                     response: enterprise.value
                                 }
-                                props.handleValue([data], true);
+                                props.handleValue([data]);
+                                nodeNavigator.goNext();
                             }}
                         >
 
@@ -44,8 +47,6 @@ export default function EnterpriseTypeSection(props: PropsSectionType) {
                     </Grid.Col>
                 ))}
             </Grid>
-
-            <StepNavigation showSkip={false} showBack={false} showSubmit={false}/>
         </div>
     )
 }

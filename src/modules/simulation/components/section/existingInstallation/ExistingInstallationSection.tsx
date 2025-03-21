@@ -1,15 +1,18 @@
+import { ImageBuilder } from '@digico/ui'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
+
 import { InputCard } from '@simulation/components/InputCard'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 import { existingInstallations } from '@simulation/components/section/existingInstallation/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
-import { InputResponseType } from '@simulation/components/InputResponseType'
-import { ImageBuilder } from '@digico/ui'
 
 export default function ExistingInstallationSection(props: PropsSectionType) {
 
     const inputName = "existingInstallation";
+    const nodeNavigator = useNodeNavigator()
 
-    return(
+    return (
         <div className={"flex flex-col items-center gap-[9rem]"}>
             <h2>Avez-vous déjà une installation photovoltaïque existante ?</h2>
 
@@ -26,7 +29,8 @@ export default function ExistingInstallationSection(props: PropsSectionType) {
                                response: type.value
                            }
 
-                           props.handleValue([data], true);
+                           props.handleValue([data]);
+                            nodeNavigator.goNext()
                        }}
                    >
 
@@ -45,7 +49,7 @@ export default function ExistingInstallationSection(props: PropsSectionType) {
                 ))}
             </div>
 
-            <StepNavigation showSkip={false} showBack={true} onBack={props.onBack} showSubmit={false}/>
+            <StepNavigation showSkip={false} showSubmit={false}/>
         </div>
     );
 }

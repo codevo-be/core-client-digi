@@ -5,10 +5,12 @@ import { InputResponseType } from '@simulation/components/InputResponseType'
 import { networkTypes } from '@simulation/components/section/networkType/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function NetworkTypeSection(props: PropsSectionType) {
 
     const inputName = "networkType"
+    const nodeNavigator = useNodeNavigator()
 
     return(
         <div className={"flex flex-col items-center gap-[6.9rem]"}>
@@ -28,7 +30,8 @@ export default function NetworkTypeSection(props: PropsSectionType) {
                                 response: type.value
                             }
 
-                            props.handleValue([data], true);
+                            props.handleValue([data]);
+                            nodeNavigator.goNext()
                         }}
                     >
 
@@ -44,7 +47,7 @@ export default function NetworkTypeSection(props: PropsSectionType) {
                 ))}
             </div>
 
-            <StepNavigation showSkip={false} showBack={true} onBack={props.onBack} showSubmit={false}/>
+            <StepNavigation showSkip={false} showSubmit={false}/>
         </div>
     )
 }

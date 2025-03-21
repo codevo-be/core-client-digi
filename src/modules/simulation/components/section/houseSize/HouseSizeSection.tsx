@@ -4,10 +4,12 @@ import { Form } from '@digico/ui'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function HouseSizeSection(props: PropsSectionType) {
 
-    const { setValue, getValues } = useFormContext();
+    const { getValues } = useFormContext();
+    const nodeNavigator = useNodeNavigator()
 
     const inputDimensionLengthName = "houseDimensionLength";
     const inputDimensionWidthName = "houseDimensionWidth"
@@ -50,8 +52,9 @@ export default function HouseSizeSection(props: PropsSectionType) {
                     response: getValues(inputDimensionWidthName) === null ? '' : getValues(inputDimensionWidthName)
                 }
 
-                props.handleValue([houseSquareData, houseDimensionLengthData, houseDimensionWidthData], true)
-            }} showBack={true} onBack={ props.onBack } showSubmit={false}/>
+                props.handleValue([houseSquareData, houseDimensionLengthData, houseDimensionWidthData])
+                nodeNavigator.goNext()
+            }} showSubmit={false}/>
         </div>
     );
 }

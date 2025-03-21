@@ -4,6 +4,7 @@ import { Form } from '@digico/ui'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function InstallationInformationSection(props: PropsSectionType) {
 
@@ -11,13 +12,14 @@ export default function InstallationInformationSection(props: PropsSectionType) 
     const inputNbrPanelsName = "nbrPanels"
 
     const { getValues } = useFormContext()
+    const nodeNavigator = useNodeNavigator()
 
     return(
         <div className={"flex flex-col items-center gap-[6.7rem]"}>
             <h2>Consommation de votre maison</h2>
 
             <Form.Group className={"bg-white w-[46.6rem] h-[41.5rem] px-[8.1rem] flex justify-center border-1 border-[#8EACC5] rounded-2xl"}>
-                <p>Année d'installation et nombre de panneaux</p>
+                <p>Année d&apos;installation et nombre de panneaux</p>
 
                 <Form.Field name={inputInstallationDataName} prefix={"année"} placeholder={"..."}/>
                 <Form.Field name={inputNbrPanelsName} suffix={"panneaux"} placeholder={"..."}/>
@@ -34,8 +36,9 @@ export default function InstallationInformationSection(props: PropsSectionType) 
                     response: getValues(inputInstallationDataName)
                 }
 
-                props.handleValue([nbrPanelData, installationDateData], true)
-            }} showBack={ true } onBack={ props.onBack } showSubmit={false}/>
+                props.handleValue([nbrPanelData, installationDateData])
+                nodeNavigator.goNext();
+            }} showSubmit={false}/>
         </div>
     );
 }

@@ -6,10 +6,12 @@ import { PropsSectionType } from '@simulation/components/section/PropsSectionTyp
 import { StepNavigation } from '@simulation/components/StepNavigation'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { ImageBuilder } from '@digico/ui'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function InterestSection({ handleValue}: PropsSectionType) {
 
     const inputName = "interests"
+    const nodeNavigator = useNodeNavigator()
 
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
@@ -62,9 +64,10 @@ export default function InterestSection({ handleValue}: PropsSectionType) {
                 }
 
                 handleValue([data]);
+                nodeNavigator.goNext()
             } }
-                            showBack={false}
-                            showSubmit={false} />
+                            showSubmit={false}
+            />
         </div>
     )
 };

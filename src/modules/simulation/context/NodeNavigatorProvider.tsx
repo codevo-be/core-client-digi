@@ -1,3 +1,5 @@
+'use client'
+
 import React, { MutableRefObject, ReactNode, useRef, useState } from 'react'
 import { NodeMap } from '@simulation/DAGmap/NodeMap'
 
@@ -8,14 +10,13 @@ interface NodeNavigatorProviderType {
     startNodeId: string;
     children: ReactNode;
     conditions: MutableRefObject<any>;
+    onNext?: () => void;
 }
 
-export default function NodeNavigatorProvider(props: NodeNavigatorProviderType) { //TODO Faire une amélioration ? LE système de map connait les nodes starts et node end
+export default function NodeNavigatorProvider(props: NodeNavigatorProviderType) { //TODO Faire une amélioration ? Le système de map connait les nodes starts et node end
     const history = useRef<string[]>([props.startNodeId])
     const currentNodeId = useRef<string>(props.startNodeId)
     const [currentNode, setCurrentNode] = useState(props.nodeMap.nodes[props.startNodeId]);
-
-    console.log(props.conditions.current)
 
     const buildHistory = (nodeStartId: string, formData: any, currentNodeId: string) => {
         let currentNode = nodeStartId;
@@ -37,7 +38,7 @@ export default function NodeNavigatorProvider(props: NodeNavigatorProviderType) 
     const getNextNodeId = (nodeId: string, conditions: any): string => {
         const children = props.nodeMap.paths[nodeId] || [];
         const conditionedPaths = children.filter(item => item.condition);
-        const freePath = children.filter(item => !item.condition); //TODO faire un reeduce pour pas faire 2 claculs ?
+        const freePath = children.filter(item => !item.condition); //TODO faire un reduce pour pas faire 2 claculs ?
 
         for (const conditionedPath of conditionedPaths) {
             if (conditionedPath.condition!(conditions)) {
@@ -55,7 +56,6 @@ export default function NodeNavigatorProvider(props: NodeNavigatorProviderType) 
 
     const goBack= () => {
         const prevHistory = history.current
-        console.log(history.current)
         if (prevHistory.length > 1) {
             const newHistory = prevHistory.slice(0, -1)
             currentNodeId.current = newHistory[newHistory.length -1] //TODO -2 si ça ne marche pas
@@ -66,7 +66,9 @@ export default function NodeNavigatorProvider(props: NodeNavigatorProviderType) 
     }
 
     const goNext = () => {
-        console.log(props.conditions.current)
+
+        if (props.onNext !== undefined) props.onNext();
+
         const nextNodeId = getNextNodeId(currentNodeId.current, props.conditions.current)
         if (!nextNodeId) return
 
@@ -77,6 +79,7 @@ export default function NodeNavigatorProvider(props: NodeNavigatorProviderType) 
     }
 
     const contextValue: NodeNavigatorContextType = {
+        currentNodeId: currentNodeId.current,
         currentNode,
         goBack,
         goNext

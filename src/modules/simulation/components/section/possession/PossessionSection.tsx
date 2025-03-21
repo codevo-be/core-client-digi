@@ -6,11 +6,13 @@ import { InputResponseType } from '@simulation/components/InputResponseType'
 import { possessions } from '@simulation/components/section/possession/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function PossessionSection(propsSection: PropsSectionType) {
 
     const inputName = "possessions";
     const [selectedPossessions, setSelectedPossessions] = useState<string[]>([]);
+    const nodeNavigator = useNodeNavigator()
 
     return (
         <div className={"flex flex-col items-center gap-[3.6rem]"}>
@@ -56,9 +58,9 @@ export default function PossessionSection(propsSection: PropsSectionType) {
                         response: selectedPossessions.toString()
                     }
 
-                    propsSection.handleValue([data], true);
+                    propsSection.handleValue([data]);
+                    nodeNavigator.goNext()
                 }}
-                showBack={true} onBack={propsSection.onBack}
                 showSubmit={false}
             />
         </div>

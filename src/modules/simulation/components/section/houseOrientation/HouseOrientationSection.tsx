@@ -3,10 +3,12 @@ import { InputResponseType } from '@simulation/components/InputResponseType'
 import { orientationTypes } from '@simulation/components/section/houseOrientation/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function HouseOrientationSection(props: PropsSectionType) {
 
     const inputName = "houseOrientation";
+    const nodeNavigator = useNodeNavigator()
 
     return(
         <div className={"flex flex-col items-center gap-[6.9rem]"}>
@@ -26,7 +28,8 @@ export default function HouseOrientationSection(props: PropsSectionType) {
                                 response: type.value
                             }
 
-                            props.handleValue([data], true);
+                            props.handleValue([data]);
+                            nodeNavigator.goNext();
                         }}
                     >
 
@@ -38,7 +41,7 @@ export default function HouseOrientationSection(props: PropsSectionType) {
                 ))}
             </div>
 
-            <StepNavigation showSkip={true} onSkip={props.onValid} showBack={true} onBack={props.onBack} showSubmit={false}/>
+            <StepNavigation showSkip={true} onSkip={ nodeNavigator.goNext } showSubmit={false}/>
         </div>
     );
 }

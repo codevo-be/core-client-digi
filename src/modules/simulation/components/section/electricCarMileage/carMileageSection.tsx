@@ -1,19 +1,16 @@
 import { useState } from 'react'
-import { Button } from '@digico/ui'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 import { InputResponseType } from '@simulation/components/InputResponseType'
+import RangeWithButtons from '@simulation/components/RangeWIthButtons'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
-import RangeWithButtons from '@simulation/components/RangeWIthButtons'
 
 export default function CarMileageSection(propsSection: PropsSectionType) {
 
     const questionName = "carMileage";
     const [rangeValue, setRangeValue] = useState(12000);
-
-    const min = 1000;
-    const step = 1000;
-    const max = 24000;
+    const nodeNavigator = useNodeNavigator()
 
     return(
         <div className={"flex flex-col items-center"}>
@@ -36,10 +33,9 @@ export default function CarMileageSection(propsSection: PropsSectionType) {
                         response: String(rangeValue)
                     }
 
-                    propsSection.handleValue([data], false);
-                    propsSection.onValid()
+                    propsSection.handleValue([data]);
+                    nodeNavigator.goNext();
                 }}
-                showBack={true} onBack={propsSection.onBack}
                 showSubmit={false}
             />
         </div>

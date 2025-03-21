@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { Form } from '@digico/ui'
 import { useRouterWithTenant } from '@digico/utils'
@@ -69,19 +69,13 @@ export default function SimulationForm() {
         return simulationId ?? Cookies.get('simulationId')!;
     };
 
-    const updateSimulationFn = async (values: InputResponseType[]) => {
+    const updateData = async (currentNodeId: string, values: InputResponseType[]) => {
         try {
             const id = await shouldCreateSimulation();
 
-            for (const value of values) {
-                const label = value['label']
-                const response = value['response']
-                formData.current = { ...formData.current, [label]: response }
-            }
-
             const data: SimulationType = {
                 'simulation_id': id,
-                'current_step': currentNodeId.current,
+                'current_step': currentNodeId,
                 'values': values
             };
 
@@ -96,21 +90,21 @@ export default function SimulationForm() {
 
         if (simulationId ===  null) throw new Error("Something went wrong, the simulation id is null")
 
-        updateSimulationFn(contactValues).then(() => {
+        updateData('contactInfo', contactValues).then(() => {
             Cookies.remove('simulationId')
             routerWithTenant.push(`/simulation/result/${simulationId}`)
         });
     };
 
-    const formData = useRef<any>({}) //todo rename à conditions
+    const conditions = useRef<any>({})
 
     return (
         <div className={'h-full'}>
             <Form useForm={form} className={'text-[#006EC2] text-[2.8rem] bg-[#E4F1F9] h-full'}>
-                <NodeNavigatorProvider conditions={formData} nodeMap={simulationMap} startNodeId={'installation'}>
+                <NodeNavigatorProvider conditions={conditions} nodeMap={simulationMap} startNodeId={'installation'}>
                     <NavBar />
 
-                    <SectionContainer data={formData} />
+                    <SectionContainer handleValue={updateData} data={conditions} />
 
                 </NodeNavigatorProvider>
             </Form>

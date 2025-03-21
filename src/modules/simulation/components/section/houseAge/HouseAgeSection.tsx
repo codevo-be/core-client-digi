@@ -1,12 +1,15 @@
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
+
 import { InputCard } from '@simulation/components/InputCard'
+import { InputResponseType } from '@simulation/components/InputResponseType'
 import { ageTypes } from '@simulation/components/section/houseAge/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
-import { InputResponseType } from '@simulation/components/InputResponseType'
 
 export default function HouseAgeSection(propsSection: PropsSectionType) {
 
     const inputName = "houseAge";
+    const nodeNavigator = useNodeNavigator()
 
     return(
         <div className={"flex flex-col items-center gap-[6.9rem]"}>
@@ -26,7 +29,8 @@ export default function HouseAgeSection(propsSection: PropsSectionType) {
                                 response: type.value
                             }
 
-                            propsSection.handleValue([data], true);
+                            propsSection.handleValue([data]);
+                            nodeNavigator.goNext()
                         }}
                     >
 
@@ -43,7 +47,7 @@ export default function HouseAgeSection(propsSection: PropsSectionType) {
                 ))
                 }
             </div>
-            <StepNavigation showSkip={false} showBack={true} onBack={propsSection.onBack} showSubmit={false} />
+            <StepNavigation showSkip={false} showSubmit={false} />
         </div>
     );
 }

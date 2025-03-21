@@ -3,6 +3,7 @@
 import { createContext, useContext } from 'react'
 
 export interface NodeNavigatorContextType { //TODO changer les types
+    currentNodeId: string;
     currentNode: any;
     goBack: () => any;
     goNext: () => any;

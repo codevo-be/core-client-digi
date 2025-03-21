@@ -51,7 +51,6 @@ export default function ContactInformationSection(propsSection: PropsSectionType
 
             <StepNavigation
                 showSkip={false}
-                showBack={true} onBack={propsSection.onBack}
                 showSubmit={true} onSubmit={() => {
 
                     const email: InputResponseType = {
@@ -74,7 +73,7 @@ export default function ContactInformationSection(propsSection: PropsSectionType
                         response: getValues(inputCountry)
                     }
 
-                    propsSection.onSubmit([email, phone, zipcode, country])
+                    //propsSection.onSubmit([email, phone, zipcode, country])
                 }}
             />
         </div>

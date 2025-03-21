@@ -5,9 +5,11 @@ import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { roofTypes } from '@simulation/components/section/roofTypes/index'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function RoofTypeSection(propsSection: PropsSectionType) {
     const inputName = "roofType";
+    const nodeNavigator = useNodeNavigator()
 
     return (
         <div className={"flex flex-col items-center gap-[3.6rem]"}>
@@ -28,7 +30,8 @@ export default function RoofTypeSection(propsSection: PropsSectionType) {
                                     response: type.value
                                 }
 
-                                propsSection.handleValue([data], true);
+                                propsSection.handleValue([data]);
+                                nodeNavigator.goNext()
                             }}
                         >
 
@@ -46,8 +49,7 @@ export default function RoofTypeSection(propsSection: PropsSectionType) {
             </Grid>
             
             <StepNavigation
-                showSkip={true} onSkip={propsSection.onValid}
-                showBack={true} onBack={propsSection.onBack}
+                showSkip={true} onSkip={ nodeNavigator.goNext }
                 showSubmit={false}
             />
         </div>

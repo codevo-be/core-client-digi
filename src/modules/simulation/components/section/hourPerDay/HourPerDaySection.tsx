@@ -4,12 +4,14 @@ import { InputResponseType } from '@simulation/components/InputResponseType'
 import RangeWithButtons from '@simulation/components/RangeWIthButtons'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { StepNavigation } from '@simulation/components/StepNavigation'
+import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function HourPerDaySection(props: PropsSectionType) {
 
     const inputName = 'hourAtHouse'
 
     const [rangeValue, setRangeValue] = useState(5);
+    const nodeNavigator = useNodeNavigator()
 
     return (
         <div className={"flex flex-col items-center"}>
@@ -26,9 +28,9 @@ export default function HourPerDaySection(props: PropsSectionType) {
                     response: String(rangeValue)
                 }
 
-                props.handleValue([data], false);
-                props.onValid();
-            }} showBack={true} onBack={props.onBack} showSubmit={false} />
+                props.handleValue([data]);
+                nodeNavigator.goNext()
+            }}  showSubmit={false} />
         </div>
     );
 }

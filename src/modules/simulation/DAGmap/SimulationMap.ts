@@ -39,7 +39,7 @@ export const simulationMap: NodeMap = {
         installation: [
             {
                 next: "enterpriseType",
-                condition: (formData: any) => formData.installationType === "enterpriseType"
+                condition: (formData: any) => formData.installationType === "enterprise"
             },
             {
                 next: "interest",
