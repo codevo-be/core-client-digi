@@ -6,6 +6,7 @@ import SectionTitle from '@simulation/components/atoms/Text/SectionTitle'
 import InputCard from '@simulation/components/molecules/InputCard'
 import { interests } from '@simulation/config'
 import PropsSectionType from '@simulation/components/section/PropsSectionType'
+import SkipContinueButtons from '@simulation/components/molecules/SkipContinueButtons'
 
 type InterestSectionType = PropsSectionType
 
@@ -51,6 +52,10 @@ export default function InterestSection(props: InterestSectionType) {
 
                 </InputCard>
             ))}
+
+            <SkipContinueButtons onClick={() => {
+                console.log("button clicked")
+            }}/>
         </div>
     )
 }
