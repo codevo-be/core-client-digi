@@ -10,7 +10,7 @@ export default function useUpdateSimulation() {
             toast.error(error.message);
         },
         onSuccess: () => {
-            toast.success('Simulation mise à jour');
+
         }
     });
 }

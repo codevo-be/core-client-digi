@@ -1,5 +1,6 @@
-import NavButton from '@simulation/components/NavButton'
 import { ImageBuilder } from '@digico/ui'
+
+import NavButton from '@simulation/components/NavButton'
 
 export default function NavBar() {
 
@@ -12,7 +13,7 @@ export default function NavBar() {
     ]
 
     return(
-        <div className={"w-full h-[7.4rem] bg-white px-[52.9rem] flex items-center"}>
+        <div className={"w-full h-[7.4rem] bg-white px-[52.9rem] flex items-center relative"}>
 
             <button type={"button"} className={"absolute left-10 flex items-center border border-[#8EACC5] gap-4 rounded-full px-[1.4rem] hover:cursor-pointer"}>
                 <ImageBuilder src={"/icons/noveway/back_arrow.svg"} />

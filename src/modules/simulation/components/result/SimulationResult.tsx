@@ -50,8 +50,6 @@ export default function SimulationResult() {
                         setCurrentData(newData)
                     }
 
-                    console.log(newData)
-
                     setLoading(false)
                 }
             }

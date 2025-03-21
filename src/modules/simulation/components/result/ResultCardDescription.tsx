@@ -66,7 +66,7 @@ export default function ResultCardDescription(props: Props){
                             <input type={"number"} className={"py-[1.1rem] px-[1.5rem] text-[#006EC2] w-[11.7rem] h-[5.2rem] bg-white border-2 " +
                                 "border-[#8EACC5] rounded-2xl " +
                                 "appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"}
-                                   defaultValue={inputValue}
+                                   value={inputValue} onChange={(event) => {setInputValue(Number(event.target.value))}}
                             />
 
                             <button type={"button"} className={"w-[5.2rem] h-[5.2rem] hover:cursor-pointer rounded-full bg-[#8EACC5]"}
