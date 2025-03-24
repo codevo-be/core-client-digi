@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import RangeWithButtons from '@simulation/components/RangeWIthButtons'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function HourPerDaySection(props: PropsSectionType) {
@@ -21,16 +20,6 @@ export default function HourPerDaySection(props: PropsSectionType) {
                 <p><span className={"text-[6.4rem]"}>{rangeValue}</span> heures</p>
                 <RangeWithButtons step={1} value={rangeValue} min={1} max={9} setRangeValue={setRangeValue} />
             </div>
-
-            <StepNavigation showSkip={true} onSkip={() => {
-                const data: InputResponseType = {
-                    label: inputName,
-                    response: String(rangeValue)
-                }
-
-                props.handleValue([data]);
-                nodeNavigator.goNext()
-            }}  showSubmit={false} />
         </div>
     );
 }

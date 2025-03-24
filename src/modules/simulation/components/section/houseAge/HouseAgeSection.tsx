@@ -4,7 +4,6 @@ import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { ageTypes } from '@simulation/components/section/houseAge/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 
 export default function HouseAgeSection(propsSection: PropsSectionType) {
 
@@ -26,7 +25,7 @@ export default function HouseAgeSection(propsSection: PropsSectionType) {
                         onClick={() => {
                             const data: InputResponseType = {
                                 label: inputName,
-                                response: type.value
+                                value: type.value
                             }
 
                             propsSection.handleValue([data]);
@@ -47,7 +46,6 @@ export default function HouseAgeSection(propsSection: PropsSectionType) {
                 ))
                 }
             </div>
-            <StepNavigation showSkip={false} showSubmit={false} />
         </div>
     );
 }

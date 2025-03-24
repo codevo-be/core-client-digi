@@ -4,8 +4,7 @@ import { Form } from '@digico/ui'
 import countries from '@simulation/countries.json';
 
 import { InputResponseType } from '@simulation/components/InputResponseType'
-import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
+import PropsSectionType from '@simulation/components/section/PropsSectionType'
 
 export default function ContactInformationSection(propsSection: PropsSectionType) {
 
@@ -48,34 +47,6 @@ export default function ContactInformationSection(propsSection: PropsSectionType
                 </div>
 
             </Form.Group>
-
-            <StepNavigation
-                showSkip={false}
-                showSubmit={true} onSubmit={() => {
-
-                    const email: InputResponseType = {
-                        label: inputEmailName,
-                        response: getValues(inputEmailName)
-                    }
-
-                    const phone: InputResponseType = {
-                        label: inputPhoneName,
-                        response: getValues(inputPhoneName)
-                    }
-
-                    const zipcode: InputResponseType = {
-                        label: inputZipcodeName,
-                        response: getValues(inputZipcodeName)
-                    }
-
-                    const country: InputResponseType = {
-                        label: inputCountry,
-                        response: getValues(inputCountry)
-                    }
-
-                    //propsSection.onSubmit([email, phone, zipcode, country])
-                }}
-            />
         </div>
     );
 }

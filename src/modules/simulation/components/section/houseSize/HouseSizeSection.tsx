@@ -3,7 +3,6 @@ import { Form } from '@digico/ui'
 
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function HouseSizeSection(props: PropsSectionType) {
@@ -34,27 +33,6 @@ export default function HouseSizeSection(props: PropsSectionType) {
                     <Form.Field name={inputDimensionWidthName} suffix={"m"} placeholder={"..."}/>
                 </Form.Group>
             </div>
-
-            <StepNavigation showSkip={true} onSkip={() => {
-
-                const houseSquareData: InputResponseType = {
-                    label: inputHouseSquareName,
-                    response: getValues(inputHouseSquareName) === null ? '' : getValues(inputHouseSquareName)
-                }
-
-                const houseDimensionLengthData: InputResponseType = {
-                    label: inputDimensionLengthName,
-                    response: getValues(inputDimensionLengthName) === null ? '' : getValues(inputDimensionLengthName)
-                }
-
-                const houseDimensionWidthData: InputResponseType = {
-                    label: inputDimensionWidthName,
-                    response: getValues(inputDimensionWidthName) === null ? '' : getValues(inputDimensionWidthName)
-                }
-
-                props.handleValue([houseSquareData, houseDimensionLengthData, houseDimensionWidthData])
-                nodeNavigator.goNext()
-            }} showSubmit={false}/>
         </div>
     );
 }

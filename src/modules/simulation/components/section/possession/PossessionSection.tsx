@@ -5,7 +5,6 @@ import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { possessions } from '@simulation/components/section/possession/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function PossessionSection(propsSection: PropsSectionType) {
@@ -48,21 +47,6 @@ export default function PossessionSection(propsSection: PropsSectionType) {
                     </OldInputCard>
                 ))}
             </div>
-
-            <StepNavigation
-                showSkip={true}
-                onSkip={() => {
-
-                    const data: InputResponseType = {
-                        label: inputName,
-                        response: selectedPossessions.toString()
-                    }
-
-                    propsSection.handleValue([data]);
-                    nodeNavigator.goNext()
-                }}
-                showSubmit={false}
-            />
         </div>
     );
 }

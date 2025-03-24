@@ -1,6 +1,6 @@
-import RadioType from '@simulation/components/section/houseConsumption/radio-type'
+import CardInfosType from '@simulation/components/CardInfosType'
 
-export const radio_types: RadioType[] = [
+export const houseConsumptionDefaultTypes: CardInfosType[] = [
     {
         id: 'duo',
         label: '2 personnes',

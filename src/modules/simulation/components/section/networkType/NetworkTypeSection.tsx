@@ -4,7 +4,6 @@ import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { networkTypes } from '@simulation/components/section/networkType/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function NetworkTypeSection(props: PropsSectionType) {
@@ -27,7 +26,7 @@ export default function NetworkTypeSection(props: PropsSectionType) {
                         onClick={() => {
                             const data: InputResponseType = {
                                 label: inputName,
-                                response: type.value
+                                value: type.value
                             }
 
                             props.handleValue([data]);
@@ -46,8 +45,6 @@ export default function NetworkTypeSection(props: PropsSectionType) {
                     </OldInputCard>
                 ))}
             </div>
-
-            <StepNavigation showSkip={false} showSubmit={false}/>
         </div>
     )
 }

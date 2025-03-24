@@ -18,6 +18,7 @@ export default function ContinueButton(props: ContinueButtonProps) {
             className={"bg-linear-to-tr from-[#2F8FF5] to-[#19B4DC] text-white text-[2rem] p-4 " +
                 "w-[18.5rem] h-[6.1rem] rounded-[3rem] hover:cursor-pointer"}
             onClick={handleOnClick}
+            type={"button"}
         >
             <div className={"flex items-center gap-[1.4rem]"}>
 

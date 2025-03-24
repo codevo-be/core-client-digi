@@ -4,7 +4,6 @@ import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
 import { roofTypes } from '@simulation/components/section/roofTypes/index'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function RoofTypeSection(propsSection: PropsSectionType) {
@@ -27,7 +26,7 @@ export default function RoofTypeSection(propsSection: PropsSectionType) {
                             onClick={() => {
                                 const data: InputResponseType = {
                                     label: inputName,
-                                    response: type.value
+                                    value: type.value
                                 }
 
                                 propsSection.handleValue([data]);
@@ -47,11 +46,7 @@ export default function RoofTypeSection(propsSection: PropsSectionType) {
                     </Grid.Col>
                 ))}
             </Grid>
-            
-            <StepNavigation
-                showSkip={true} onSkip={ nodeNavigator.goNext }
-                showSubmit={false}
-            />
+
         </div>
     );
 }

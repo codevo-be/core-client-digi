@@ -1,4 +1,3 @@
-import { Grid } from '@digico/ui'
 import { enterprises } from '@simulation/config/enterpriseTypes'
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
@@ -18,7 +17,7 @@ export default function EnterpriseTypeSection(props: EnterpriseTypeSectionProps)
     const handleOnClick = (response: string) => {
         const data: InputResponseType = {
             label: inputName,
-            response: response
+            value: response
         }
         props.handleValue([data]);
         nodeNavigator.goNext();
@@ -26,13 +25,13 @@ export default function EnterpriseTypeSection(props: EnterpriseTypeSectionProps)
 
     return (
         <div className={"flex flex-col items-center gap-16"}>
-            <SectionTitle content={"Quel type d'entreprise êtes-vous ?"} />
+            <SectionTitle>Quel type d&apos;entreprise êtes-vous ?</SectionTitle>
 
-            <Grid className={'gap-x-[1.8rem] gap-y-[2.1rem]'}>
+                <div className={'flex flex-wrap gap-x-[1.8rem] gap-y-[2.1rem]'}>
                 {enterprises.map((enterprise) => (
-                    <Grid.Col column={3} key={enterprise.id}>
 
                         <InputCard
+                            key={enterprise.id}
                             id={enterprise.id}
                             value={enterprise.value}
                             name={inputName}
@@ -49,9 +48,8 @@ export default function EnterpriseTypeSection(props: EnterpriseTypeSectionProps)
                             </div>
 
                         </InputCard>
-                    </Grid.Col>
                 ))}
-            </Grid>
+            </div>
         </div>
     )
 }

@@ -1,25 +1,23 @@
 import { useState } from 'react'
-import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
+import { interests } from '@simulation/config/interestTypes'
 
 import CardTitle from '@simulation/components/atoms/Text/CardTitle'
 import SectionTitle from '@simulation/components/atoms/Text/SectionTitle'
 import InputCard from '@simulation/components/molecules/InputCard'
-import { interests } from '@simulation/config'
-import PropsSectionType from '@simulation/components/section/PropsSectionType'
 import SkipContinueButtons from '@simulation/components/molecules/SkipContinueButtons'
+import PropsSectionType from '@simulation/components/section/PropsSectionType'
 
 type InterestSectionType = PropsSectionType
 
 export default function InterestSection(props: InterestSectionType) {
 
     const inputName = "interests"
-    const nodeNavigator = useNodeNavigator()
 
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
     return (
         <div className={"flex flex-col gap-16 items-center"}>
-            <SectionTitle content={"Je suis intéressé par"} />
+            <SectionTitle>Je suis intéressé par</SectionTitle>
 
             {interests.map((_) => (
                 <InputCard
@@ -53,8 +51,9 @@ export default function InterestSection(props: InterestSectionType) {
                 </InputCard>
             ))}
 
-            <SkipContinueButtons onClick={() => {
-                console.log("button clicked")
+            <SkipContinueButtons onContinueClick={() => {
+                console.log(selectedInterests.join(','))
+                props.handleValue([{label: inputName, value: selectedInterests.join(',')}]);
             }}/>
         </div>
     )

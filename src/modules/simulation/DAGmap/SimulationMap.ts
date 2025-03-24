@@ -1,6 +1,7 @@
 import { NodeMap } from '@simulation/DAGmap/NodeMap'
 
 import EnterpriseTypeSection from '@simulation/components/organisms/EnterpriseTypeSection'
+import HouseConsumptionSection from '@simulation/components/organisms/HouseConsumptionSection'
 import InstallationTypeSection from '@simulation/components/organisms/InstallationTypeSection'
 import InterestSection from '@simulation/components/organisms/InterestSection'
 import ContactInformationSection from '@simulation/components/section/contactInformation/ContactInformationSection'
@@ -8,7 +9,6 @@ import CarMileageSection from '@simulation/components/section/electricCarMileage
 import ExistingInstallationSection from '@simulation/components/section/existingInstallation/ExistingInstallationSection'
 import HourPerDaySection from '@simulation/components/section/hourPerDay/HourPerDaySection'
 import HouseAgeSection from '@simulation/components/section/houseAge/HouseAgeSection'
-import ConsumptionSection from '@simulation/components/section/houseConsumption/ConsumptionSection'
 import HouseOrientationSection from '@simulation/components/section/houseOrientation/HouseOrientationSection'
 import HouseSizeSection from '@simulation/components/section/houseSize/HouseSizeSection'
 import InstallationInformationSection from '@simulation/components/section/installationInformation/InstallationInformationSection'
@@ -22,7 +22,7 @@ export const simulationMap: NodeMap = {
         installation: { component: InstallationTypeSection },
         enterpriseType: { component: EnterpriseTypeSection },
         interest: { component: InterestSection },
-        houseConsumption: { component: ConsumptionSection },
+        houseConsumption: { component: HouseConsumptionSection },
         existingInstallation: { component: ExistingInstallationSection },
         installationInformation: { component: InstallationInformationSection },
         hourPerDay: { component: HourPerDaySection },

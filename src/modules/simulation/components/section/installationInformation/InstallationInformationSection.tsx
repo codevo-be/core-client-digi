@@ -3,7 +3,6 @@ import { Form } from '@digico/ui'
 
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function InstallationInformationSection(props: PropsSectionType) {
@@ -24,21 +23,6 @@ export default function InstallationInformationSection(props: PropsSectionType) 
                 <Form.Field name={inputInstallationDataName} prefix={"année"} placeholder={"..."}/>
                 <Form.Field name={inputNbrPanelsName} suffix={"panneaux"} placeholder={"..."}/>
             </Form.Group>
-
-            <StepNavigation showSkip={true} onSkip={ () => {
-                const nbrPanelData: InputResponseType = {
-                    label: inputInstallationDataName,
-                    response: getValues(inputInstallationDataName)
-                }
-
-                const installationDateData: InputResponseType = {
-                    label: inputInstallationDataName,
-                    response: getValues(inputInstallationDataName)
-                }
-
-                props.handleValue([nbrPanelData, installationDateData])
-                nodeNavigator.goNext();
-            }} showSubmit={false}/>
         </div>
     );
 }

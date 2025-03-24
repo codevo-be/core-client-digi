@@ -2,7 +2,6 @@ import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import { orientationTypes } from '@simulation/components/section/houseOrientation/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 export default function HouseOrientationSection(props: PropsSectionType) {
@@ -25,7 +24,7 @@ export default function HouseOrientationSection(props: PropsSectionType) {
                         onClick={() => {
                             const data: InputResponseType = {
                                 label: inputName,
-                                response: type.value
+                                value: type.value
                             }
 
                             props.handleValue([data]);
@@ -40,8 +39,6 @@ export default function HouseOrientationSection(props: PropsSectionType) {
                     </OldInputCard>
                 ))}
             </div>
-
-            <StepNavigation showSkip={true} onSkip={ nodeNavigator.goNext } showSubmit={false}/>
         </div>
     );
 }

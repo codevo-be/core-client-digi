@@ -1,11 +1,13 @@
+import { ReactNode } from 'react'
+
 interface SectionTitleProps {
-    content: string
+    children: ReactNode
 }
 
 export default function SectionTitle(props: SectionTitleProps) {
     return(
         <>
-            <h2 className={"text-[2.8rem] text-[#006EC2]"}>{props.content}</h2>
+            <h2 className={"text-[2.8rem] text-[#006EC2]"}>{props.children}</h2>
         </>
     )
 }

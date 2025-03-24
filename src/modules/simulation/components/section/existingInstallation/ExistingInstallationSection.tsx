@@ -1,11 +1,10 @@
 import { ImageBuilder } from '@digico/ui'
 import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
-import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { InputResponseType } from '@simulation/components/InputResponseType'
+import { OldInputCard } from '@simulation/components/molecules/OldInputCard'
 import { existingInstallations } from '@simulation/components/section/existingInstallation/index'
 import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
 
 export default function ExistingInstallationSection(props: PropsSectionType) {
 
@@ -26,7 +25,7 @@ export default function ExistingInstallationSection(props: PropsSectionType) {
                        onClick={() => {
                            const data: InputResponseType = {
                                label: inputName,
-                               response: type.value
+                               value: type.value
                            }
 
                            props.handleValue([data]);
@@ -48,8 +47,6 @@ export default function ExistingInstallationSection(props: PropsSectionType) {
                    </OldInputCard>
                 ))}
             </div>
-
-            <StepNavigation showSkip={false} showSubmit={false}/>
         </div>
     );
 }

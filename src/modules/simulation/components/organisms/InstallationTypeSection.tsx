@@ -17,7 +17,7 @@ export default function InstallationTypeSection(props: InstallationTypeSection) 
     const handleOnClick = (response: string) => {
         const data: InputResponseType = {
             label: inputName,
-            response
+            value: response
         };
 
         props.handleValue([data]);
@@ -26,7 +26,7 @@ export default function InstallationTypeSection(props: InstallationTypeSection) 
 
     return (
         <div className="flex flex-col items-center gap-16">
-            <SectionTitle content="Type d'installation" />
+            <SectionTitle>Type d'installation</SectionTitle>
 
             <div className="flex gap-6">
 

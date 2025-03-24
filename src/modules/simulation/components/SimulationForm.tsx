@@ -24,28 +24,8 @@ export default function SimulationForm() {
     const createSimulation = useCreateSimulation()
     const updateSimulation = useUpdateSimulation()
 
-    const firstNodeId = 'interest'
+    const firstNodeId = 'houseConsumption'
     const simulationId = Cookies.get('simulationId')
-
-    /*useEffect(() => { //TODO dans un effect car sinon se refait à chaque changement de section
-        useGetSimulationDetails(simulationId)
-            .catch(e => {
-                console.log(e)
-            })
-            .then(r => {
-                const entries = r.entries;
-                formData.current = entries //Error but works
-
-                currentNodeId.current = r.current_step //Error but works
-                history.current = navigator.buildHistory(firstNodeId, formData.current, currentNodeId.current)
-
-                for (const entry in entries) {
-                    form.setValue(entry, entries[entry])
-                }
-
-                setCurrentNode(navigator.getNode(history.current[history.current.length - 1]))
-            })
-    }, [])*/
 
     const shouldCreateSimulation = async (): Promise<string> => {
         if (!simulationId) {

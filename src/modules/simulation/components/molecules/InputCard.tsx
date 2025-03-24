@@ -23,7 +23,7 @@ export default function InputCard(props: InputCardProps) {
                 className={"peer hidden"}
             />
 
-            <InputCardContainer>{props.children}</InputCardContainer>
+            <InputCardContainer className={"hover:cursor-pointer"}>{props.children}</InputCardContainer>
         </label>
     )
 }

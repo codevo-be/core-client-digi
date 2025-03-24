@@ -15,17 +15,17 @@ export default function SectionContainer(props: Props) {
 
     const handleValue = (values: InputResponseType[]) => {
         for (const value of values) {
-            props.data.current = { ...props.data.current, [value.label]: value.response }
+            props.data.current = { ...props.data.current, [value.label]: value.value }
         }
 
         props.handleValue(nodeNavigator.currentNodeId, values);
     }
 
     return(
-        <>
+        <div className={"px-8"}>
             {React.createElement(currentNode.component, {
                 handleValue
             })}
-        </>
+        </div>
     )
 }

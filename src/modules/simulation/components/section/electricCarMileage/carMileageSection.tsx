@@ -3,8 +3,7 @@ import { useNodeNavigator } from '@simulation/context/NodeNavigatorContext'
 
 import { InputResponseType } from '@simulation/components/InputResponseType'
 import RangeWithButtons from '@simulation/components/RangeWIthButtons'
-import { PropsSectionType } from '@simulation/components/section/PropsSectionType'
-import { StepNavigation } from '@simulation/components/StepNavigation'
+import PropsSectionType from '@simulation/components/section/PropsSectionType'
 
 export default function CarMileageSection(propsSection: PropsSectionType) {
 
@@ -23,21 +22,6 @@ export default function CarMileageSection(propsSection: PropsSectionType) {
 
                 <RangeWithButtons step={1000} value={rangeValue} min={1000} max={24000} setRangeValue={setRangeValue}/>
             </div>
-
-            <StepNavigation
-                showSkip={true}
-                onSkip={() => {
-
-                    const data: InputResponseType = {
-                        label: questionName,
-                        response: String(rangeValue)
-                    }
-
-                    propsSection.handleValue([data]);
-                    nodeNavigator.goNext();
-                }}
-                showSubmit={false}
-            />
         </div>
     );
 }
